@@ -1,0 +1,640 @@
+<title>ことばの温度 — note</title>
+<meta name="description" content="うまく言えない気持ちに、ことばの形をあげる。心の手当てとことばの記録を綴るnoteです。">
+
+<style>
+/* =========================================================
+   トークン
+   ========================================================= */
+:root {
+  /* 光の側 */
+  --ground:      #fbf6f1;  /* 生成り */
+  --ground-alt:  #f3e7de;  /* ベージュ */
+  --blush:       #f7dcdd;  /* 薄ピンク */
+  --rose:        #d99aa0;  /* ダスティローズ（アクセント） */
+  --rose-deep:   #b9737b;
+  --ink:         #4b3a38;  /* 赤みのある焦茶 */
+  --ink-soft:    #8b7370;
+  --rule:        #e6d5ca;
+  --card:        #fffdfb;
+
+  --shadow:      0 1px 2px rgba(75,58,56,.05), 0 12px 32px rgba(75,58,56,.07);
+
+  /* 文字 */
+  --mincho: "Hiragino Mincho ProN", "HiraMinProN-W3", "Yu Mincho",
+            "YuMincho", "Noto Serif JP", "BIZ UDMincho", serif;
+  --gothic: "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic",
+            "YuGothic", "Noto Sans JP", "BIZ UDPGothic", Meiryo, sans-serif;
+
+  --step--1: .8125rem;
+  --step-0:  1rem;
+  --step-1:  1.125rem;
+  --step-2:  clamp(1.25rem, 1.1rem + .7vw, 1.5rem);
+  --step-3:  clamp(1.5rem, 1.25rem + 1.2vw, 2rem);
+  --step-4:  clamp(1.875rem, 1.4rem + 2.4vw, 3.125rem);
+
+  --measure: 34em;
+  --pad:     clamp(1.25rem, 5vw, 2rem);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --ground:     #211a1b;
+    --ground-alt: #2b2223;
+    --blush:      #4a3338;
+    --rose:       #e0a7ad;
+    --rose-deep:  #f0c4c8;
+    --ink:        #ece0dc;
+    --ink-soft:   #b0999a;
+    --rule:       #46383a;
+    --card:       #292021;
+    --shadow:     0 1px 2px rgba(0,0,0,.3), 0 12px 32px rgba(0,0,0,.28);
+  }
+}
+
+/* 閲覧者のテーマ切替は media query に勝つ */
+:root[data-theme="dark"] {
+  --ground:     #211a1b;
+  --ground-alt: #2b2223;
+  --blush:      #4a3338;
+  --rose:       #e0a7ad;
+  --rose-deep:  #f0c4c8;
+  --ink:        #ece0dc;
+  --ink-soft:   #b0999a;
+  --rule:       #46383a;
+  --card:       #292021;
+  --shadow:     0 1px 2px rgba(0,0,0,.3), 0 12px 32px rgba(0,0,0,.28);
+}
+:root[data-theme="light"] {
+  --ground:     #fbf6f1;
+  --ground-alt: #f3e7de;
+  --blush:      #f7dcdd;
+  --rose:       #d99aa0;
+  --rose-deep:  #b9737b;
+  --ink:        #4b3a38;
+  --ink-soft:   #8b7370;
+  --rule:       #e6d5ca;
+  --card:       #fffdfb;
+  --shadow:     0 1px 2px rgba(75,58,56,.05), 0 12px 32px rgba(75,58,56,.07);
+}
+
+/* =========================================================
+   ベース
+   ========================================================= */
+*, *::before, *::after { box-sizing: border-box; }
+
+.page {
+  margin: 0;
+  font-family: var(--gothic);
+  font-size: var(--step-0);
+  line-height: 1.95;
+  color: var(--ink);
+  background: var(--ground);
+  letter-spacing: .04em;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+.page :where(h1, h2, h3, p, ul, ol, figure, blockquote) { margin: 0; padding: 0; }
+.page :where(ul, ol) { list-style: none; }
+
+.wrap {
+  width: 100%;
+  max-width: 60rem;
+  margin-inline: auto;
+  padding-inline: var(--pad);
+}
+
+.eyebrow {
+  font-family: var(--gothic);
+  font-size: var(--step--1);
+  font-weight: 600;
+  letter-spacing: .3em;
+  text-transform: uppercase;
+  color: var(--rose-deep);
+}
+
+.band { padding-block: clamp(4.5rem, 11vw, 7.5rem); }
+.band--alt { background: var(--ground-alt); }
+
+.band__head {
+  display: flex;
+  flex-direction: column;
+  gap: .75rem;
+  margin-bottom: clamp(2.5rem, 6vw, 3.75rem);
+}
+.band__title {
+  font-family: var(--mincho);
+  font-size: var(--step-3);
+  font-weight: 500;
+  line-height: 1.6;
+  letter-spacing: .08em;
+  text-wrap: balance;
+}
+
+/* =========================================================
+   ボタン
+   ========================================================= */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: .6em;
+  padding: 1em 2.4em;
+  font-family: var(--gothic);
+  font-size: var(--step-0);
+  font-weight: 600;
+  letter-spacing: .1em;
+  line-height: 1;
+  text-decoration: none;
+  border: 1px solid var(--rose);
+  border-radius: 999px;
+  color: var(--ground);
+  background: var(--rose);
+  transition: background .3s ease, color .3s ease,
+              border-color .3s ease, transform .3s ease;
+}
+.btn:hover {
+  background: var(--rose-deep);
+  border-color: var(--rose-deep);
+  transform: translateY(-2px);
+}
+.btn:focus-visible {
+  outline: 2px solid var(--rose-deep);
+  outline-offset: 4px;
+}
+.btn--quiet {
+  color: var(--rose-deep);
+  background: transparent;
+}
+.btn--quiet:hover {
+  color: var(--ground);
+  background: var(--rose-deep);
+}
+.btn__arrow { font-size: .85em; transition: transform .3s ease; }
+.btn:hover .btn__arrow { transform: translateX(3px); }
+
+/* =========================================================
+   ヒーロー
+   ========================================================= */
+.hero {
+  position: relative;
+  padding-block: clamp(4rem, 12vw, 8rem) clamp(4.5rem, 11vw, 7rem);
+  overflow: hidden;
+}
+/* にじみ */
+.hero::before,
+.hero::after {
+  content: "";
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(60px);
+  opacity: .75;
+  pointer-events: none;
+}
+.hero::before {
+  width: 34rem; height: 34rem;
+  top: -14rem; right: -10rem;
+  background: var(--blush);
+}
+.hero::after {
+  width: 26rem; height: 26rem;
+  bottom: -14rem; left: -12rem;
+  background: var(--ground-alt);
+}
+
+.hero__wrap {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: start;
+  gap: clamp(2rem, 5vw, 4rem);
+}
+
+.hero__body { display: flex; flex-direction: column; align-items: flex-start; gap: 1.75rem; }
+
+.hero__title {
+  font-family: var(--mincho);
+  font-size: var(--step-4);
+  font-weight: 500;
+  line-height: 1.55;
+  letter-spacing: .06em;
+}
+.hero__title em {
+  font-style: normal;
+  background: linear-gradient(transparent 68%, var(--blush) 68%);
+}
+.hero__lead {
+  max-width: var(--measure);
+  color: var(--ink-soft);
+}
+.hero__actions { display: flex; flex-wrap: wrap; gap: .875rem; }
+.hero__note { font-size: var(--step--1); color: var(--ink-soft); letter-spacing: .06em; }
+
+/* 縦組みのタグライン */
+.hero__vertical {
+  writing-mode: vertical-rl;
+  font-family: var(--mincho);
+  font-size: var(--step-1);
+  letter-spacing: .5em;
+  line-height: 1;
+  color: var(--ink-soft);
+  padding-block: .5rem;
+  border-right: 1px solid var(--rule);
+  padding-right: 1.5rem;
+  margin-top: .75rem;
+}
+
+/* =========================================================
+   共感
+   ========================================================= */
+.feels {
+  display: grid;
+  gap: 1px;
+  background: var(--rule);
+  border-block: 1px solid var(--rule);
+}
+.feels__item {
+  padding: 1.5rem clamp(1rem, 4vw, 2.25rem);
+  background: var(--ground-alt);
+  font-family: var(--mincho);
+  font-size: var(--step-2);
+  line-height: 1.75;
+  letter-spacing: .07em;
+}
+.feels__item::before {
+  content: "";
+  display: inline-block;
+  width: .45em; height: .45em;
+  margin-right: .9em;
+  border-radius: 50%;
+  background: var(--rose);
+  vertical-align: .28em;
+}
+
+.feels__turn {
+  max-width: var(--measure);
+  margin-top: clamp(2.5rem, 6vw, 3.5rem);
+  font-family: var(--mincho);
+  font-size: var(--step-2);
+  line-height: 2;
+  letter-spacing: .08em;
+}
+.feels__turn span { color: var(--rose-deep); }
+
+/* =========================================================
+   内容
+   ========================================================= */
+.topics { display: grid; gap: 0; }
+.topic {
+  display: grid;
+  grid-template-columns: 8rem minmax(0, 1fr);
+  gap: clamp(1rem, 4vw, 2.5rem);
+  padding-block: 2.25rem;
+  border-top: 1px solid var(--rule);
+}
+.topics .topic:last-child { border-bottom: 1px solid var(--rule); }
+
+.topic__label {
+  font-family: var(--mincho);
+  font-size: var(--step-2);
+  letter-spacing: .1em;
+  line-height: 1.6;
+  color: var(--rose-deep);
+}
+.topic__text { max-width: var(--measure); color: var(--ink-soft); }
+.topic__text strong {
+  display: block;
+  margin-bottom: .35rem;
+  font-weight: 600;
+  color: var(--ink);
+}
+
+/* 最近の記事 */
+.recent {
+  margin-top: clamp(3rem, 7vw, 4.5rem);
+  padding: clamp(1.75rem, 5vw, 2.5rem);
+  background: var(--card);
+  border: 1px solid var(--rule);
+  border-radius: 4px;
+  box-shadow: var(--shadow);
+}
+.recent__title {
+  font-family: var(--mincho);
+  font-size: var(--step-1);
+  font-weight: 500;
+  letter-spacing: .12em;
+  margin-bottom: 1.25rem;
+}
+.recent__list { display: grid; }
+.recent__item { border-top: 1px solid var(--rule); }
+.recent__link {
+  display: grid;
+  grid-template-columns: 6.5rem minmax(0, 1fr);
+  gap: 1rem;
+  padding-block: 1rem;
+  text-decoration: none;
+  color: inherit;
+  transition: color .25s ease;
+}
+.recent__link:hover { color: var(--rose-deep); }
+.recent__date {
+  font-size: var(--step--1);
+  font-variant-numeric: tabular-nums;
+  letter-spacing: .08em;
+  color: var(--ink-soft);
+  padding-top: .35em;
+}
+.recent__headline { font-size: var(--step-0); line-height: 1.75; }
+.recent__cadence {
+  margin-top: 1.5rem;
+  font-size: var(--step--1);
+  color: var(--ink-soft);
+}
+
+/* =========================================================
+   問い合わせ
+   ========================================================= */
+.contact {
+  padding-block: clamp(4.5rem, 12vw, 8rem);
+  background:
+    radial-gradient(80% 120% at 50% 0%, var(--blush), transparent 70%),
+    var(--ground);
+  text-align: center;
+}
+.contact__inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+}
+.contact__title {
+  font-family: var(--mincho);
+  font-size: var(--step-3);
+  font-weight: 500;
+  line-height: 1.6;
+  letter-spacing: .1em;
+  text-wrap: balance;
+}
+.contact__lead {
+  max-width: 28em;
+  color: var(--ink-soft);
+}
+.contact__actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: .875rem;
+  margin-top: .5rem;
+}
+.contact__fine { font-size: var(--step--1); color: var(--ink-soft); }
+
+/* =========================================================
+   フッター
+   ========================================================= */
+.foot {
+  padding-block: 2.5rem 3rem;
+  border-top: 1px solid var(--rule);
+  font-size: var(--step--1);
+  color: var(--ink-soft);
+}
+.foot__inner {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem 2rem;
+  justify-content: space-between;
+  align-items: baseline;
+}
+.foot__name { font-family: var(--mincho); font-size: var(--step-0); letter-spacing: .16em; color: var(--ink); }
+.foot__disclaimer {
+  margin-top: 1.75rem;
+  padding-top: 1.25rem;
+  border-top: 1px dashed var(--rule);
+  line-height: 1.8;
+}
+
+/* =========================================================
+   動き
+   ========================================================= */
+/* 既定では隠さない。監視が確実に動くと分かった時だけ
+   root に .rise-on が付き、そこで初めて伏せる。
+   JSが動かない / IntersectionObserverが使えない環境でも
+   本文が必ず読める状態を保つため。 */
+.rise {
+  transition: opacity .9s cubic-bezier(.22,.61,.36,1),
+              transform .9s cubic-bezier(.22,.61,.36,1);
+}
+.rise-on .rise { opacity: 0; transform: translateY(14px); }
+.rise-on .rise.is-in { opacity: 1; transform: none; }
+
+/* =========================================================
+   レスポンシブ
+   ========================================================= */
+@media (max-width: 56rem) {
+  .hero__wrap { grid-template-columns: minmax(0, 1fr); }
+  .hero__vertical { display: none; }
+  .topic { grid-template-columns: minmax(0, 1fr); gap: .5rem; }
+}
+@media (max-width: 30rem) {
+  .page { line-height: 1.85; }
+  .recent__link { grid-template-columns: minmax(0, 1fr); gap: .2rem; }
+  .recent__date { padding-top: 0; }
+  .hero__actions .btn, .contact__actions .btn { flex: 1 1 100%; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .page *, .page *::before, .page *::after {
+    animation-duration: .01ms !important;
+    transition-duration: .01ms !important;
+  }
+  /* .rise-on .rise より詳細度を上げないと打ち消せない */
+  .rise-on .rise { opacity: 1; transform: none; }
+}
+
+/* 印刷・PDF化では演出を無効にして必ず本文を出す */
+@media print {
+  .rise-on .rise { opacity: 1 !important; transform: none !important; }
+}
+</style>
+
+<div class="page">
+
+  <!-- ============ ヒーロー ============ -->
+  <header class="hero">
+    <div class="wrap hero__wrap">
+      <div class="hero__body">
+        <p class="eyebrow">note</p>
+        <h1 class="hero__title">
+          うまく言えない気持ちに、<br>
+          <em>ことばの形</em>をあげる。
+        </h1>
+        <p class="hero__lead">
+          がんばりすぎた日のこと。誰にも言えなかったこと。
+          言葉にならないまま置いてきたものを、すこしずつ書きためています。
+        </p>
+        <div class="hero__actions">
+          <a class="btn" href="#">noteを読む <span class="btn__arrow" aria-hidden="true">→</span></a>
+          <a class="btn btn--quiet" href="#contact">お問い合わせ</a>
+        </div>
+        <p class="hero__note">火曜と金曜の夜に更新しています。</p>
+      </div>
+
+      <p class="hero__vertical" aria-hidden="true">ことばの温度</p>
+    </div>
+  </header>
+
+  <!-- ============ 共感 ============ -->
+  <section class="band band--alt" aria-labelledby="feels-title">
+    <div class="wrap">
+      <div class="band__head rise">
+        <p class="eyebrow">Feelings</p>
+        <h2 class="band__title" id="feels-title">こんな夜が、ありませんか。</h2>
+      </div>
+
+      <ul class="feels rise">
+        <li class="feels__item">「大丈夫」と言ったあとで、すこしだけ苦しくなる。</li>
+        <li class="feels__item">誰かに話すほどじゃない、と飲み込んでしまう。</li>
+        <li class="feels__item">眠る前になって、昼間の言葉を思い出してしまう。</li>
+        <li class="feels__item">自分の気持ちなのに、名前のつけ方がわからない。</li>
+      </ul>
+
+      <p class="feels__turn rise">
+        急いで元気になろうとしなくて、大丈夫です。<br>
+        <span>ことばは、いつも気持ちのすこしあとから追いついてきます。</span>
+      </p>
+    </div>
+  </section>
+
+  <!-- ============ 内容 ============ -->
+  <section class="band" aria-labelledby="topics-title">
+    <div class="wrap">
+      <div class="band__head rise">
+        <p class="eyebrow">Contents</p>
+        <h2 class="band__title" id="topics-title">noteに書いていること</h2>
+      </div>
+
+      <div class="topics">
+        <article class="topic rise">
+          <h3 class="topic__label">心の手当て</h3>
+          <p class="topic__text">
+            <strong>落ち込んだ日にできる、ちいさな整え方。</strong>
+            深呼吸のしかた、部屋の明かりの落とし方、書き出して終わりにする方法。
+            その日のうちに試せることだけを書いています。
+          </p>
+        </article>
+
+        <article class="topic rise">
+          <h3 class="topic__label">ことばの記録</h3>
+          <p class="topic__text">
+            <strong>忘れたくない一文を、手元に置いておく。</strong>
+            本や映画、ふとした会話の中で出会った言葉を、
+            出会ったときの気持ちごと書き留めています。
+          </p>
+        </article>
+
+        <article class="topic rise">
+          <h3 class="topic__label">暮らしのメモ</h3>
+          <p class="topic__text">
+            <strong>なんでもない日を、なんでもないまま。</strong>
+            食べたもの、歩いた道、その日の天気。
+            意味を持たせずに残しておく記録です。
+          </p>
+        </article>
+      </div>
+
+      <div class="recent rise">
+        <h3 class="recent__title">最近書いたもの</h3>
+        <ul class="recent__list">
+          <li class="recent__item">
+            <a class="recent__link" href="#">
+              <span class="recent__date">2026.07.17</span>
+              <span class="recent__headline">「がんばって」が言えなくなった日のこと</span>
+            </a>
+          </li>
+          <li class="recent__item">
+            <a class="recent__link" href="#">
+              <span class="recent__date">2026.07.14</span>
+              <span class="recent__headline">寝る前の10分で、頭の中を紙に移す</span>
+            </a>
+          </li>
+          <li class="recent__item">
+            <a class="recent__link" href="#">
+              <span class="recent__date">2026.07.10</span>
+              <span class="recent__headline">雨の日にだけ行く、喫茶店の席の話</span>
+            </a>
+          </li>
+        </ul>
+        <p class="recent__cadence">週に2回ほど、無理のないペースで更新しています。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 問い合わせ ============ -->
+  <section class="contact" id="contact" aria-labelledby="contact-title">
+    <div class="wrap contact__inner">
+      <p class="eyebrow">Contact</p>
+      <h2 class="contact__title" id="contact-title">よかったら、声を聞かせてください。</h2>
+      <p class="contact__lead">
+        感想でも、ご相談でも、ただの独り言でも構いません。
+        いただいたお便りは、すべて読んでいます。
+      </p>
+      <div class="contact__actions">
+        <a class="btn" href="#">お問い合わせはこちら <span class="btn__arrow" aria-hidden="true">→</span></a>
+        <a class="btn btn--quiet" href="#">noteを読む</a>
+      </div>
+      <p class="contact__fine">返信までに数日いただくことがあります。</p>
+    </div>
+  </section>
+
+  <!-- ============ フッター ============ -->
+  <footer class="foot">
+    <div class="wrap">
+      <div class="foot__inner">
+        <p class="foot__name">ことばの温度</p>
+        <p>&copy; 2026 ことばの温度</p>
+      </div>
+      <p class="foot__disclaimer">
+        ※ このページはデザイン確認用のサンプルです。掲載している書き手・記事・更新日・連絡先は、
+        すべて架空のものです。実在の人物や団体とは関係ありません。
+      </p>
+    </div>
+  </footer>
+
+</div>
+
+<script>
+(function () {
+  var targets = document.querySelectorAll('.rise');
+  if (!targets.length || !('IntersectionObserver' in window)) return;
+
+  function revealAll() {
+    targets.forEach(function (el) { el.classList.add('is-in'); });
+  }
+
+  var fired = false;
+
+  var io = new IntersectionObserver(function (entries) {
+    fired = true;
+    entries.forEach(function (entry) {
+      // 画面を一気に飛ばした場合（アンカー移動・位置復元）は
+      // 交差判定を挟まず通り過ぎるため、上へ抜けた要素も表示する
+      var passed = entry.boundingClientRect.bottom < 0;
+      if (!entry.isIntersecting && !passed) return;
+      entry.target.classList.add('is-in');
+      io.unobserve(entry.target);
+    });
+  }, { threshold: 0.15, rootMargin: '0px 0px -60px 0px' });
+
+  document.documentElement.classList.add('rise-on');
+  targets.forEach(function (el, i) {
+    el.style.transitionDelay = Math.min(i, 3) * 90 + 'ms';
+    io.observe(el);
+  });
+
+  // 監視が一度も働かなかった環境では演出をあきらめて全て表示する
+  setTimeout(function () {
+    if (fired) return;
+    io.disconnect();
+    revealAll();
+  }, 1200);
+})();
+</script>
