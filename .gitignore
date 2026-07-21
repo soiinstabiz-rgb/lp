@@ -4,7 +4,8 @@ ehthumbs.db
 desktop.ini
 .DS_Store
 
-# エディタ
+# エディタ / ツール
+.claude/settings.local.json
 .vscode/
 .idea/
 *.swp
