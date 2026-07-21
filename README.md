@@ -9,28 +9,32 @@
 
 ```
 LP作成/
-├── index.html          ← LP本体（ここを編集するのがメイン）
-├── privacy.html        ← プライバシーポリシー
-├── tokushoho.html      ← 特定商取引法に基づく表記
-├── css/
-│   └── style.css       ← デザイン。冒頭の :root で色をまとめて変更できます
-├── js/
-│   └── main.js         ← スクロール演出・FAQ・フォーム送信
+├── index.html          ← 【本番】note導線LP。1ファイル完結（CSS/JSを内蔵）
 ├── assets/
 │   └── favicon.svg     ← ファビコン（画像はここに置きます）
 ├── robots.txt
 ├── vercel.json         ← Vercelの設定（キャッシュ・セキュリティヘッダー）
 ├── serve.ps1           ← ローカルプレビュー用の簡易サーバー（公開には影響しません）
-└── .gitignore
+├── .gitignore
+│
+│  ── 以下は使っていない汎用テンプレート（不要なら削除して構いません）──
+├── template.html       ← 汎用LP雛形（料金・FAQ・フォーム入り）
+├── privacy.html        ← プライバシーポリシー
+├── tokushoho.html      ← 特定商取引法に基づく表記
+├── css/style.css       ← template.html 専用のスタイル
+└── js/main.js          ← template.html 専用のスクリプト
 ```
+
+`index.html` は外部ファイルを一切読み込まない**単体で完結したページ**です。
+`css/` `js/` は `template.html` からしか使われていません。
 
 ---
 
 ## ローカルで確認する
 
-`/css/style.css` のようなルート絶対パスを使っているため、
-`index.html` をダブルクリックで開くと**CSSが当たりません**。
-同梱の簡易サーバー経由で開いてください（Node.js も Python も不要です）。
+`index.html`（note導線LP）は単体完結なので、ダブルクリックで開いても表示されます。
+ただし `template.html` はルート絶対パスでCSSを読むため、
+そちらを見るときは簡易サーバー経由が必要です（Node.js も Python も不要です）。
 
 このフォルダで PowerShell を開き:
 
@@ -73,27 +77,14 @@ VS Code の拡張「Live Server」を使っても構いません。
 
 画像は WebP 形式・横幅1600px以下に圧縮すると表示が速くなります。
 
-### 公開前に必ず差し替える箇所
-- `index.html` の `<title>` / `description` / OGP（`og:url` は公開後のURLに）
-- 「サービス名」「運営会社名」「example.com」などのダミー文言
-- `robots.txt` の Sitemap URL
-- `privacy.html` / `tokushoho.html` の会社情報（**特商法表記は有料サービスを販売する場合は法律上必須**）
+### 公開前に必ず差し替える箇所（index.html）
+- 本文中の `href="#"` を、実際の note のURLとお問い合わせ先に差し替える（全7か所）
+- `og:url` を公開後の実際のURLに書き換える
+- フッターの「これはデザイン確認用のサンプルです」の注意書きを削除する
+- 書き手名・記事タイトル・日付を実際のものにする
 
----
-
-## フォームの接続
-
-現状、お問い合わせフォームは**送信先が未設定**で、送信するとエラーメッセージが出ます。
-サーバー不要で動かすなら、外部フォームサービスの利用が簡単です。
-
-1. [Formspree](https://formspree.io/) などでフォームを作成し、送信先URLを取得
-2. `js/main.js` の以下の行にURLを設定
-
-```js
-var ENDPOINT = 'https://formspree.io/f/xxxxxxx';
-```
-
-これだけで、ページ遷移なしの送信が動きます。
+> 現在の内容（「ことばの温度」の書き手・記事・日付）はすべて架空です。
+> そのまま公開すると、実在しない人物のページを公開することになります。
 
 ---
 
@@ -121,6 +112,9 @@ git push -u origin main
 ```
 
 初回は GitHub のログイン画面（ブラウザ）が出るので、認証してください。
+
+> **やり直したいとき**：リポジトリ名を間違えた等でリモートを付け替えるには
+> `git remote set-url origin 新しいURL` を実行します（`add` は2回目でエラーになります）。
 
 ---
 
