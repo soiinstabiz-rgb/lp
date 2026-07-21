@@ -20,6 +20,7 @@ LP作成/
 │   └── favicon.svg     ← ファビコン（画像はここに置きます）
 ├── robots.txt
 ├── vercel.json         ← Vercelの設定（キャッシュ・セキュリティヘッダー）
+├── serve.ps1           ← ローカルプレビュー用の簡易サーバー（公開には影響しません）
 └── .gitignore
 ```
 
@@ -27,14 +28,22 @@ LP作成/
 
 ## ローカルで確認する
 
-`index.html` をダブルクリックしてブラウザで開くだけでも表示されますが、
 `/css/style.css` のようなルート絶対パスを使っているため、
-**簡易サーバー経由で開くことを推奨**します。
+`index.html` をダブルクリックで開くと**CSSが当たりません**。
+同梱の簡易サーバー経由で開いてください（Node.js も Python も不要です）。
 
-いずれか手軽な方法で:
+このフォルダで PowerShell を開き:
 
-- **VS Code の拡張「Live Server」** を入れて、`index.html` を右クリック →「Open with Live Server」
-- Python がある場合: フォルダ内で `python -m http.server 8000` → http://localhost:8000
+```powershell
+.\serve.ps1
+```
+
+→ ブラウザで http://localhost:5500/ を開く。停止は `Ctrl+C`。
+
+> エクスプローラーからこのフォルダを開き、アドレスバーに `powershell` と入力して
+> Enter を押すと、このフォルダで PowerShell が開きます。
+
+VS Code の拡張「Live Server」を使っても構いません。
 
 ---
 
