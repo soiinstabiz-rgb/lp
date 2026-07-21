@@ -1,0 +1,22 @@
+# OS
+Thumbs.db
+ehthumbs.db
+desktop.ini
+.DS_Store
+
+# エディタ
+.vscode/
+.idea/
+*.swp
+
+# Vercel
+.vercel
+
+# 環境変数（絶対にコミットしない）
+.env
+.env.*
+
+# 依存関係・ビルド成果物（将来Node.jsを使う場合）
+node_modules/
+dist/
+.cache/

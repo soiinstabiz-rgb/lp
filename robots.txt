@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+
+# 公開ドメインが決まったら書き換えてください
+Sitemap: https://example.vercel.app/sitemap.xml
