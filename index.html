@@ -418,26 +418,14 @@ a { color: var(--rose-deep); }
   text-align: center;
 }
 
-/* 数字（実績） */
-.stat {
+/* セクション途中に置くCTA */
+.cta-block {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: .3rem;
-  margin-top: clamp(2.5rem, 6vw, 3.5rem);
+  margin-top: clamp(3rem, 7vw, 4rem);
   text-align: center;
 }
-.stat__num {
-  font-family: var(--mincho);
-  font-size: clamp(2.25rem, 1.6rem + 3vw, 3.5rem);
-  font-weight: 600;
-  line-height: 1;
-  letter-spacing: .02em;
-  color: var(--rose-deep);
-  font-variant-numeric: tabular-nums;
-}
-.stat__num small { font-size: .38em; margin-left: .25em; letter-spacing: .1em; }
-.stat__label { font-size: var(--fs-sm); color: var(--ink-soft); letter-spacing: .1em; }
 
 /* =========================================================
    8. サポートの5ステップ
@@ -944,11 +932,6 @@ a { color: var(--rose-deep); }
       </div>
 
       <p class="works-note reveal">すべて、実際にわたしが制作した作品です。</p>
-
-      <div class="stat reveal">
-        <span class="stat__num">2,032<small>名</small></span>
-        <span class="stat__label">Threadsで、世界観づくりを届けています</span>
-      </div>
     </div>
   </section>
 
@@ -1090,7 +1073,7 @@ a { color: var(--rose-deep); }
         </div>
       </div>
 
-      <div class="stat reveal" style="margin-top: clamp(3rem, 7vw, 4rem);">
+      <div class="cta-block reveal">
         <a class="btn" href="https://note.com/soi_ai_studio/n/n50258840e07c" target="_blank" rel="noopener">
           サポートの全体像をnoteで読む <span class="btn__arrow" aria-hidden="true">→</span>
         </a>
