@@ -1,4 +1,4 @@
-# =========================================================
+﻿# =========================================================
 #  ローカルプレビュー用の簡易HTTPサーバー
 #
 #  このLPは /css/style.css のようなルート絶対パスを使うため、
@@ -28,6 +28,9 @@ $mime = @{
   '.ico'  = 'image/x-icon'
   '.woff2'= 'font/woff2'
   '.txt'  = 'text/plain; charset=utf-8'
+  '.mp4'  = 'video/mp4'
+  '.webm' = 'video/webm'
+  '.mov'  = 'video/quicktime'
 }
 
 $listener = New-Object System.Net.HttpListener
@@ -70,6 +73,33 @@ try {
       if ($mime.ContainsKey($ext)) { $type = $mime[$ext] }
       $res.ContentType = $type
       $res.StatusCode = 200
+
+      # 動画のシーク（途中送り）に必要な Range リクエストへの対応。
+      # これが無いとブラウザが動画を再生・シークできないことがある。
+      $res.Headers.Add('Accept-Ranges', 'bytes')
+      $range = $ctx.Request.Headers['Range']
+      if ($range -and $range -match 'bytes=(\d*)-(\d*)') {
+        $total = $bytes.Length
+        $s = $matches[1]
+        $e = $matches[2]
+        if ($s -eq '') {
+          $start = $total - [int64]$e
+          $end   = $total - 1
+        }
+        else {
+          $start = [int64]$s
+          if ($e -eq '') { $end = $total - 1 } else { $end = [int64]$e }
+        }
+        if ($end -ge $total) { $end = $total - 1 }
+        if ($start -ge 0 -and $start -le $end) {
+          $len = $end - $start + 1
+          $slice = New-Object byte[] $len
+          [Array]::Copy($bytes, $start, $slice, 0, $len)
+          $bytes = $slice
+          $res.StatusCode = 206
+          $res.Headers.Add('Content-Range', "bytes $start-$end/$total")
+        }
+      }
     } else {
       $bytes = [Text.Encoding]::UTF8.GetBytes('404 Not Found')
       $res.ContentType = 'text/plain; charset=utf-8'
@@ -79,8 +109,12 @@ try {
     Write-Host ("  {0}  /{1}" -f $res.StatusCode, $rel)
     $res.Headers.Add('Cache-Control', 'no-store')
     $res.ContentLength64 = $bytes.Length
-    $res.OutputStream.Write($bytes, 0, $bytes.Length)
-    $res.OutputStream.Close()
+    try {
+      $res.OutputStream.Write($bytes, 0, $bytes.Length)
+      $res.OutputStream.Close()
+    } catch {
+      # ブラウザが途中で接続を切ることがある（動画では日常的）。無視して続行。
+    }
   }
 }
 finally {
