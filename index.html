@@ -9,14 +9,21 @@
 <meta name="theme-color" content="#FBF7F2">
 <meta name="color-scheme" content="light">
 
-<!-- SNSでシェアされたときの表示。公開後に og:url を実際のURLへ差し替えます -->
+<!-- SNS（LINE・X・Threadsなど）でシェアされたときの表示。
+     og:image と og:url は「https://」から始まる完全なURLでないと
+     読み込まれないため、相対パスにしないこと。 -->
 <meta property="og:type" content="website">
+<meta property="og:site_name" content="soi">
 <meta property="og:title" content="あなたらしさを、カタチに。｜soi">
 <meta property="og:description" content="AIアートで世界観を描き、“あなただから”と選ばれる人になる。">
-<meta property="og:image" content="assets/soi-portrait.png">
-<meta property="og:url" content="https://example.vercel.app/">
+<meta property="og:image" content="https://lp-soiinstabiz-7611s-projects.vercel.app/assets/ogp.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="あなたらしさを、カタチに。soiのAIアート×世界観サポート">
+<meta property="og:url" content="https://lp-soiinstabiz-7611s-projects.vercel.app/">
 <meta property="og:locale" content="ja_JP">
 <meta name="twitter:card" content="summary_large_image">
+<link rel="canonical" href="https://lp-soiinstabiz-7611s-projects.vercel.app/">
 
 <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
 
