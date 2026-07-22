@@ -273,9 +273,9 @@ a { color: var(--rose-deep); }
   width: 100%;
   height: 100%;
   object-fit: cover;
-  /* 横長(864x496)の映像を縦画面に敷くと寄りすぎるため、
-     上寄りに配置して光のある側を見せる */
-  object-position: 50% 32%;
+  /* 横長(864x496)の映像を縦画面に敷くと左右が大きく切れる。
+     被写体は画面の左寄りにいるため、左に寄せて顔が入るようにする */
+  object-position: 30% 45%;
   display: block;
 }
 
@@ -304,21 +304,6 @@ a { color: var(--rose-deep); }
   align-items: flex-start;
   gap: 1.75rem;
   max-width: 40rem;
-}
-
-.hero__eyebrow {
-  display: inline-flex;
-  align-items: center;
-  gap: .6em;
-  padding: .5em 1.15em;
-  font-size: var(--fs-xs);
-  font-weight: 500;
-  letter-spacing: .16em;
-  color: var(--rose-ink);
-  background: rgba(255,253,251,.88);
-  border: 1px solid rgba(201,138,146,.35);
-  border-radius: 999px;
-  line-height: 1;
 }
 
 .hero__title {
@@ -811,6 +796,9 @@ a { color: var(--rose-deep); }
 }
 
 @media (max-width: 39.99rem) {
+  /* スマホは縦長。ヒーローを高くしすぎると横長の動画が拡大されすぎて
+     被写体が切れるため、高さを抑えて映像が見える範囲を広げる */
+  .hero { min-height: min(calc(74svh - var(--header-h)), 620px); }
   .ba__arrow { transform: rotate(90deg); }
   .hero__actions .btn { flex: 1 1 100%; }
   .step { grid-template-columns: 1fr; gap: .35rem; }
@@ -866,8 +854,6 @@ a { color: var(--rose-deep); }
     <div class="hero__veil" aria-hidden="true"></div>
 
     <div class="wrap hero__inner">
-      <p class="hero__eyebrow">Threads・noteで発信しているあなたへ</p>
-
       <h1 class="hero__title">
         あなたらしさを、<br>
         <span class="accent">カタチに。</span>
