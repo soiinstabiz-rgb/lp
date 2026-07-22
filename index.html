@@ -391,17 +391,23 @@ a { color: var(--rose-deep); }
   background: var(--sand);
   box-shadow: var(--shadow-sm);
 }
+/* 作品は全枚数を同じ比率で並べる。ただし縦長にしすぎると、
+   横長の作品の左右が切れて「片目だけ」のような絵になるため、
+   4:5 のゆるやかな比率にとどめる。 */
 .work img {
   width: 100%;
   height: 100%;
-  aspect-ratio: 3 / 4;
+  aspect-ratio: 4 / 5;
   object-fit: cover;
   transition: transform 1.2s cubic-bezier(.22,.61,.36,1);
 }
 .work:hover img { transform: scale(1.04); }
 
-/* 作品は「切らずに見せる」ことを優先し、全枚数を同じ比率で並べる。
-   大きく引き伸ばすと構図が切れて、作品の良さが伝わらないため。 */
+/* 作品ごとに被写体の位置が違うので、切り取る中心を個別に指定する */
+.work--p1 img { object-position: 64% 38%; }
+.work--p2 img { object-position: 50% 45%; }
+.work--p3 img { object-position: 52% 42%; }
+.work--p4 img { object-position: 32% 45%; }
 
 .works-note {
   margin-top: 1.5rem;
@@ -910,16 +916,16 @@ a { color: var(--rose-deep); }
       </div>
 
       <div class="works reveal">
-        <figure class="work">
+        <figure class="work work--p1">
           <img src="assets/work-1.jpg" alt="やわらかな光に透ける横顔と、淡いピンクの花のAIアート作品" width="1200" height="904" loading="lazy" decoding="async">
         </figure>
-        <figure class="work">
+        <figure class="work work--p2">
           <img src="assets/work-2.jpg" alt="瞳とシャボン玉を近くから捉えた、繊細な質感のAIアート作品" width="1080" height="1350" loading="lazy" decoding="async">
         </figure>
-        <figure class="work">
+        <figure class="work work--p3">
           <img src="assets/work-3.jpg" alt="かすみ草の花束と淡いピンクのドレス、海辺の光のAIアート作品" width="1080" height="1350" loading="lazy" decoding="async">
         </figure>
-        <figure class="work">
+        <figure class="work work--p4">
           <img src="assets/work-4.jpg" alt="やわらかな光の中でほほえむ横顔のAIアート作品" width="1200" height="904" loading="lazy" decoding="async">
         </figure>
       </div>
