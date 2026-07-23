@@ -1,5 +1,13 @@
 # LP制作メモ（そいさん）
 
+## 🌐 公開URL
+- **本番：https://soiart.vercel.app**（2026-07-23〜）
+- 旧URL（どちらも生きている／新URLへ転送または表示）
+  - lp-five-kappa.vercel.app → 307で soiart へ転送
+  - lp-soiinstabiz-7611s-projects.vercel.app → 表示される
+- 前作「ことばの温度」→ https://soiart.vercel.app/kotoba-no-ondo
+- ⚠️ URLを変えたら index.html の og:url / og:image / canonical の3か所も必ず更新すること
+
 ## ステータス
 - 2026-07-22：ヒアリング中（Q1・サービス内容まで確定）
 - 前作「ことばの温度」LPは公開済み → https://lp-soiinstabiz-7611s-projects.vercel.app
