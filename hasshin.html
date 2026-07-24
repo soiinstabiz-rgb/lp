@@ -1,0 +1,590 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>あなたは、何を伝えたいのか。｜soi ── AIアート×世界観</title>
+<meta name="description" content="「何を発信するか」ではなく「何を伝えたいのか」。経験から生まれた想いを、世界観としてカタチにする。AI時代に“あなただから”と選ばれる発信の話。">
+
+<meta name="theme-color" content="#FBF7F2">
+<meta name="color-scheme" content="light">
+
+<!-- SNS（LINE・X・Threadsなど）でシェアされたときの表示。
+     og:image と og:url は「https://」から始まる完全なURLにすること。 -->
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="soi">
+<meta property="og:title" content="あなたは、何を伝えたいのか。｜soi">
+<meta property="og:description" content="「何を発信するか」ではなく「何を伝えたいのか」。“あなただから”と選ばれる発信の話。">
+<meta property="og:image" content="https://soiart.vercel.app/assets/hasshin-ogp.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:url" content="https://soiart.vercel.app/hasshin">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="canonical" href="https://soiart.vercel.app/hasshin">
+
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@500;600&family=Zen+Kaku+Gothic+New:wght@400;500&display=swap" rel="stylesheet">
+
+<style>
+/* =========================================================
+   デザイントークン（1枚目 index.html と完全に同じ世界観）
+   ========================================================= */
+:root {
+  --cream:      #fbf7f2;
+  --sand:       #efe4d8;
+  --blush:      #f6dfdc;
+  --rose:       #c98a92;
+  --rose-deep:  #a9646e;
+  --rose-ink:   #8e4c57;
+  --ink:        #43332f;
+  --ink-soft:   #7d6a65;
+  --line:       #e5d6c9;
+  --white:      #fffdfb;
+
+  --shadow-sm:  0 1px 2px rgba(67,51,47,.05);
+  --shadow:     0 2px 4px rgba(67,51,47,.04), 0 14px 40px rgba(67,51,47,.08);
+
+  --mincho: "Shippori Mincho", "Hiragino Mincho ProN", "Yu Mincho", "YuMincho", "BIZ UDMincho", serif;
+  --gothic: "Zen Kaku Gothic New", "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic", "YuGothic", "BIZ UDPGothic", Meiryo, sans-serif;
+
+  --fs-xs:  0.8125rem;
+  --fs-sm:  0.875rem;
+  --fs-md:  1rem;
+  --fs-lg:  clamp(1.0625rem, 1rem + .3vw, 1.1875rem);
+  --fs-xl:  clamp(1.25rem, 1.1rem + .7vw, 1.5rem);
+  --fs-2xl: clamp(1.5rem, 1.25rem + 1.3vw, 2.125rem);
+  --fs-3xl: clamp(1.875rem, 1.4rem + 2.5vw, 3.25rem);
+
+  --measure: 32em;
+  --pad: clamp(1.25rem, 5vw, 2rem);
+  --band: clamp(4.5rem, 12vw, 8.5rem);
+  --header-h: 60px;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: calc(var(--header-h) + 1rem);
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: var(--gothic);
+  font-size: var(--fs-md);
+  line-height: 2;
+  letter-spacing: .05em;
+  color: var(--ink);
+  background: var(--cream);
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+h1, h2, h3, p, ul, ol, figure, blockquote { margin: 0; padding: 0; }
+ul, ol { list-style: none; }
+img { max-width: 100%; height: auto; display: block; }
+a { color: var(--rose-deep); }
+
+:focus-visible { outline: 2px solid var(--rose-deep); outline-offset: 3px; border-radius: 2px; }
+
+.wrap { width: 100%; max-width: 62rem; margin-inline: auto; padding-inline: var(--pad); }
+.wrap--narrow { max-width: 44rem; }
+
+.sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
+
+.eyebrow {
+  font-family: var(--gothic);
+  font-size: var(--fs-xs);
+  font-weight: 500;
+  letter-spacing: .32em;
+  text-transform: uppercase;
+  color: var(--rose-ink);
+  line-height: 1;
+}
+
+.band-title {
+  font-family: var(--mincho);
+  font-size: var(--fs-2xl);
+  font-weight: 500;
+  line-height: 1.65;
+  letter-spacing: .06em;
+  text-wrap: balance;
+}
+.band-head { display: flex; flex-direction: column; gap: 1rem; margin-bottom: clamp(2.5rem, 7vw, 4rem); }
+
+.section { padding-block: var(--band); }
+.section--sand { background: var(--sand); }
+.section--blush { background: linear-gradient(180deg, var(--cream), var(--blush)); }
+
+/* ボタン ------------------------------------------------- */
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: .7em;
+  padding: 1.15em 2.2em;
+  font-family: var(--gothic); font-size: var(--fs-md); font-weight: 500;
+  line-height: 1.4; letter-spacing: .08em; text-align: center; text-decoration: none;
+  color: var(--white); background: var(--rose-ink);
+  border: 1px solid var(--rose-ink); border-radius: 999px; box-shadow: var(--shadow-sm);
+  transition: background .3s ease, border-color .3s ease, transform .3s ease, box-shadow .3s ease;
+}
+.btn:hover { background: #79404a; border-color: #79404a; transform: translateY(-2px); box-shadow: var(--shadow); }
+.btn:active { transform: translateY(0); }
+.btn__arrow { font-size: .85em; transition: transform .3s ease; }
+.btn:hover .btn__arrow { transform: translateX(4px); }
+.cta-note { margin-top: 1.1rem; font-size: var(--fs-xs); color: var(--ink-soft); letter-spacing: .06em; }
+
+/* ヘッダー ----------------------------------------------- */
+.header {
+  position: sticky; top: 0; z-index: 50; height: var(--header-h);
+  background: rgba(251,247,242,.82);
+  backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
+  border-bottom: 1px solid transparent; transition: border-color .3s ease;
+}
+.header.is-scrolled { border-bottom-color: var(--line); }
+.header__inner { display: flex; align-items: center; gap: .75rem; height: 100%; }
+.header__brand { display: inline-flex; align-items: center; gap: .7rem; text-decoration: none; color: var(--ink); }
+.header__icon { width: 34px; height: 34px; border-radius: 50%; object-fit: cover; border: 1px solid var(--line); }
+.header__name { font-family: var(--mincho); font-size: 1.0625rem; font-weight: 600; letter-spacing: .18em; }
+.header__tag { margin-left: auto; font-size: var(--fs-xs); letter-spacing: .14em; color: var(--ink-soft); }
+
+/* =========================================================
+   ヒーロー
+   ========================================================= */
+.hero {
+  position: relative; display: flex; align-items: center;
+  min-height: min(calc(100svh - var(--header-h)), 720px);
+  padding-block: clamp(3rem, 8vw, 5rem);
+  overflow: hidden; isolation: isolate;
+}
+.hero__media { position: absolute; inset: 0; z-index: -2; background: var(--sand); }
+.hero__img {
+  width: 100%; height: 100%; object-fit: cover;
+  object-position: 60% 40%;
+}
+.hero__veil {
+  position: absolute; inset: 0; z-index: -1;
+  background:
+    linear-gradient(100deg, rgba(251,247,242,.78) 0%, rgba(251,247,242,.58) 42%, rgba(246,223,220,.34) 100%),
+    linear-gradient(180deg, rgba(251,247,242,.24) 0%, rgba(251,247,242,.06) 40%, rgba(239,228,216,.5) 100%);
+}
+.hero__inner { display: flex; flex-direction: column; align-items: flex-start; gap: 1.75rem; max-width: 40rem; }
+.hero__label {
+  font-family: var(--gothic); font-size: var(--fs-xs); font-weight: 500;
+  letter-spacing: .2em; color: var(--rose-ink);
+}
+.hero__title {
+  font-family: var(--mincho); font-size: var(--fs-3xl); font-weight: 600;
+  line-height: 1.55; letter-spacing: .04em; text-wrap: balance;
+  text-shadow: 0 1px 14px rgba(251,247,242,.95), 0 1px 3px rgba(251,247,242,.9);
+}
+.hero__title .accent { background: linear-gradient(transparent 66%, rgba(201,138,146,.28) 66%); }
+.hero__lead {
+  max-width: var(--measure); font-size: var(--fs-lg); line-height: 1.95; color: var(--ink);
+  text-shadow: 0 1px 12px rgba(251,247,242,.95), 0 1px 3px rgba(251,247,242,.85);
+}
+.hero__actions { display: flex; flex-wrap: wrap; gap: .875rem; }
+
+/* =========================================================
+   リード（問いの提示）
+   ========================================================= */
+.lead-band { text-align: center; }
+.lead-band__text {
+  max-width: 34rem; margin-inline: auto;
+  font-family: var(--mincho); font-size: var(--fs-xl); line-height: 2.1;
+  letter-spacing: .06em; text-wrap: balance;
+}
+.lead-band__text .q { color: var(--ink-soft); }
+.lead-band__text .a { color: var(--rose-deep); }
+.lead-band__swap {
+  display: flex; flex-direction: column; align-items: center; gap: .6rem;
+  margin: clamp(2.5rem,6vw,3.5rem) auto 0; max-width: 30rem;
+}
+.lead-band__from, .lead-band__to {
+  width: 100%; padding: 1rem 1.5rem; border-radius: 999px;
+  font-family: var(--mincho); font-size: var(--fs-lg); letter-spacing: .05em;
+}
+.lead-band__from { background: var(--cream); border: 1px solid var(--line); color: var(--ink-soft); text-decoration: line-through; text-decoration-color: var(--rose); }
+.lead-band__arrow { color: var(--rose); font-size: 1.1rem; line-height: 1; }
+.lead-band__to { background: var(--white); border: 1px solid var(--rose); color: var(--ink); box-shadow: var(--shadow-sm); }
+
+/* =========================================================
+   5つの階層
+   ========================================================= */
+.layers { max-width: 44rem; margin-inline: auto; }
+.layer {
+  position: relative; display: grid; grid-template-columns: auto minmax(0,1fr); gap: clamp(1rem,3vw,1.75rem);
+  padding: clamp(1.4rem,3.5vw,2rem) 0; border-top: 1px solid var(--line);
+}
+.layers .layer:last-child { border-bottom: 1px solid var(--line); }
+.layer__mark {
+  display: flex; flex-direction: column; align-items: center; gap: .5rem;
+  width: 3.2rem; padding-top: .3rem;
+}
+.layer__no {
+  font-family: var(--mincho); font-size: var(--fs-sm); font-weight: 600;
+  color: var(--rose); letter-spacing: .06em;
+}
+.layer__dot { width: .55rem; height: .55rem; border-radius: 50%; background: var(--line); }
+.layer--human .layer__dot { background: var(--rose); box-shadow: 0 0 0 4px var(--blush); }
+.layer__title { font-family: var(--mincho); font-size: var(--fs-xl); font-weight: 500; line-height: 1.5; letter-spacing: .04em; }
+.layer__tag {
+  display: inline-block; margin-top: .5rem; margin-bottom: .6rem; padding: .2em .8em;
+  font-size: var(--fs-xs); letter-spacing: .06em; border-radius: 999px; line-height: 1.7;
+}
+.layer--ai .layer__tag { color: var(--ink); background: var(--sand); }
+.layer--human .layer__tag { color: var(--white); background: var(--rose-ink); }
+.layer__text { font-size: var(--fs-sm); line-height: 1.95; color: var(--ink); max-width: var(--measure); }
+
+.layers-note {
+  max-width: 34rem; margin: clamp(2.5rem,6vw,3.5rem) auto 0; text-align: center;
+  font-family: var(--mincho); font-size: var(--fs-lg); line-height: 2; letter-spacing: .06em; text-wrap: balance;
+}
+.layers-note strong { color: var(--rose-deep); font-weight: 600; }
+
+/* =========================================================
+   アクセント画像の帯
+   ========================================================= */
+.quote-strip {
+  position: relative; overflow: hidden;
+  min-height: min(56svh, 460px); display: flex; align-items: center;
+  isolation: isolate;
+}
+.quote-strip__img { position: absolute; inset: 0; z-index: -2; width: 100%; height: 100%; object-fit: cover; object-position: 50% 42%; }
+.quote-strip__veil {
+  position: absolute; inset: 0; z-index: -1;
+  background: linear-gradient(90deg, rgba(251,247,242,.86) 0%, rgba(251,247,242,.62) 45%, rgba(246,223,220,.34) 100%);
+}
+.quote-strip__text {
+  max-width: 30rem; font-family: var(--mincho); font-size: var(--fs-2xl);
+  font-weight: 500; line-height: 1.8; letter-spacing: .07em; text-wrap: balance;
+  text-shadow: 0 1px 14px rgba(251,247,242,.95);
+}
+.quote-strip__text span { color: var(--rose-deep); }
+
+/* =========================================================
+   世界観
+   ========================================================= */
+.flow-line { max-width: 30rem; margin: 0 auto clamp(2.5rem,6vw,3.5rem); display: grid; gap: .5rem; text-align: center; }
+.flow-line li { font-family: var(--mincho); font-size: var(--fs-lg); letter-spacing: .06em; line-height: 1.7; }
+.flow-line li::after { content: "↓"; display: block; color: var(--rose); font-size: .9em; margin-top: .3rem; }
+.flow-line li:last-child::after { content: none; }
+.flow-line .goal { color: var(--rose-deep); font-weight: 600; font-size: var(--fs-xl); }
+
+.world-note { max-width: 32rem; margin-inline: auto; text-align: center; font-size: var(--fs-sm); line-height: 2; color: var(--ink-soft); }
+
+/* =========================================================
+   お客様の声
+   ========================================================= */
+.voice { max-width: 40rem; margin-inline: auto; padding: clamp(1.75rem,5vw,3rem); background: var(--white); border: 1px solid var(--line); border-radius: 4px; box-shadow: var(--shadow); text-align: center; }
+.voice__quote { font-family: var(--mincho); font-size: var(--fs-xl); line-height: 1.95; letter-spacing: .04em; text-wrap: balance; }
+.voice__quote::before { content: "“"; display: block; font-family: var(--mincho); font-size: 3rem; line-height: .5; color: var(--rose); margin-bottom: .5rem; }
+.voice__who { margin-top: 1.75rem; font-size: var(--fs-xs); color: var(--ink-soft); letter-spacing: .08em; }
+
+/* =========================================================
+   最後のCTA
+   ========================================================= */
+.final { position: relative; padding-block: clamp(4.5rem,12vw,7.5rem); text-align: center; background: radial-gradient(120% 90% at 50% 0%, var(--blush) 0%, transparent 65%), var(--sand); }
+.final__inner { display: flex; flex-direction: column; align-items: center; gap: 1.5rem; }
+.final__title { font-family: var(--mincho); font-size: var(--fs-2xl); font-weight: 500; line-height: 1.7; letter-spacing: .07em; text-wrap: balance; }
+.final__lead { max-width: 30em; color: var(--ink); font-size: var(--fs-sm); }
+.final__sign { font-family: var(--mincho); font-size: var(--fs-lg); letter-spacing: .1em; color: var(--rose-ink); }
+
+/* フッター ----------------------------------------------- */
+.footer { padding-block: 2.75rem 2.25rem; background: var(--cream); border-top: 1px solid var(--line); text-align: center; }
+.footer__inner { display: flex; flex-direction: column; align-items: center; gap: 1.1rem; }
+.footer__name { font-family: var(--mincho); font-size: 1.0625rem; letter-spacing: .2em; }
+.footer__links { display: flex; flex-wrap: wrap; justify-content: center; gap: 1.5rem; }
+.footer__links a { font-size: var(--fs-xs); letter-spacing: .1em; color: var(--ink-soft); text-decoration: none; border-bottom: 1px solid transparent; transition: color .25s ease, border-color .25s ease; }
+.footer__links a:hover { color: var(--rose-deep); border-bottom-color: var(--rose); }
+.footer__copy { font-size: var(--fs-xs); color: var(--ink-soft); letter-spacing: .06em; }
+
+/* 演出 --------------------------------------------------- */
+.reveal { transition: opacity 1s cubic-bezier(.22,.61,.36,1), transform 1s cubic-bezier(.22,.61,.36,1); }
+.reveal-on .reveal { opacity: 0; transform: translateY(16px); }
+.reveal-on .reveal.is-in { opacity: 1; transform: none; }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; }
+  .reveal-on .reveal { opacity: 1; transform: none; }
+}
+@media print {
+  .header, .hero__media, .hero__veil, .quote-strip__img { display: none; }
+  .reveal-on .reveal { opacity: 1 !important; transform: none !important; }
+}
+</style>
+</head>
+<body>
+
+<header class="header" id="header">
+  <div class="wrap header__inner">
+    <a class="header__brand" href="#top">
+      <img class="header__icon" src="assets/soi-portrait.png" alt="" width="34" height="34">
+      <span class="header__name">soi</span>
+    </a>
+    <span class="header__tag">AIアート×世界観</span>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- ヒーロー -->
+  <section class="hero">
+    <div class="hero__media" aria-hidden="true">
+      <img class="hero__img" src="assets/hasshin-hero.jpg" alt="" width="1600" height="1205" fetchpriority="high">
+    </div>
+    <div class="hero__veil" aria-hidden="true"></div>
+
+    <div class="wrap hero__inner">
+      <p class="hero__label">AI時代の、発信の話</p>
+      <h1 class="hero__title">
+        あなたは、<br>
+        <span class="accent">何を伝えたいのか。</span>
+      </h1>
+      <p class="hero__lead">
+        大切なのは「何を発信するか」ではありません。<br>
+        経験から生まれた想いを、世界観としてカタチにする。<br>
+        “あなただから”と選ばれる発信の話です。
+      </p>
+      <div class="hero__actions">
+        <a class="btn" href="#" data-note-link>
+          noteで全文を読む <span class="btn__arrow" aria-hidden="true">→</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 問いの転換 -->
+  <section class="section lead-band">
+    <div class="wrap">
+      <p class="lead-band__text reveal">
+        <span class="q">「何を発信しよう？」</span>と考えていた頃は、<br>
+        毎日のネタ探しが、少しずつ苦しくなっていました。<br>
+        でも、ある時に問いを変えたんです。
+      </p>
+
+      <div class="lead-band__swap reveal">
+        <p class="lead-band__from">何を発信しよう？</p>
+        <span class="lead-band__arrow" aria-hidden="true">↓</span>
+        <p class="lead-band__to">わたしは、何を伝えたい？</p>
+      </div>
+
+      <p class="lead-band__text reveal" style="margin-top: clamp(2.5rem,6vw,3.5rem);">
+        たったこれだけで、発信は驚くほど楽になりました。<br>
+        <span class="a">発信は「作るもの」ではなく「伝えるもの」</span>に変わったんです。
+      </p>
+    </div>
+  </section>
+
+  <!-- 5つの階層 -->
+  <section class="section section--sand" aria-labelledby="layers-title">
+    <div class="wrap">
+      <div class="band-head reveal">
+        <p class="eyebrow">Layers</p>
+        <h2 class="band-title" id="layers-title">AIに作れるのは、どこまで？</h2>
+      </div>
+
+      <div class="layers">
+        <div class="layer layer--ai reveal">
+          <div class="layer__mark"><span class="layer__no">01</span><span class="layer__dot"></span></div>
+          <div>
+            <h3 class="layer__title">情報</h3>
+            <span class="layer__tag">AIに聞けば、すぐ出てくる</span>
+            <p class="layer__text">「〇〇という方法がある」「〇〇という事実がある」。検索すれば分かること。</p>
+          </div>
+        </div>
+
+        <div class="layer layer--ai reveal">
+          <div class="layer__mark"><span class="layer__no">02</span><span class="layer__dot"></span></div>
+          <div>
+            <h3 class="layer__title">知識</h3>
+            <span class="layer__tag">AIに聞けば、正確に教えてくれる</span>
+            <p class="layer__text">「その背景には、こういう理由がある」。情報のつながりや効果を説明できること。</p>
+          </div>
+        </div>
+
+        <div class="layer layer--human reveal">
+          <div class="layer__mark"><span class="layer__no">03</span><span class="layer__dot"></span></div>
+          <div>
+            <h3 class="layer__title">経験</h3>
+            <span class="layer__tag">ここから、AIには語れない</span>
+            <p class="layer__text">あなたが歩んできた道。失敗も、遠回りも、喜びも、悔しさも。本人にしか語れないもの。</p>
+          </div>
+        </div>
+
+        <div class="layer layer--human reveal">
+          <div class="layer__mark"><span class="layer__no">04</span><span class="layer__dot"></span></div>
+          <div>
+            <h3 class="layer__title">考え方</h3>
+            <span class="layer__tag">経験が違えば、変わる</span>
+            <p class="layer__text">「だから、わたしはこう考える」。経験があるから生まれるもの。AIには経験がないから、生み出せない。</p>
+          </div>
+        </div>
+
+        <div class="layer layer--human reveal">
+          <div class="layer__mark"><span class="layer__no">05</span><span class="layer__dot"></span></div>
+          <div>
+            <h3 class="layer__title">想い</h3>
+            <span class="layer__tag">AIには、作れない</span>
+            <p class="layer__text">「あなたにも気づいてほしい」「同じ喜びを味わってほしい」。経験から生まれた考え方が、やがて想いに変わる。</p>
+          </div>
+        </div>
+      </div>
+
+      <p class="layers-note reveal">
+        AIは、画像も文章も動画も作れます。<br>
+        でも、<strong>優しさは作れません。人を想う気持ちも、作れません。</strong><br>
+        だから、最後まで残るのは──人の想いです。
+      </p>
+    </div>
+  </section>
+
+  <!-- アクセント画像 + 引用 -->
+  <section class="quote-strip">
+    <img class="quote-strip__img" src="assets/hasshin-accent.jpg" alt="" width="1200" height="904" loading="lazy" decoding="async">
+    <div class="quote-strip__veil" aria-hidden="true"></div>
+    <div class="wrap">
+      <p class="quote-strip__text reveal">
+        世界観とは、<br><span>想いが、カタチになったもの。</span>
+      </p>
+    </div>
+  </section>
+
+  <!-- 世界観 -->
+  <section class="section" aria-labelledby="world-title">
+    <div class="wrap">
+      <div class="band-head reveal">
+        <p class="eyebrow">World</p>
+        <h2 class="band-title" id="world-title">「なんか好き」が、<br>「あなただから」になる。</h2>
+      </div>
+
+      <ul class="flow-line reveal">
+        <li>経験があるから、考え方が生まれる</li>
+        <li>考え方があるから、想いが生まれる</li>
+        <li>想いがあるから、言葉になる</li>
+        <li>言葉の積み重ねが、世界観になる</li>
+        <li class="goal">世界観が、「あなただから」になる</li>
+      </ul>
+
+      <p class="world-note reveal">
+        同じ色を使っても、同じ言葉を書いても、そこに込める想いが違えば、伝わるものが変わる。
+        ひとつひとつは小さくても、積み重なると「この人はこういう人なんだ」が伝わっていく。
+        それが、真似できない世界観です。
+      </p>
+    </div>
+  </section>
+
+  <!-- お客様の声 -->
+  <section class="section section--blush" aria-labelledby="voice-title">
+    <div class="wrap">
+      <h2 class="sr-only" id="voice-title">お客様の声</h2>
+      <figure class="voice reveal">
+        <blockquote class="voice__quote">
+          ただキレイな画像が作れるだけではなく、<br>
+          自分の発信に愛着が持てるようになったことが、<br>
+          このサポートの一番の価値でした。
+        </blockquote>
+        <figcaption class="voice__who">サポートを受けてくださった方より</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <!-- 最後のCTA -->
+  <section class="final" aria-labelledby="final-title">
+    <div class="wrap wrap--narrow final__inner">
+      <p class="eyebrow">Read more</p>
+      <h2 class="final__title" id="final-title">
+        あなたは、何を伝えたいですか。
+      </h2>
+      <p class="final__lead">
+        この続きは、noteに書いています。
+        「何を発信しよう」ではなく「何を伝えたい」から始める、
+        想いの見つけ方と世界観の育て方。読み終えたとき、自分自身と向き合うきっかけになれたら嬉しいです。
+      </p>
+      <a class="btn" href="#" data-note-link>
+        noteで全文を読む <span class="btn__arrow" aria-hidden="true">→</span>
+      </a>
+      <p class="final__sign">あなたらしさを、カタチに。</p>
+    </div>
+  </section>
+
+</main>
+
+<footer class="footer">
+  <div class="wrap footer__inner">
+    <p class="footer__name">soi</p>
+    <nav class="footer__links" aria-label="外部リンク">
+      <a href="https://www.threads.com/@soi.ai.studio" target="_blank" rel="noopener">Threads</a>
+      <a href="/">サポートについて</a>
+    </nav>
+    <p class="footer__copy">&copy; 2026 soi. All rights reserved.</p>
+  </div>
+</footer>
+
+<script>
+(function () {
+  'use strict';
+
+  /* note公開後、ここにURLを入れるとページ内の全リンクに反映される。
+     空のうちは「準備中です」と伝えて、まだ飛ばないようにしておく。 */
+  var NOTE_URL = '';
+
+  var noteLinks = document.querySelectorAll('[data-note-link]');
+  noteLinks.forEach(function (a) {
+    if (NOTE_URL) {
+      a.setAttribute('href', NOTE_URL);
+      a.setAttribute('target', '_blank');
+      a.setAttribute('rel', 'noopener');
+    } else {
+      a.addEventListener('click', function (e) {
+        e.preventDefault();
+        alert('noteは近日公開予定です。もう少しだけお待ちください🌸');
+      });
+    }
+  });
+
+  /* ヘッダーの境界線 */
+  var header = document.getElementById('header');
+  var ticking = false;
+  window.addEventListener('scroll', function () {
+    if (!ticking) {
+      window.requestAnimationFrame(function () {
+        if (header) header.classList.toggle('is-scrolled', window.scrollY > 8);
+        ticking = false;
+      });
+      ticking = true;
+    }
+  }, { passive: true });
+
+  /* スクロール演出（監視が確実に動くと分かってから伏せる） */
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)');
+  var targets = document.querySelectorAll('.reveal');
+  if (!targets.length || !('IntersectionObserver' in window) || reduce.matches) return;
+
+  var fired = false;
+  var io = new IntersectionObserver(function (entries) {
+    fired = true;
+    entries.forEach(function (entry) {
+      var passed = entry.boundingClientRect.bottom < 0;
+      if (!entry.isIntersecting && !passed) return;
+      entry.target.classList.add('is-in');
+      io.unobserve(entry.target);
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -48px 0px' });
+
+  document.documentElement.classList.add('reveal-on');
+  targets.forEach(function (el) { io.observe(el); });
+
+  setTimeout(function () {
+    if (fired) return;
+    io.disconnect();
+    targets.forEach(function (el) { el.classList.add('is-in'); });
+  }, 1200);
+})();
+</script>
+</body>
+</html>
