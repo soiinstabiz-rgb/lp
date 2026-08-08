@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>あなたは、何を伝えたいのか。｜soi ── AIアート×世界観</title>
-<meta name="description" content="「何を発信するか」ではなく「何を伝えたいのか」。経験から生まれた想いを、世界観としてカタチにする。AI時代に“あなただから”と選ばれる発信の話。">
+<title>あなたは、何を伝えたいのか？｜soi ── Threads×AIアートと世界観</title>
+<meta name="description" content="「何を発信するか」ではなく「何を伝えたいのか」。経験から生まれた想いを、AIアートで“あなたにしか作れない世界観”にして、Threadsで育てる。「あなただから」と選ばれるまでの話。">
 
 <meta name="theme-color" content="#FBF7F2">
 <meta name="color-scheme" content="light">
@@ -13,8 +13,8 @@
      og:image と og:url は「https://」から始まる完全なURLにすること。 -->
 <meta property="og:type" content="article">
 <meta property="og:site_name" content="soi">
-<meta property="og:title" content="あなたは、何を伝えたいのか。｜soi">
-<meta property="og:description" content="「何を発信するか」ではなく「何を伝えたいのか」。“あなただから”と選ばれる発信の話。">
+<meta property="og:title" content="あなたは、何を伝えたいのか？｜soi">
+<meta property="og:description" content="Threads×AIアートで“あなたにしか作れない世界観”をつくる。「何を発信するか」ではなく「何を伝えたいのか」から始める発信の話。">
 <meta property="og:image" content="https://soiart.vercel.app/assets/hasshin-ogp.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
@@ -211,6 +211,19 @@ a { color: var(--rose-deep); }
 .lead-band__arrow { color: var(--rose); font-size: 1.1rem; line-height: 1; }
 .lead-band__to { background: var(--white); border: 1px solid var(--rose); color: var(--ink); box-shadow: var(--shadow-sm); }
 
+.filter { padding-block: clamp(3rem, 8vw, 5rem); }
+.filter .wrap { display: flex; flex-direction: column; align-items: center; gap: 1.5rem; text-align: center; }
+.filter__text { font-family: var(--mincho); font-size: var(--fs-lg); line-height: 2; letter-spacing: .06em; color: var(--ink); text-wrap: balance; }
+.filter__text--strong { position: relative; padding-top: 1.75rem; }
+.filter__text--strong::before { content: ""; position: absolute; top: 0; left: 50%; transform: translateX(-50%); width: 2rem; height: 1px; background: var(--rose); }
+
+.band-sub { font-family: var(--mincho); font-size: var(--fs-md); letter-spacing: .08em; color: var(--rose-deep); }
+
+.teaser .wrap { display: flex; flex-direction: column; align-items: center; gap: 1.75rem; text-align: center; }
+.teaser__text { font-family: var(--mincho); font-size: var(--fs-lg); line-height: 2.05; letter-spacing: .06em; color: var(--ink); text-wrap: balance; }
+.teaser__confess { font-family: var(--mincho); font-size: var(--fs-xl); line-height: 1.9; letter-spacing: .08em; color: var(--rose-deep); }
+.teaser__rule { width: 3rem; height: 1px; background: var(--rose); }
+
 /* =========================================================
    5つの階層
    ========================================================= */
@@ -237,7 +250,6 @@ a { color: var(--rose-deep); }
 }
 .layer--ai .layer__tag { color: var(--ink); background: var(--sand); }
 .layer--human .layer__tag { color: var(--white); background: var(--rose-ink); }
-.layer__text { font-size: var(--fs-sm); line-height: 1.95; color: var(--ink); max-width: var(--measure); }
 
 .layers-note {
   max-width: 34rem; margin: clamp(2.5rem,6vw,3.5rem) auto 0; text-align: center;
@@ -268,11 +280,12 @@ a { color: var(--rose-deep); }
 /* =========================================================
    世界観
    ========================================================= */
-.flow-line { max-width: 30rem; margin: 0 auto clamp(2.5rem,6vw,3.5rem); display: grid; gap: .5rem; text-align: center; }
-.flow-line li { font-family: var(--mincho); font-size: var(--fs-lg); letter-spacing: .06em; line-height: 1.7; }
-.flow-line li::after { content: "↓"; display: block; color: var(--rose); font-size: .9em; margin-top: .3rem; }
-.flow-line li:last-child::after { content: none; }
-.flow-line .goal { color: var(--rose-deep); font-weight: 600; font-size: var(--fs-xl); }
+.refrain {
+  max-width: 34rem; margin: 0 auto clamp(2.5rem,6vw,3.5rem);
+  display: grid; gap: 1rem; text-align: center;
+  padding-block: clamp(1.75rem,4vw,2.5rem); border-block: 1px solid var(--line);
+}
+.refrain p { font-family: var(--mincho); font-size: var(--fs-lg); letter-spacing: .08em; line-height: 1.8; }
 
 .world-note { max-width: 32rem; margin-inline: auto; text-align: center; font-size: var(--fs-sm); line-height: 2; color: var(--ink-soft); }
 
@@ -283,6 +296,27 @@ a { color: var(--rose-deep); }
 .voice__quote { font-family: var(--mincho); font-size: var(--fs-xl); line-height: 1.95; letter-spacing: .04em; text-wrap: balance; }
 .voice__quote::before { content: "“"; display: block; font-family: var(--mincho); font-size: 3rem; line-height: .5; color: var(--rose); margin-bottom: .5rem; }
 .voice__who { margin-top: 1.75rem; font-size: var(--fs-xs); color: var(--ink-soft); letter-spacing: .08em; }
+.voice { margin-block: clamp(2rem,5vw,2.75rem); }
+
+/* 本文（章の語り） ------------------------------------- */
+.prose {
+  max-width: 34rem; margin-inline: auto; text-align: center;
+  font-family: var(--mincho); font-size: var(--fs-md); line-height: 2.15;
+  letter-spacing: .04em; color: var(--ink); text-wrap: pretty;
+}
+.prose + .prose { margin-top: 1.4rem; }
+.prose strong { color: var(--rose-deep); font-weight: 600; }
+.prose--em { font-size: var(--fs-lg); color: var(--rose-deep); letter-spacing: .06em; }
+
+.filter__text strong { color: var(--rose-deep); font-weight: 600; }
+
+.note-proof {
+  max-width: 33rem; margin: clamp(2.25rem,5vw,3rem) auto 0; padding: 1.4rem 1.6rem;
+  text-align: center; background: var(--white); border: 1px solid var(--line);
+  border-radius: 4px; box-shadow: var(--shadow-sm);
+  font-size: var(--fs-sm); line-height: 2; color: var(--ink);
+}
+.note-proof strong { color: var(--rose-deep); font-weight: 600; }
 
 /* =========================================================
    最後のCTA
@@ -326,7 +360,7 @@ a { color: var(--rose-deep); }
       <img class="header__icon" src="assets/soi-portrait.png" alt="" width="34" height="34">
       <span class="header__name">soi</span>
     </a>
-    <span class="header__tag">AIアート×世界観</span>
+    <span class="header__tag">Threads×AIアート</span>
   </div>
 </header>
 
@@ -340,19 +374,19 @@ a { color: var(--rose-deep); }
     <div class="hero__veil" aria-hidden="true"></div>
 
     <div class="wrap hero__inner">
-      <p class="hero__label">AI時代の、発信の話</p>
+      <p class="hero__label">Threads × AIアート</p>
       <h1 class="hero__title">
         あなたは、<br>
-        <span class="accent">何を伝えたいのか。</span>
+        <span class="accent">何を伝えたいのか？</span>
       </h1>
       <p class="hero__lead">
         大切なのは「何を発信するか」ではありません。<br>
-        経験から生まれた想いを、世界観としてカタチにする。<br>
-        “あなただから”と選ばれる発信の話です。
+        経験から生まれた想いを、AIアートで“あなたにしか作れない世界観”に。<br>
+        Threadsで「あなただから」と選ばれるまでの話です。
       </p>
       <div class="hero__actions">
         <a class="btn" href="#" data-note-link>
-          noteで全文を読む <span class="btn__arrow" aria-hidden="true">→</span>
+          noteで続きを読む <span class="btn__arrow" aria-hidden="true">→</span>
         </a>
       </div>
     </div>
@@ -370,22 +404,64 @@ a { color: var(--rose-deep); }
       <div class="lead-band__swap reveal">
         <p class="lead-band__from">何を発信しよう？</p>
         <span class="lead-band__arrow" aria-hidden="true">↓</span>
-        <p class="lead-band__to">わたしは、何を伝えたい？</p>
+        <p class="lead-band__to">私は、何を伝えたい？</p>
       </div>
 
       <p class="lead-band__text reveal" style="margin-top: clamp(2.5rem,6vw,3.5rem);">
-        たったこれだけで、発信は驚くほど楽になりました。<br>
+        ネタを探さなくなりました。探す必要が、なくなったから。<br>
         <span class="a">発信は「作るもの」ではなく「伝えるもの」</span>に変わったんです。
       </p>
     </div>
   </section>
 
-  <!-- 5つの階層 -->
+  <!-- 突き放し（読者を絞る） -->
+  <section class="filter">
+    <div class="wrap wrap--narrow">
+      <p class="filter__text reveal">
+        バズる型も、アルゴリズムの攻略法も、書いていません。<br>
+        「とにかく早く数字を伸ばしたい」方には、向いていません。
+      </p>
+      <p class="filter__text filter__text--strong reveal">
+        でも、Threadsで発信して、AIアートも投稿しているのに、<br>
+        「これ、本当に自分の世界観かな」と感じたことがあるなら。<br>
+        この続きは、<strong>あなたのための話</strong>です。
+      </p>
+    </div>
+  </section>
+
+  <!-- 第2章 探さない -->
+  <section class="section section--blush" aria-labelledby="self-title">
+    <div class="wrap">
+      <div class="band-head reveal">
+        <p class="eyebrow">Yourself</p>
+        <h2 class="band-title" id="self-title">自分らしさは、探さなくていい。</h2>
+        <p class="band-sub">── 作ろうとした瞬間、“正解”を探し始める</p>
+      </div>
+
+      <p class="prose reveal">
+        「自分らしく」と思った瞬間、人は“正解”を探し始めます。<br>でも、自分らしさは、作るものじゃない。
+      </p>
+
+      <figure class="voice reveal">
+        <blockquote class="voice__quote">
+          世界観が、好きです。<br>雰囲気が、好きです。
+        </blockquote>
+        <figcaption class="voice__who">── 薄ピンクのAIアートを投稿した日に、届いたコメント</figcaption>
+      </figure>
+
+      <p class="prose prose--em reveal">
+        フォロワーさんは、わたしより先に<br>“わたしらしさ”を見つけてくれていました。
+      </p>
+    </div>
+  </section>
+
+  <!-- 第3章 経験を掘る（5つの階層） -->
   <section class="section section--sand" aria-labelledby="layers-title">
     <div class="wrap">
       <div class="band-head reveal">
         <p class="eyebrow">Layers</p>
-        <h2 class="band-title" id="layers-title">AIに作れるのは、どこまで？</h2>
+        <h2 class="band-title" id="layers-title">発信の5層構造</h2>
+        <p class="band-sub">── AIに作れるのは、どこまで？</p>
       </div>
 
       <div class="layers">
@@ -394,7 +470,6 @@ a { color: var(--rose-deep); }
           <div>
             <h3 class="layer__title">情報</h3>
             <span class="layer__tag">AIに聞けば、すぐ出てくる</span>
-            <p class="layer__text">「〇〇という方法がある」「〇〇という事実がある」。検索すれば分かること。</p>
           </div>
         </div>
 
@@ -403,7 +478,6 @@ a { color: var(--rose-deep); }
           <div>
             <h3 class="layer__title">知識</h3>
             <span class="layer__tag">AIに聞けば、正確に教えてくれる</span>
-            <p class="layer__text">「その背景には、こういう理由がある」。情報のつながりや効果を説明できること。</p>
           </div>
         </div>
 
@@ -412,7 +486,6 @@ a { color: var(--rose-deep); }
           <div>
             <h3 class="layer__title">経験</h3>
             <span class="layer__tag">ここから、AIには語れない</span>
-            <p class="layer__text">あなたが歩んできた道。失敗も、遠回りも、喜びも、悔しさも。本人にしか語れないもの。</p>
           </div>
         </div>
 
@@ -421,7 +494,6 @@ a { color: var(--rose-deep); }
           <div>
             <h3 class="layer__title">考え方</h3>
             <span class="layer__tag">経験が違えば、変わる</span>
-            <p class="layer__text">「だから、わたしはこう考える」。経験があるから生まれるもの。AIには経験がないから、生み出せない。</p>
           </div>
         </div>
 
@@ -430,7 +502,6 @@ a { color: var(--rose-deep); }
           <div>
             <h3 class="layer__title">想い</h3>
             <span class="layer__tag">AIには、作れない</span>
-            <p class="layer__text">「あなたにも気づいてほしい」「同じ喜びを味わってほしい」。経験から生まれた考え方が、やがて想いに変わる。</p>
           </div>
         </div>
       </div>
@@ -462,34 +533,81 @@ a { color: var(--rose-deep); }
         <h2 class="band-title" id="world-title">「なんか好き」が、<br>「あなただから」になる。</h2>
       </div>
 
-      <ul class="flow-line reveal">
-        <li>経験があるから、考え方が生まれる</li>
-        <li>考え方があるから、想いが生まれる</li>
-        <li>想いがあるから、言葉になる</li>
-        <li>言葉の積み重ねが、世界観になる</li>
-        <li class="goal">世界観が、「あなただから」になる</li>
-      </ul>
+      <div class="refrain reveal">
+        <p>経験があるから、考え方が生まれる。</p>
+        <p>考え方があるから、想いが生まれる。</p>
+        <p>想いがあるから、言葉になる。</p>
+        <p>言葉の積み重ねが、世界観になる。</p>
+      </div>
 
       <p class="world-note reveal">
-        同じ色を使っても、同じ言葉を書いても、そこに込める想いが違えば、伝わるものが変わる。
-        ひとつひとつは小さくても、積み重なると「この人はこういう人なんだ」が伝わっていく。
-        それが、真似できない世界観です。
+        同じ色を使っても、込めた想いが違えば、伝わるものは変わる。<br>真似できるのは、デザインだけ。それが、世界観です。
       </p>
     </div>
   </section>
 
-  <!-- お客様の声 -->
-  <section class="section section--blush" aria-labelledby="voice-title">
+  <!-- 「なんか好き」は最強 -->
+  <section class="filter section--blush">
+    <div class="wrap wrap--narrow">
+      <p class="filter__text reveal">
+        「なんか好き」は、理由が言えない状態のこと。<br>
+        理由が言えるものは、比較されます。
+      </p>
+      <p class="filter__text filter__text--strong reveal">
+        でも「なんか好き」には、比較が効かない。<br>
+        だから、<strong>「なんか好き」は最強</strong>です。
+      </p>
+    </div>
+  </section>
+
+  <!-- 第4章後半 育てる -->
+  <section class="section section--sand" aria-labelledby="grow-title">
     <div class="wrap">
-      <h2 class="sr-only" id="voice-title">お客様の声</h2>
-      <figure class="voice reveal">
-        <blockquote class="voice__quote">
-          ただキレイな画像が作れるだけではなく、<br>
-          自分の発信に愛着が持てるようになったことが、<br>
-          このサポートの一番の価値でした。
-        </blockquote>
-        <figcaption class="voice__who">サポートを受けてくださった方より</figcaption>
-      </figure>
+      <div class="band-head reveal">
+        <p class="eyebrow">Grow</p>
+        <h2 class="band-title" id="grow-title">世界観は、Threadsで“育てる”。</h2>
+        <p class="band-sub">── 作って終わり、では伸びない</p>
+      </div>
+
+      <p class="prose reveal">
+        世界観は、作って終わりじゃない。<br><strong>同じ想いを、角度を変えて伝え続ける</strong>ことで、育っていく。
+      </p>
+
+      <p class="note-proof reveal">
+        地道に“根”を張った先で、初めて書いたnoteは、<strong>公開から1分で完売</strong>しました。
+      </p>
+    </div>
+  </section>
+
+  <!-- 第5章 届け続ける（好きを隠さない） -->
+  <section class="section" aria-labelledby="story-title">
+    <div class="wrap">
+      <div class="band-head reveal">
+        <p class="eyebrow">Story</p>
+        <h2 class="band-title" id="story-title">“好き”を、隠さない。</h2>
+      </div>
+
+      <p class="prose reveal">
+        「ぶりっこ」と呼ばれた日から、<br>わたしは、大好きだったピンクを手放しました。
+      </p>
+      <p class="prose prose--em reveal">
+        その“好き”と、もう一度向き合えた日のこと。<br>わたしの世界観が生まれた理由は、noteに書いています。
+      </p>
+    </div>
+  </section>
+
+  <!-- 打ち明け -->
+  <section class="teaser section" aria-labelledby="teaser-title">
+    <div class="wrap wrap--narrow">
+      <h2 class="sr-only" id="teaser-title">ここまで読んでくれたあなたへ</h2>
+      <span class="teaser__rule reveal" aria-hidden="true"></span>
+      <p class="teaser__text reveal">
+        ここまで読んでくれた、あなたへ。<br>
+        きれいな画像の作り方より、ずっと伝えたかったことがあります。
+      </p>
+      <p class="teaser__confess reveal">
+        その答えは、あなたの中にしかありません。<br>見つけるための道のりを、noteに書きました。
+      </p>
     </div>
   </section>
 
@@ -498,15 +616,14 @@ a { color: var(--rose-deep); }
     <div class="wrap wrap--narrow final__inner">
       <p class="eyebrow">Read more</p>
       <h2 class="final__title" id="final-title">
-        あなたは、何を伝えたいですか。
+        小さな「好き」が、<br>やがて「あなただから」になる。
       </h2>
       <p class="final__lead">
-        この続きは、noteに書いています。
-        「何を発信しよう」ではなく「何を伝えたい」から始める、
-        想いの見つけ方と世界観の育て方。読み終えたとき、自分自身と向き合うきっかけになれたら嬉しいです。
+        才能の話ではなく、順番の話です。<br>
+        想いの見つけ方と、Threadsでの育て方。その全部を、noteに書きました。
       </p>
       <a class="btn" href="#" data-note-link>
-        noteで全文を読む <span class="btn__arrow" aria-hidden="true">→</span>
+        noteで続きを読む <span class="btn__arrow" aria-hidden="true">→</span>
       </a>
       <p class="final__sign">あなたらしさを、カタチに。</p>
     </div>
@@ -519,7 +636,6 @@ a { color: var(--rose-deep); }
     <p class="footer__name">soi</p>
     <nav class="footer__links" aria-label="外部リンク">
       <a href="https://www.threads.com/@soi.ai.studio" target="_blank" rel="noopener">Threads</a>
-      <a href="/">サポートについて</a>
     </nav>
     <p class="footer__copy">&copy; 2026 soi. All rights reserved.</p>
   </div>
