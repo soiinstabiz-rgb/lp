@@ -242,15 +242,6 @@ a { color: var(--rose-deep); }
       rgba(239,228,216,.42) 100%);
 }
 .hero__inner { display: flex; flex-direction: column; align-items: flex-start; gap: 1.5rem; max-width: 40rem; }
-.hero__badge {
-  display: inline-flex; align-items: center; gap: .5em;
-  padding: .5em 1.1em;
-  font-size: var(--fs-xs); font-weight: 500; letter-spacing: .12em;
-  color: var(--rose-ink);
-  background: rgba(255,253,251,.9);
-  border: 1px solid rgba(201,138,146,.35);
-  border-radius: 999px; line-height: 1.4;
-}
 .hero__title {
   font-family: var(--mincho);
   font-size: var(--fs-3xl);
@@ -323,10 +314,15 @@ a { color: var(--rose-deep); }
 .story__body strong { color: var(--ink); font-weight: 500; }
 .story__lead {
   font-family: var(--mincho);
-  font-size: var(--fs-xl) !important;
-  line-height: 1.8 !important;
+  font-size: var(--fs-lg) !important;
+  line-height: 1.95 !important;
   color: var(--ink) !important;
-  letter-spacing: .05em;
+  letter-spacing: .04em;
+}
+/* 告白の見出しは控えめに（大きすぎると圧が出て気恥ずかしいため） */
+.band-title--modest {
+  font-size: var(--fs-xl);
+  font-weight: 500;
 }
 
 /* =========================================================
@@ -395,8 +391,83 @@ a { color: var(--rose-deep); }
   text-align: center;
 }
 
+/* 身につけたら、できるようになること（使い道リスト） */
+.uses {
+  display: grid; grid-template-columns: 1fr;
+  gap: .75rem;
+  max-width: 46rem;
+  margin: clamp(2.25rem, 6vw, 3.25rem) auto 0;
+}
+.use {
+  position: relative;
+  padding: 1rem 1.25rem 1rem 3rem;
+  background: var(--white);
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  font-size: var(--fs-sm);
+  line-height: 1.85;
+}
+.use::before {
+  content: "🌸";
+  position: absolute; left: 1.1rem; top: 1rem;
+  font-size: 1em; line-height: 1.85;
+}
+.use strong { font-weight: 600; color: var(--ink); }
+
+.future-line {
+  max-width: 34rem;
+  margin: clamp(2.25rem, 6vw, 3rem) auto 0;
+  text-align: center;
+  font-family: var(--mincho);
+  font-size: var(--fs-lg);
+  line-height: 1.95;
+  letter-spacing: .05em;
+  color: var(--ink);
+  text-wrap: balance;
+}
+.future-line em { font-style: normal; color: var(--rose-deep); }
+
+/* でも、ひとりで始めようとすると…（ペイン → 橋渡し） */
+.pains {
+  display: grid; gap: 1px;
+  max-width: 44rem; margin-inline: auto;
+  background: var(--line);
+  border-block: 1px solid var(--line);
+}
+.pain {
+  position: relative;
+  padding: 1.25rem clamp(1rem, 4vw, 2rem);
+  padding-left: clamp(2.2rem, 4vw + 1.2rem, 3.2rem);
+  background: var(--cream);
+  font-family: var(--mincho);
+  font-size: var(--fs-lg);
+  line-height: 1.85;
+  letter-spacing: .04em;
+}
+.pain::before {
+  content: "…";
+  position: absolute;
+  left: clamp(1rem, 4vw, 2rem);
+  top: 1.25rem;
+  color: var(--rose);
+  font-weight: 600;
+  letter-spacing: 0;
+}
+.bridge-line {
+  max-width: 34rem;
+  margin: clamp(2.25rem, 6vw, 3rem) auto 0;
+  text-align: center;
+  font-family: var(--mincho);
+  font-size: var(--fs-xl);
+  line-height: 1.8;
+  letter-spacing: .06em;
+  color: var(--ink);
+  text-wrap: balance;
+}
+.bridge-line strong { color: var(--rose-deep); font-weight: 600; }
+
 /* =========================================================
-   10. ①→③ 2ステップ
+   10. ①→② 2ステップ
    ========================================================= */
 .steps2 {
   display: grid; grid-template-columns: 1fr;
@@ -654,7 +725,6 @@ a { color: var(--rose-deep); }
     <div class="hero__veil" aria-hidden="true"></div>
 
     <div class="wrap hero__inner">
-      <span class="hero__badge">🌸 この夏、はじめての方へ</span>
       <h1 class="hero__title">
         今年の夏、<br>
         AIアートを<br>
@@ -694,7 +764,7 @@ a { color: var(--rose-deep); }
     <div class="wrap">
       <div class="band-head reveal">
         <p class="eyebrow">My Story</p>
-        <h2 class="band-title" id="story-title">わたしも、お金がなかった。</h2>
+        <h2 class="band-title band-title--modest" id="story-title">わたしも、お金がなかった。</h2>
       </div>
 
       <div class="story reveal">
@@ -712,7 +782,7 @@ a { color: var(--rose-deep); }
             最初に何が「呪文」に見えて、どこで手が止まってしまうのか。
           </p>
           <p>
-            だから ①③ は、そのつまずきをまるごと飛ばせるように、
+            だから ①② は、そのつまずきをまるごと飛ばせるように、
             <strong>気軽に手に取れる価格</strong>で作りました。遠回りした分を、ぎゅっと詰め込んでいます。
           </p>
         </div>
@@ -730,23 +800,12 @@ a { color: var(--rose-deep); }
     </div>
   </section>
 
-  <!-- ============ What（できること）＋作品 ============ -->
-  <section class="section" aria-labelledby="what-title">
+  <!-- ============ 身につけたら、できるようになること（未来） ============ -->
+  <section class="section" aria-labelledby="future-title">
     <div class="wrap">
       <div class="band-head reveal">
-        <p class="eyebrow">First Step</p>
-        <h2 class="band-title" id="what-title">はじめの一歩で、<br>できるようになること。</h2>
-      </div>
-
-      <div class="abilities reveal">
-        <p class="ability">
-          <span><strong>好きな色を選ぶ。好きなモチーフを選ぶ。</strong>
-          この2つの感覚さえあれば、あなただけのオリジナル画像が作れるようになります。</span>
-        </p>
-        <p class="ability">
-          <span>むずかしい専門知識も、<strong>センスも英語力も要りません。</strong>
-          「なんか好き」という気持ちを、そのまま形にしていきます。</span>
-        </p>
+        <p class="eyebrow">Your Future</p>
+        <h2 class="band-title" id="future-title">AIアートを身につけると、<br>こんなことができるようになります。</h2>
       </div>
 
       <div class="works reveal">
@@ -764,15 +823,47 @@ a { color: var(--rose-deep); }
         </figure>
       </div>
       <p class="works-note reveal">こんな世界観も、色とモチーフの選び方から生まれています。</p>
+
+      <ul class="uses reveal">
+        <li class="use">自分だけの世界観で、<strong>スマホの壁紙</strong>が作れるようになる</li>
+        <li class="use"><strong>PCの壁紙</strong>を、自分の“好き”で埋め尽くせるようになる</li>
+        <li class="use"><strong>Instagramの投稿ビジュアル</strong>が、自分の手で作れるようになる</li>
+        <li class="use"><strong>ストーリーズ用の画像</strong>を、世界観に合わせて作れるようになる</li>
+        <li class="use"><strong>noteのサムネイル</strong>を、自分らしいデザインで作れるようになる</li>
+        <li class="use"><strong>SNSのプロフィールアイコン</strong>を、自分の世界観で作れるようになる</li>
+      </ul>
+
+      <p class="future-line reveal">
+        これは、遠い未来の話じゃありません。<br>
+        ①②を使えば、<em>今日から</em>作れるようになることです🌸
+      </p>
     </div>
   </section>
 
-  <!-- ============ ①→③ 2ステップ ============ -->
+  <!-- ============ でも、ひとりで始めようとすると… ============ -->
+  <section class="section section--blush" aria-labelledby="pain-title">
+    <div class="wrap">
+      <div class="band-head reveal">
+        <p class="eyebrow">But…</p>
+        <h2 class="band-title band-title--modest" id="pain-title">でも、ひとりで始めようとすると——</h2>
+      </div>
+
+      <ul class="pains reveal">
+        <li class="pain">かわいい画像は作れても、世界観が安定しない。</li>
+        <li class="pain">何を選べばいいのか分からず、結局いつもと同じような画像になる。</li>
+        <li class="pain">「これで合ってるのかな」と、自信が持てないまま終わってしまう。</li>
+      </ul>
+
+      <p class="bridge-line reveal">そのお悩み、<strong>①②で解決できます。</strong></p>
+    </div>
+  </section>
+
+  <!-- ============ ①→② 2ステップ ============ -->
   <section class="section section--sand" id="steps" aria-labelledby="steps-title">
     <div class="wrap">
       <div class="band-head reveal">
         <p class="eyebrow">2 Steps</p>
-        <h2 class="band-title" id="steps-title">①から③へ、<br>2ステップで完成します。</h2>
+        <h2 class="band-title" id="steps-title">①から②へ、<br>2ステップで完成します。</h2>
       </div>
 
       <div class="steps2">
@@ -817,12 +908,12 @@ a { color: var(--rose-deep); }
               <dd><strong>実践の相棒。</strong>その後、何度でも使い続けられます。</dd>
             </div>
           </dl>
-          <a class="btn" href="#note3-link">③を見てみる <span class="btn__arrow" aria-hidden="true">→</span></a>
+          <a class="btn" href="#note3-link">②を見てみる <span class="btn__arrow" aria-hidden="true">→</span></a>
         </article>
       </div>
 
       <p class="steps2-note reveal">
-        ①でプロンプトの仕組みを理解してから、③で実際に作り続けられるようになる。
+        ①でプロンプトの仕組みを理解してから、②で実際に作り続けられるようになる。
         この2つで、あなたのAIアートは完成します🌸
       </p>
     </div>
@@ -838,7 +929,7 @@ a { color: var(--rose-deep); }
 
       <figure class="voice voice--placeholder reveal">
         <div class="voice__quote">
-          <p>（ここに、①③を受け取ってくださった方の感想が入ります。）</p>
+          <p>（ここに、①②を受け取ってくださった方の感想が入ります。）</p>
         </div>
         <figcaption class="voice__who">※ 掲載する声は後日そいが差し替えます</figcaption>
       </figure>
@@ -859,7 +950,7 @@ a { color: var(--rose-deep); }
           <div class="faq__a">
             <p>
               ①の特典としてお渡しするGPTsは、<strong>無料版でもお使いいただけます。</strong>
-              ③のツールは、より快適にお使いいただくために<strong>ChatGPT Plus（有料版）を推奨</strong>しています。
+              ②のツールは、より快適にお使いいただくために<strong>ChatGPT Plus（有料版）を推奨</strong>しています。
               まずは①から、無料で試していただくこともできます🌸
             </p>
           </div>
@@ -891,8 +982,8 @@ a { color: var(--rose-deep); }
             <p>
               ①は、プロンプトの仕組みを理解するところまでの教科書です。
               「こういうものか」が分かるようになります。
-              そのうえで、<strong>実際に自分の世界観を自在に作り続けられるようになるには、③もあわせて</strong>どうぞ。
-              ①→③で、理解から実践までがひとつながりになります🌸
+              そのうえで、<strong>実際に自分の世界観を自在に作り続けられるようになるには、②もあわせて</strong>どうぞ。
+              ①→②で、理解から実践までがひとつながりになります🌸
             </p>
           </div>
         </details>
@@ -906,7 +997,7 @@ a { color: var(--rose-deep); }
       <p class="eyebrow">Start</p>
       <h2 class="final__title" id="final-title">この夏、はじめの一歩を。</h2>
       <p class="final__lead">
-        ①でプロンプトを理解し、③で作り続けられるようになる。
+        ①でプロンプトを理解し、②で作り続けられるようになる。
         どちらも買い切りなので、あなたのペースで進められます。
       </p>
 
@@ -916,7 +1007,7 @@ a { color: var(--rose-deep); }
           <p class="price">note記事 ／ <strong>¥2,580</strong>（買い切り）</p>
         </div>
         <div class="final__buy">
-          <a class="btn" href="#note3-link">③ を見てみる <span class="btn__arrow" aria-hidden="true">→</span></a>
+          <a class="btn" href="#note3-link">② を見てみる <span class="btn__arrow" aria-hidden="true">→</span></a>
           <p class="price">GPTsツール ／ <strong>¥3,980</strong>（買い切り）</p>
         </div>
       </div>
