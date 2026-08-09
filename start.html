@@ -15,7 +15,7 @@
 <meta property="og:site_name" content="soi">
 <meta property="og:title" content="今年の夏、AIアートをはじめてみない？｜soi">
 <meta property="og:description" content="センスも英語力もいりません。必要なのは、あなたの“好き”だけ。AIアート初心者のための、はじめの一歩。">
-<meta property="og:image" content="https://soiart.vercel.app/assets/ogp.jpg">
+<meta property="og:image" content="https://soiart.vercel.app/assets/ogp-start.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta property="og:image:alt" content="今年の夏、AIアートをはじめてみない？ soiのAIアート入門">
@@ -35,16 +35,21 @@
    1. デザイントークン（既存サポートLPと共通）
    ========================================================= */
 :root {
-  --cream:      #fbf7f2;
-  --sand:       #efe4d8;
-  --blush:      #f6dfdc;
+  --cream:      #fdf8f1;   /* 生成り（ひと足だけ明るく＝夏の光） */
+  --sand:       #f1e6d4;   /* 砂・ベージュ（少しサニーに） */
+  --blush:      #f9ddcf;   /* 淡いピーチ（夏色） */
   --rose:       #c98a92;
   --rose-deep:  #a9646e;
   --rose-ink:   #8e4c57;
   --ink:        #43332f;
   --ink-soft:   #7d6a65;
-  --line:       #e5d6c9;
+  --line:       #e7d8c8;
   --white:      #fffdfb;
+
+  /* 夏のアクセント（ごく控えめに使用） */
+  --coral:      #d9834e;   /* 夕日・ハイビスカスのコーラル */
+  --sea:        #8db9bf;   /* きらめく海 */
+  --sun:        #ffe7c4;   /* 陽だまり */
 
   --shadow-sm:  0 1px 2px rgba(67,51,47,.05);
   --shadow:     0 2px 4px rgba(67,51,47,.04), 0 14px 40px rgba(67,51,47,.08);
@@ -226,20 +231,24 @@ a { color: var(--rose-deep); }
 .hero__video {
   width: 100%; height: 100%;
   object-fit: cover;
-  object-position: 30% 45%;
+  object-position: 44% 42%;
   display: block;
 }
+/* 夏の海の映像は明るく安定しているので、ベールは軽めに。
+   左下に文字の座を確保しつつ、上に陽だまり、下にほのかな海の色を添える。 */
 .hero__veil {
   position: absolute; inset: 0; z-index: -1;
   background:
+    radial-gradient(140% 80% at 78% -10%, rgba(255,231,196,.55) 0%, transparent 55%),
     linear-gradient(105deg,
-      rgba(251,247,242,.62) 0%,
-      rgba(251,247,242,.48) 45%,
-      rgba(246,223,220,.30) 100%),
+      rgba(253,248,241,.72) 0%,
+      rgba(253,248,241,.50) 42%,
+      rgba(249,221,207,.26) 78%,
+      rgba(141,185,191,.16) 100%),
     linear-gradient(180deg,
-      rgba(251,247,242,.20) 0%,
-      rgba(251,247,242,.05) 40%,
-      rgba(239,228,216,.42) 100%);
+      rgba(253,248,241,.14) 0%,
+      rgba(253,248,241,.02) 40%,
+      rgba(241,230,212,.34) 100%);
 }
 .hero__inner { display: flex; flex-direction: column; align-items: flex-start; gap: 1.5rem; max-width: 40rem; }
 .hero__title {
@@ -251,7 +260,7 @@ a { color: var(--rose-deep); }
   text-wrap: balance;
   text-shadow: 0 1px 14px rgba(251,247,242,.95), 0 1px 3px rgba(251,247,242,.9);
 }
-.hero__title .accent { background: linear-gradient(transparent 66%, rgba(201,138,146,.28) 66%); }
+.hero__title .accent { background: linear-gradient(transparent 64%, rgba(217,131,78,.30) 64%); }
 .hero__lead {
   max-width: var(--measure);
   font-size: var(--fs-lg);
@@ -380,10 +389,10 @@ a { color: var(--rose-deep); }
   transition: transform 1.2s cubic-bezier(.22,.61,.36,1);
 }
 .work:hover img { transform: scale(1.04); }
-.work--p1 img { object-position: 64% 38%; }
-.work--p2 img { object-position: 50% 45%; }
-.work--p3 img { object-position: 52% 42%; }
-.work--p4 img { object-position: 32% 45%; }
+.work--p1 img { object-position: 55% 42%; }
+.work--p2 img { object-position: 60% 35%; }
+.work--p3 img { object-position: 60% 32%; }
+.work--p4 img { object-position: 50% 40%; }
 .works-note {
   margin-top: 1.5rem;
   font-size: var(--fs-sm);
@@ -465,6 +474,48 @@ a { color: var(--rose-deep); }
   text-wrap: balance;
 }
 .bridge-line strong { color: var(--rose-deep); font-weight: 600; }
+
+/* AIアートは、こんな仕事にもつながりました（実例） */
+.jobs-lead {
+  max-width: 34rem;
+  margin: 0 auto clamp(2rem, 5vw, 2.75rem);
+  text-align: center;
+  font-size: var(--fs-sm);
+  line-height: 2;
+  color: var(--ink);
+}
+.jobs {
+  display: grid; grid-template-columns: 1fr;
+  gap: .7rem;
+  max-width: 40rem; margin-inline: auto;
+}
+.job {
+  position: relative;
+  padding: .95rem 1.1rem .95rem 2.6rem;
+  background: var(--white);
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  font-size: var(--fs-sm);
+  line-height: 1.7;
+}
+.job::before {
+  content: "→";
+  position: absolute;
+  left: 1.05rem; top: .95rem;
+  color: var(--coral);
+  line-height: 1.7;
+}
+.jobs-close {
+  max-width: 34rem;
+  margin: clamp(2rem, 5vw, 2.75rem) auto 0;
+  text-align: center;
+  font-family: var(--mincho);
+  font-size: var(--fs-lg);
+  line-height: 1.95;
+  letter-spacing: .05em;
+  color: var(--ink);
+  text-wrap: balance;
+}
 
 /* =========================================================
    10. ①→② 2ステップ
@@ -717,8 +768,8 @@ a { color: var(--rose-deep); }
   <section class="hero">
     <div class="hero__media" aria-hidden="true">
       <video class="hero__video" id="hero-video"
-             src="assets/hero.mp4"
-             poster="assets/soi-portrait.png"
+             src="assets/hero-summer.mp4"
+             poster="assets/work-summer-1.jpg"
              autoplay muted loop playsinline preload="metadata"
              tabindex="-1"></video>
     </div>
@@ -810,32 +861,60 @@ a { color: var(--rose-deep); }
 
       <div class="works reveal">
         <figure class="work work--p1">
-          <img src="assets/work-1.jpg" alt="やわらかな光に透ける横顔と淡いピンクの花のAIアート作品例" width="1200" height="904" loading="lazy" decoding="async">
+          <img src="assets/work-summer-1.jpg" alt="コーラルピンクのハイビスカスに囲まれた夏のAIアート作品例" width="1080" height="1350" loading="lazy" decoding="async">
         </figure>
         <figure class="work work--p2">
-          <img src="assets/work-2.jpg" alt="瞳とシャボン玉を捉えた繊細な質感のAIアート作品例" width="1080" height="1350" loading="lazy" decoding="async">
+          <img src="assets/work-summer-2.jpg" alt="かき氷を手にした、夏のレトロな喫茶店のAIアート作品例" width="1080" height="1350" loading="lazy" decoding="async">
         </figure>
         <figure class="work work--p3">
-          <img src="assets/work-3.jpg" alt="かすみ草の花束と淡いピンクのドレス、海辺の光のAIアート作品例" width="1080" height="1350" loading="lazy" decoding="async">
+          <img src="assets/work-summer-3.jpg" alt="夕暮れの海辺、浴衣と花火のAIアート作品例" width="1080" height="1350" loading="lazy" decoding="async">
         </figure>
         <figure class="work work--p4">
-          <img src="assets/work-4.jpg" alt="やわらかな光の中でほほえむ横顔のAIアート作品例" width="1200" height="904" loading="lazy" decoding="async">
+          <img src="assets/work-summer-4.jpg" alt="青空とパステルの壁、夏のサンドレスのAIアート作品例" width="1080" height="1350" loading="lazy" decoding="async">
         </figure>
       </div>
       <p class="works-note reveal">こんな世界観も、色とモチーフの選び方から生まれています。</p>
 
       <ul class="uses reveal">
-        <li class="use">自分だけの世界観で、<strong>スマホの壁紙</strong>が作れるようになる</li>
-        <li class="use"><strong>PCの壁紙</strong>を、自分の“好き”で埋め尽くせるようになる</li>
+        <li class="use">自分だけの世界観で、<strong>スマホ壁紙</strong>が作れるようになる</li>
+        <li class="use"><strong>PC壁紙</strong>を、自分の“好き”で埋め尽くせるようになる</li>
         <li class="use"><strong>Instagramの投稿ビジュアル</strong>が、自分の手で作れるようになる</li>
-        <li class="use"><strong>ストーリーズ用の画像</strong>を、世界観に合わせて作れるようになる</li>
         <li class="use"><strong>noteのサムネイル</strong>を、自分らしいデザインで作れるようになる</li>
-        <li class="use"><strong>SNSのプロフィールアイコン</strong>を、自分の世界観で作れるようになる</li>
+        <li class="use">「なんか好き」を、<strong>誰かに見せられる形</strong>にできるようになる</li>
       </ul>
 
       <p class="future-line reveal">
         これは、遠い未来の話じゃありません。<br>
         ①②を使えば、<em>今日から</em>作れるようになることです🌸
+      </p>
+    </div>
+  </section>
+
+  <!-- ============ AIアートは、こんな仕事にもつながりました（実例） ============ -->
+  <section class="section section--sand" aria-labelledby="jobs-title">
+    <div class="wrap">
+      <div class="band-head reveal">
+        <p class="eyebrow">Real Examples</p>
+        <h2 class="band-title band-title--modest" id="jobs-title">AIアートは、こんな仕事にもつながりました。</h2>
+      </div>
+
+      <p class="jobs-lead reveal">
+        これは、あくまでわたし自身の実例です。専業主婦から独学で始めたAIアートが、
+        少しずつ、こんな形につながっていきました。
+      </p>
+
+      <ul class="jobs reveal">
+        <li class="job">ECショップの商品画像制作</li>
+        <li class="job">ブランドムービー制作</li>
+        <li class="job">デジタルコンテンツ商品の販売</li>
+        <li class="job">noteの有料記事販売</li>
+        <li class="job">AIアート世界観づくりのサポート</li>
+        <li class="job">InstagramリールでのAIアバター活用支援</li>
+      </ul>
+
+      <p class="jobs-close reveal">
+        最初から、こうなると分かっていたわけじゃありません。<br>
+        “好き”を言葉にして、形にし続けてきた結果です。
       </p>
     </div>
   </section>

@@ -6,6 +6,10 @@
 /*.mp4
 /*.mov
 
+# 素材の元フォルダ（重いオリジナル。assets/ に最適化済みを配置している）
+/SUMMER/
+/New/
+
 # OS
 Thumbs.db
 ehthumbs.db
