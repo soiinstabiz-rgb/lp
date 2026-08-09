@@ -101,6 +101,18 @@ ul, ol { list-style: none; }
 img { max-width: 100%; height: auto; display: block; }
 a { color: var(--rose-deep); }
 
+/* 自然な折り返しで、行末に1〜3文字だけ取り残される「孤立行」を防ぐ。
+   text-wrap: pretty は日本語の短い文ではほぼ効かないため、
+   複数行をならして調整する balance を使う（短〜中くらいの文向け）。
+   対応ブラウザでのみ効き、未対応でも通常の折り返しに戻るだけなので安全。 */
+.feeling, .step__text, .faq__q {
+  text-wrap: balance;
+}
+/* 長めの段落は balance が効きにくいことがあるため pretty を併用 */
+.voice__quote p, .profile__body p, .faq__a p {
+  text-wrap: pretty;
+}
+
 :focus-visible {
   outline: 2px solid var(--rose-deep);
   outline-offset: 3px;
@@ -713,6 +725,7 @@ a { color: var(--rose-deep); }
   line-height: 2;
   color: var(--ink-soft);
 }
+.faq__a-body { display: grid; gap: .9rem; }
 .faq__a::before {
   content: "A";
   flex: 0 0 auto;
@@ -1138,14 +1151,16 @@ a { color: var(--rose-deep); }
           </p>
           <p>
             私は考えることやコンセプトを作ることは好きなのですが、
-            それをデザインとして表現することが苦手でした。だからこそ、今回のサポートは本当に助かりました。
+            それをデザインとして表現することが苦手でした。
+          </p>
+          <p>
+            だからこそ、今回のサポートは本当に助かりました。
             特に発信やサイトに使った時に、一気に世界観の統一感が生まれて
             「これだ！」と思えるものができたのが嬉しかったです。
           </p>
           <p class="voice__highlight">
-            ただ綺麗な画像が作れるだけではなく、<br>
-            自分の発信に愛着が持てるようになったことが、一番の価値でした。<br>
-            私だけの世界観、大好きです。
+            ただ綺麗な画像が作れるだけではなく、自分の発信に愛着が持てるようになったことが、
+            一番の価値でした。私だけの世界観、大好きです。
           </p>
         </blockquote>
         <figcaption class="voice__who">サポートを受けてくださった方より</figcaption>
@@ -1182,6 +1197,8 @@ a { color: var(--rose-deep); }
             </p>
             <p>
               AIアートのおかげで、自分の考えや想いを発信できるようになりました。
+            </p>
+            <p>
               あのときの感動を、今度はあなたと一緒に見つけにいきたいと思っています。
             </p>
           </div>
@@ -1204,22 +1221,30 @@ a { color: var(--rose-deep); }
         <details class="faq__item">
           <summary class="faq__q">AIもMidjourneyも触ったことがありません。それでも大丈夫ですか？</summary>
           <div class="faq__a">
-            <p>
-              大丈夫です。まったく触れたことのない状態からスタートされる方がほとんどです。
-              見やすい資料をお渡ししながら、ひとつずつ噛み砕いて進めていきます。
-              分からないところは、分かるまで何度でもお聞きください。
-            </p>
+            <div class="faq__a-body">
+              <p>
+                大丈夫です。まったく触れたことのない状態からスタートされる方がほとんどです。
+                見やすい資料をお渡ししながら、ひとつずつ噛み砕いて進めていきます。
+              </p>
+              <p>
+                分からないところは、分かるまで何度でもお聞きください。
+              </p>
+            </div>
           </div>
         </details>
 
         <details class="faq__item">
           <summary class="faq__q">絵心もセンスもないのですが、私にもできますか？</summary>
           <div class="faq__a">
-            <p>
-              センスは必要ありません。ここで作るのは「上手な絵」ではなく「あなたらしさ」だからです。
-              考えることは好きだけれど表現が苦手、という方こそ力になれると思っています。
-              あなたの中にすでにあるものを、一緒に言葉と形にしていきます。
-            </p>
+            <div class="faq__a-body">
+              <p>
+                センスは必要ありません。ここで作るのは「上手な絵」ではなく「あなたらしさ」だからです。
+              </p>
+              <p>
+                考えることは好きだけれど表現が苦手、という方こそ力になれると思っています。
+                あなたの中にすでにあるものを、一緒に言葉と形にしていきます。
+              </p>
+            </div>
           </div>
         </details>
 

@@ -102,6 +102,20 @@ ul, ol { list-style: none; }
 img { max-width: 100%; height: auto; display: block; }
 a { color: var(--rose-deep); }
 
+/* 自然な折り返しで、行末に1〜3文字だけ取り残される「孤立行」を防ぐ。
+   text-wrap: pretty は日本語の短い文ではほぼ効かないため、
+   複数行をならして調整する balance を使う（短〜中くらいの文向け）。
+   対応ブラウザでのみ効き、未対応でも通常の折り返しに戻るだけなので安全。 */
+.feeling, .pain, .job, .use, .ability,
+.plan__name, .faq__q {
+  text-wrap: balance;
+}
+/* 長めの段落。balance の方が pretty よりよく効くため統一 */
+.story__body p, .plan__dl dd,
+.voice__quote p, .faq__a p, .jobs-lead {
+  text-wrap: balance;
+}
+
 :focus-visible {
   outline: 2px solid var(--rose-deep);
   outline-offset: 3px;
@@ -646,6 +660,7 @@ a { color: var(--rose-deep); }
 }
 .faq__item[open] .faq__q::after { transform: rotate(-135deg); margin-top: .8em; }
 .faq__a { display: flex; gap: .9rem; padding: 0 clamp(1rem, 3vw, 1.5rem) 1.4rem; font-size: var(--fs-sm); line-height: 2; color: var(--ink-soft); }
+.faq__a-body { display: grid; gap: .9rem; }
 .faq__a::before { content: "A"; flex: 0 0 auto; font-family: var(--mincho); color: var(--ink-soft); }
 
 /* =========================================================
@@ -894,7 +909,7 @@ a { color: var(--rose-deep); }
 
       <p class="future-line reveal">
         これは、遠い未来の話じゃありません。<br>
-        note記事とGPTsを使えば、<em>今日から</em>作れるようになることです🌸
+        note記事とGPTsを使えば、<em>今日から</em>一歩ずつ、近づいていけることです🌸
       </p>
     </div>
   </section>
@@ -918,12 +933,12 @@ a { color: var(--rose-deep); }
         <li class="job">デジタルコンテンツ商品の販売</li>
         <li class="job">noteの有料記事販売</li>
         <li class="job">AIアート世界観づくりのサポート</li>
-        <li class="job">InstagramリールでのAIアバター活用支援</li>
+        <li class="job">Instagramリール動画の制作サポート</li>
       </ul>
 
       <p class="jobs-close reveal">
         最初から、こうなると分かっていたわけじゃありません。<br>
-        “好き”を言葉にして、形にし続けてきた結果です。
+        “好き”を言葉にして、カタチにし続けてきた結果です。
       </p>
     </div>
   </section>
@@ -1002,7 +1017,7 @@ a { color: var(--rose-deep); }
 
       <p class="steps2-note reveal">
         note記事でプロンプトの仕組みを理解してから、GPTsで実際に作り続けられるようになる。
-        この2つで、あなたのAIアートは完成します🌸
+        この2つが、あなたのAIアートの土台になります🌸
       </p>
     </div>
   </section>
@@ -1063,11 +1078,15 @@ a { color: var(--rose-deep); }
         <details class="faq__item">
           <summary class="faq__q">ChatGPTの無料版でも使えますか？</summary>
           <div class="faq__a">
-            <p>
-              note記事の特典としてお渡しするGPTsは、<strong>無料版でもお使いいただけます。</strong>
-              実践用のGPTsツールは、より快適にお使いいただくために<strong>ChatGPT Plus（有料版）を推奨</strong>しています。
-              まずはnote記事から、無料で試していただくこともできます🌸
-            </p>
+            <div class="faq__a-body">
+              <p>
+                note記事の特典としてお渡しするGPTsは、<strong>無料版でもお使いいただけます。</strong>
+                実践用のGPTsツールは、より快適にお使いいただくために<strong>ChatGPT Plus（有料版）を推奨</strong>しています。
+              </p>
+              <p>
+                まずはnote記事から、無料で試していただくこともできます🌸
+              </p>
+            </div>
           </div>
         </details>
 
@@ -1094,12 +1113,16 @@ a { color: var(--rose-deep); }
         <details class="faq__item">
           <summary class="faq__q">note記事だけでも、AIアートは作れますか？</summary>
           <div class="faq__a">
-            <p>
-              note記事は、プロンプトの仕組みを理解するところまでの教科書です。
-              「こういうものか」が分かるようになります。
-              そのうえで、<strong>実際に自分の世界観を自在に作り続けられるようになるには、GPTsもあわせて</strong>どうぞ。
-              note記事からGPTsへと進むことで、理解から実践までがひとつながりになります🌸
-            </p>
+            <div class="faq__a-body">
+              <p>
+                note記事は、プロンプトの仕組みを理解するところまでの教科書です。
+                「こういうものか」が分かるようになります。
+              </p>
+              <p>
+                そのうえで、<strong>実際に自分の世界観を自在に作り続けられるようになるには、GPTsもあわせて</strong>どうぞ。
+                note記事からGPTsへと進むことで、理解から実践までがひとつながりになります🌸
+              </p>
+            </div>
           </div>
         </details>
       </div>
