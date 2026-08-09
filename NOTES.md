@@ -8,6 +8,28 @@
 - 前作「ことばの温度」→ https://soiart.vercel.app/kotoba-no-ondo
 - ⚠️ URLを変えたら index.html の og:url / og:image / canonical の3か所も必ず更新すること
 
+## 🌐 start.html（お盆・初心者向けLP）関連の追記
+- note①（プロンプトの作り方）: https://note.com/soi_ai_studio/n/n09814ba8ac5e
+- note②/GPTs（世界観をAIプロンプトに）: https://note.com/soi_ai_studio/n/n9706880ded3b
+  → 2026-07-23 に4箇所（steps2の2ボタン＋final__buttonsの2ボタン）へ反映済み、target=_blank付き
+- ヒーロー動画・作品画像は `SUMMER/` フォルダから夏らしい素材に差し替え済み
+  （assets/hero-summer.mp4, assets/work-summer-1〜4.jpg）
+- 実例セクション「AIアートは、こんな仕事にもつながりました」を追加（本人の実績を正直に提示）
+- お客様の声4件を実際の口コミに差し替え済み（匿名・商品区別なし）
+
+### 改行の孤立文字（オーファン行）対策 ── 2026-07-23 全ページ対応済み
+症状：スマホ幅で文章が自然に折り返るとき、最後の行に1〜4文字だけ残る（例:「した。」「ます。」）。
+- 対策1: `text-wrap: balance`（短〜中文向け）/ `text-wrap: pretty`は日本語にはほぼ無効なので不使用
+  - balanceには実装上の行数上限があり、6〜7行を超える長い段落では効かないことがある
+- 対策2: balanceが効かない長い段落は、意味の区切りで`<p>`を2つに分割する
+  - `.faq__a` `.voice__quote` 等がflexレイアウトの場合、複数`<p>`を横並びにしてしまうため
+    `.faq__a-body { display: grid; gap: .9rem; }` のような入れ物divで包むこと（index.html/start.html両方に追加済み）
+- 対策3: 装飾つきの強調文（`.voice__highlight`等）で手動`<br>`を複数使うと、
+  各セグメントが個別に折り返されて余計に孤立行が増える → **手動`<br>`を外し、balanceに一任する**のが正解だった
+- 検証方法：1文字ずつRangeで座標を取得し行を再構成するJSを使い、375px幅で「4文字以下の行」を機械的に洗い出した
+- ⚠️ 今後、本文やお客様の声・FAQを追記/変更したら、同じ375px検証をもう一度行うこと
+  （balanceは文字数が変わると効き方も変わるため、直したはずが再発することがある）
+
 ## 🆕 2枚目のLP（note記事LP）── 作成済み・note URL待ち
 - ファイル：**hasshin.html**（公開パス /hasshin）／1枚目と同じ世界観CSS
 - 使用画像：ヒーロー=114.png→`assets/hasshin-hero.jpg`、アクセント=116.png→`assets/hasshin-accent.jpg`、OGP=`assets/hasshin-ogp.jpg`（114から1200x630）
