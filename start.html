@@ -594,6 +594,10 @@ a { color: var(--rose-deep); }
 /* =========================================================
    11. お客様の声
    ========================================================= */
+.voices {
+  display: grid; gap: 1.25rem;
+  max-width: 46rem; margin-inline: auto;
+}
 .voice {
   max-width: 42rem; margin-inline: auto;
   padding: clamp(1.75rem, 5vw, 3rem);
@@ -602,6 +606,8 @@ a { color: var(--rose-deep); }
   border-radius: 4px;
   box-shadow: var(--shadow);
 }
+.voices .voice { max-width: none; margin: 0; padding: clamp(1.5rem, 4vw, 2rem); }
+.voices .voice__quote { gap: .7rem; }
 .voice__quote { display: grid; gap: 1.1rem; font-size: var(--fs-sm); line-height: 2.05; color: var(--ink); }
 .voice__quote p:first-child::before {
   content: "“";
@@ -728,6 +734,9 @@ a { color: var(--rose-deep); }
 @media (min-width: 40rem) {
   .works { grid-template-columns: repeat(4, 1fr); }
   .steps2 { grid-template-columns: 1fr 1fr; }
+}
+@media (min-width: 52rem) {
+  .voices { max-width: 62rem; grid-template-columns: repeat(3, 1fr); align-items: start; }
 }
 @media (min-width: 52rem) {
   .story { grid-template-columns: 200px minmax(0, 1fr); }
@@ -1006,12 +1015,31 @@ a { color: var(--rose-deep); }
         <h2 class="band-title" id="voice-title">受け取ってくださった方の声。</h2>
       </div>
 
-      <figure class="voice voice--placeholder reveal">
-        <div class="voice__quote">
-          <p>（ここに、①②を受け取ってくださった方の感想が入ります。）</p>
-        </div>
-        <figcaption class="voice__who">※ 掲載する声は後日そいが差し替えます</figcaption>
-      </figure>
+      <div class="voices reveal">
+        <figure class="voice">
+          <div class="voice__quote">
+            <p>そいさんの人柄が、文章にとても表れていて…すごく丁寧で、わかりやすいnoteでした。</p>
+            <p>これからAIアート、楽しめそうです。ありがとうございました☺️💛</p>
+          </div>
+          <figcaption class="voice__who">お客様より</figcaption>
+        </figure>
+
+        <figure class="voice">
+          <div class="voice__quote">
+            <p>想像の何倍も素敵で、驚きました。</p>
+            <p>そいさんの想いが、ぎゅっと詰まっているのが伝わってきました✨</p>
+          </div>
+          <figcaption class="voice__who">お客様より</figcaption>
+        </figure>
+
+        <figure class="voice">
+          <div class="voice__quote">
+            <p>たくさん勉強されてきたことが伝わる、質問や言葉選び。</p>
+            <p>思いが詰まっていて…感謝です🙏💗</p>
+          </div>
+          <figcaption class="voice__who">お客様より</figcaption>
+        </figure>
+      </div>
     </div>
   </section>
 
