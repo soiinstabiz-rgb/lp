@@ -436,6 +436,8 @@ a { color: var(--rose-deep); }
   font-size: 1em; line-height: 1.85;
 }
 .use strong { font-weight: 600; color: var(--ink); }
+/* カタカナ語や活用語尾が行の途中で真っ二つに割れるのを防ぐ（例:「スマ／ホ壁紙」） */
+.nowrap { white-space: nowrap; }
 
 .future-line {
   max-width: 34rem;
@@ -829,7 +831,7 @@ a { color: var(--rose-deep); }
         <li class="feeling">センスがないと、綺麗な画像なんて作れないんじゃないか。</li>
         <li class="feeling">始めたいと思っているうちに、時間だけが過ぎていく。</li>
         <li class="feeling">休みの間に、何か新しいことにチャレンジしたい。</li>
-        <li class="feeling">独学は不安だからスクールも考えてる。でも、正直、金額を見て一歩引いてしまう。</li>
+        <li class="feeling">独学は不安だから<span class="nowrap">スクール</span>も考えてる。でも、正直、金額を見て一歩引いてしまう。</li>
       </ul>
     </div>
   </section>
@@ -880,7 +882,7 @@ a { color: var(--rose-deep); }
     <div class="wrap">
       <div class="band-head reveal">
         <p class="eyebrow">Your Future</p>
-        <h2 class="band-title" id="future-title">AIアートを身につけると、<br>こんなことができるようになります。</h2>
+        <h2 class="band-title" id="future-title">AIアートを身につけると、こんなことができるようになります。</h2>
       </div>
 
       <div class="works reveal">
@@ -900,11 +902,11 @@ a { color: var(--rose-deep); }
       <p class="works-note reveal">こんな世界観も、色とモチーフの選び方から生まれています。</p>
 
       <ul class="uses reveal">
-        <li class="use">自分だけの世界観で、<strong>スマホ壁紙</strong>が作れるようになる</li>
+        <li class="use">自分だけの世界観で、<strong><span class="nowrap">スマホ</span>壁紙</strong>が作れるようになる</li>
         <li class="use"><strong>PC壁紙</strong>を、自分の“好き”で埋め尽くせるようになる</li>
         <li class="use"><strong>Instagramの投稿ビジュアル</strong>が、自分の手で作れるようになる</li>
-        <li class="use"><strong>noteのサムネイル</strong>を、自分らしいデザインで作れるようになる</li>
-        <li class="use">「なんか好き」を、<strong>誰かに見せられる形</strong>にできるようになる</li>
+        <li class="use"><strong>noteのサムネイル</strong>を、<span class="nowrap">自分らしい</span>デザインで作れるようになる</li>
+        <li class="use">「なんか好き」を、<strong>誰かに<span class="nowrap">見せられる</span>形</strong>にできるようになる</li>
       </ul>
 
       <p class="future-line reveal">
@@ -973,7 +975,7 @@ a { color: var(--rose-deep); }
         <!-- STEP 1 -->
         <article class="plan plan--step1 reveal">
           <span class="plan__step">STEP 1</span>
-          <h3 class="plan__name">『好き』を言葉にするところから始める、AIアートプロンプトの作り方🌸</h3>
+          <h3 class="plan__name">『好き』を言葉にするところから始める、<span class="nowrap">AIアート</span><span class="nowrap">プロンプト</span>の作り方🌸</h3>
           <p class="plan__price">¥2,580<small>買い切り／note記事</small></p>
           <dl class="plan__dl">
             <div>
@@ -1104,7 +1106,7 @@ a { color: var(--rose-deep); }
           <summary class="faq__q">英語が苦手でも大丈夫ですか？</summary>
           <div class="faq__a">
             <p>
-              はい、日本語だけで大丈夫です。プロンプトは「呪文」ではなく、
+              はい、日本語だけで大丈夫です。<span class="nowrap">プロンプト</span>は「呪文」ではなく、
               あなたの“好き”を言葉にしたもの。note記事で、その仕組みをやさしくお伝えします。
             </p>
           </div>
@@ -1162,7 +1164,7 @@ a { color: var(--rose-deep); }
       </p>
       <p class="beyond__soft reveal">
         そして近々、AIアートの本当のはじめの一歩から、
-        気軽な価格で二人三脚でサポートしていくサービスも、募集を始める予定です。
+        気軽な価格で二人三脚でサポートしていく<span class="nowrap">サービス</span>も、募集を始める予定です。
         詳しくは、また改めてお知らせします🌸
       </p>
     </div>

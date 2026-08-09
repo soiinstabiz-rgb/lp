@@ -100,6 +100,8 @@ h1, h2, h3, h4, p, ul, ol, figure, blockquote, dl, dd { margin: 0; padding: 0; }
 ul, ol { list-style: none; }
 img { max-width: 100%; height: auto; display: block; }
 a { color: var(--rose-deep); }
+/* カタカナ語が行の途中で真っ二つに割れるのを防ぐ（例:「プロン／プト」） */
+.nowrap { white-space: nowrap; }
 
 /* 自然な折り返しで、行末に1〜3文字だけ取り残される「孤立行」を防ぐ。
    text-wrap: pretty は日本語の短い文ではほぼ効かないため、
@@ -927,7 +929,7 @@ a { color: var(--rose-deep); }
         <li class="feeling">毎日投稿しているのに、<strong>“私らしさ”が見えてこない。</strong></li>
         <li class="feeling">人気の投稿を真似してみたけど、なんだかしっくりこない。</li>
         <li class="feeling">AI画像は作れるようになった。でも、自分らしいとは思えない。</li>
-        <li class="feeling">発信するたびに軸がブレて、何を届けたいのか分からなくなる。</li>
+        <li class="feeling">発信するたびに軸が<span class="nowrap">ブレて</span>、何を届けたいのか分からなくなる。</li>
         <li class="feeling">このままだと、<strong>“誰でもいい人”</strong>のままな気がする。</li>
       </ul>
 
@@ -1071,8 +1073,8 @@ a { color: var(--rose-deep); }
           一緒に育てていきます。
         </p>
         <p class="goal__sub">
-          一緒に作るもの：ブランドコンセプト／世界観キーワード／世界観ボード／ブランドコピー／
-          プロフィール／発信軸／AIアートプロンプト／ブランドガイド／投稿の方向性／商品との導線
+          一緒に作るもの：ブランド<span class="nowrap">コンセプト</span>／世界観<span class="nowrap">キーワード</span>／世界観<span class="nowrap">ボード</span>／ブランド<span class="nowrap">コピー</span>／
+          <span class="nowrap">プロフィール</span>／発信軸／<span class="nowrap">AIアート</span><span class="nowrap">プロンプト</span>／ブランド<span class="nowrap">ガイド</span>／投稿の方向性／商品との導線
         </p>
       </div>
     </div>
@@ -1137,12 +1139,15 @@ a { color: var(--rose-deep); }
       <figure class="voice reveal">
         <blockquote class="voice__quote">
           <p>
-            そいさんが一つひとつ丁寧にAIアートについて教えてくださり、
-            私の考えや理想のイメージもじっくりヒアリングしてくださいました。
+            そいさんが一つひとつ丁寧に<span class="nowrap">AIアート</span>について教えてくださり、
+            私の考えや理想のイメージもじっくり<span class="nowrap">ヒアリング</span>してくださいました。
           </p>
           <p>
-            資料もとても見やすく、AIアートにまったく慣れていなかった私でも
-            理解しやすいように、噛み砕いて整理してくださっていたのが本当にありがたかったです。
+            AIアートにまったく慣れていなかった私でも、
+            資料がとても見やすく、噛み砕いて整理してくださっていました。
+          </p>
+          <p>
+            本当にありがたかったです。
           </p>
           <p>
             頭の中にぼんやりあった「こんな世界観にしたいな」というイメージが、
@@ -1160,7 +1165,7 @@ a { color: var(--rose-deep); }
           </p>
           <p class="voice__highlight">
             ただ綺麗な画像が作れるだけではなく、自分の発信に愛着が持てるようになったことが、
-            一番の価値でした。私だけの世界観、大好きです。
+            一番の価値でした。私だけの世界観、<span class="nowrap">大好き</span>です。
           </p>
         </blockquote>
         <figcaption class="voice__who">サポートを受けてくださった方より</figcaption>
@@ -1188,7 +1193,7 @@ a { color: var(--rose-deep); }
 
           <div class="profile__body">
             <p>
-              AIアートに出会って、自分らしさを言葉（プロンプト）にのせて
+              AIアートに出会って、自分らしさを言葉（<span class="nowrap">プロンプト</span>）にのせて
               世界観として表現できるようになったとき、心から感動しました。
             </p>
             <p>
@@ -1223,7 +1228,9 @@ a { color: var(--rose-deep); }
           <div class="faq__a">
             <div class="faq__a-body">
               <p>
-                大丈夫です。まったく触れたことのない状態からスタートされる方がほとんどです。
+                大丈夫です。まったく触れたことのない状態から始める方がほとんどです。
+              </p>
+              <p>
                 見やすい資料をお渡ししながら、ひとつずつ噛み砕いて進めていきます。
               </p>
               <p>
@@ -1251,22 +1258,30 @@ a { color: var(--rose-deep); }
         <details class="faq__item">
           <summary class="faq__q">どれくらいの期間がかかりますか？忙しくてもできますか？</summary>
           <div class="faq__a">
-            <p>
-              期間は決めていません。あなたの目標が叶うまで伴走します。
-              進むペースもお任せいただけるので、お仕事や暮らしの合間で無理なく進められます。
-              急がなくて大丈夫です。
-            </p>
+            <div class="faq__a-body">
+              <p>
+                期間は決めていません。あなたの目標が叶うまで伴走します。
+                進むペースもお任せいただけるので、お仕事や暮らしの合間で無理なく進められます。
+              </p>
+              <p>
+                急がなくて大丈夫です。
+              </p>
+            </div>
           </div>
         </details>
 
         <details class="faq__item">
           <summary class="faq__q">具体的には、何をしてもらえるのでしょうか？</summary>
           <div class="faq__a">
-            <p>
-              ブランドコンセプト、世界観キーワード、世界観ボード、ブランドコピー、プロフィール、
-              発信軸、AIアートプロンプト、ブランドガイド、投稿の方向性、商品との導線までを一緒に作ります。
-              くわしい内容はnoteに書いていますので、ぜひ読んでみてください。
-            </p>
+            <div class="faq__a-body">
+              <p>
+                ブランド<span class="nowrap">コンセプト</span>、世界観<span class="nowrap">キーワード</span>、世界観<span class="nowrap">ボード</span>、ブランド<span class="nowrap">コピー</span>、<span class="nowrap">プロフィール</span>、
+                発信軸、<span class="nowrap">AIアート</span><span class="nowrap">プロンプト</span>、ブランド<span class="nowrap">ガイド</span>、投稿の方向性、商品との導線までを一緒に作ります。
+              </p>
+              <p>
+                くわしい内容はnoteに書いていますので、ぜひ読んでみてください。
+              </p>
+            </div>
           </div>
         </details>
       </div>
