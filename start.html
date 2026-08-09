@@ -1,0 +1,1001 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>今年の夏、AIアートをはじめてみない？｜soi ── AIアート×世界観</title>
+<meta name="description" content="AIアート完全初心者へ。センスも英語力もいりません。必要なのは、あなたの“好き”だけ。プロンプトの仕組みを理解する教科書と、対話するだけで世界観を作れる相棒ツールで、はじめの一歩を。">
+
+<meta name="theme-color" content="#FBF7F2">
+<meta name="color-scheme" content="light">
+
+<!-- SNS（LINE・X・Threadsなど）でシェアされたときの表示。
+     og:image と og:url は「https://」から始まる完全なURLにすること。 -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="soi">
+<meta property="og:title" content="今年の夏、AIアートをはじめてみない？｜soi">
+<meta property="og:description" content="センスも英語力もいりません。必要なのは、あなたの“好き”だけ。AIアート初心者のための、はじめの一歩。">
+<meta property="og:image" content="https://soiart.vercel.app/assets/ogp.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="今年の夏、AIアートをはじめてみない？ soiのAIアート入門">
+<meta property="og:url" content="https://soiart.vercel.app/start">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="canonical" href="https://soiart.vercel.app/start">
+
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@500;600&family=Zen+Kaku+Gothic+New:wght@400;500&display=swap" rel="stylesheet">
+
+<style>
+/* =========================================================
+   1. デザイントークン（既存サポートLPと共通）
+   ========================================================= */
+:root {
+  --cream:      #fbf7f2;
+  --sand:       #efe4d8;
+  --blush:      #f6dfdc;
+  --rose:       #c98a92;
+  --rose-deep:  #a9646e;
+  --rose-ink:   #8e4c57;
+  --ink:        #43332f;
+  --ink-soft:   #7d6a65;
+  --line:       #e5d6c9;
+  --white:      #fffdfb;
+
+  --shadow-sm:  0 1px 2px rgba(67,51,47,.05);
+  --shadow:     0 2px 4px rgba(67,51,47,.04), 0 14px 40px rgba(67,51,47,.08);
+
+  --mincho: "Shippori Mincho", "Hiragino Mincho ProN", "Yu Mincho", "YuMincho",
+            "BIZ UDMincho", serif;
+  --gothic: "Zen Kaku Gothic New", "Hiragino Sans", "Hiragino Kaku Gothic ProN",
+            "Yu Gothic", "YuGothic", "BIZ UDPGothic", Meiryo, sans-serif;
+
+  --fs-xs:  0.8125rem;
+  --fs-sm:  0.875rem;
+  --fs-md:  1rem;
+  --fs-lg:  clamp(1.0625rem, 1rem + .3vw, 1.1875rem);
+  --fs-xl:  clamp(1.25rem, 1.1rem + .7vw, 1.5rem);
+  --fs-2xl: clamp(1.5rem, 1.25rem + 1.3vw, 2.125rem);
+  --fs-3xl: clamp(1.875rem, 1.4rem + 2.5vw, 3.25rem);
+
+  --measure: 32em;
+  --pad: clamp(1.25rem, 5vw, 2rem);
+  --band: clamp(4.5rem, 12vw, 8.5rem);
+  --header-h: 60px;
+}
+
+/* =========================================================
+   2. ベース
+   ========================================================= */
+*, *::before, *::after { box-sizing: border-box; }
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: calc(var(--header-h) + 1rem);
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: var(--gothic);
+  font-size: var(--fs-md);
+  font-weight: 400;
+  line-height: 2;
+  letter-spacing: .05em;
+  color: var(--ink);
+  background: var(--cream);
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+h1, h2, h3, h4, p, ul, ol, figure, blockquote, dl, dd, dt { margin: 0; padding: 0; }
+ul, ol { list-style: none; }
+img { max-width: 100%; height: auto; display: block; }
+a { color: var(--rose-deep); }
+
+:focus-visible {
+  outline: 2px solid var(--rose-deep);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+.wrap {
+  width: 100%;
+  max-width: 62rem;
+  margin-inline: auto;
+  padding-inline: var(--pad);
+}
+.wrap--narrow { max-width: 46rem; }
+
+.eyebrow {
+  font-family: var(--gothic);
+  font-size: var(--fs-xs);
+  font-weight: 500;
+  letter-spacing: .32em;
+  text-transform: uppercase;
+  color: var(--rose-ink);
+  line-height: 1;
+}
+
+.band-title {
+  font-family: var(--mincho);
+  font-size: var(--fs-2xl);
+  font-weight: 500;
+  line-height: 1.65;
+  letter-spacing: .06em;
+  text-wrap: balance;
+}
+
+.band-head {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-bottom: clamp(2.5rem, 7vw, 4rem);
+}
+
+.section { padding-block: var(--band); }
+.section--sand { background: var(--sand); }
+.section--blush { background: linear-gradient(180deg, var(--cream), var(--blush)); }
+
+/* =========================================================
+   3. ボタン（CTA）
+   ========================================================= */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: .7em;
+  padding: 1.15em 2.2em;
+  font-family: var(--gothic);
+  font-size: var(--fs-md);
+  font-weight: 500;
+  line-height: 1.4;
+  letter-spacing: .08em;
+  text-align: center;
+  text-decoration: none;
+  color: var(--white);
+  background: var(--rose-ink);
+  border: 1px solid var(--rose-ink);
+  border-radius: 999px;
+  box-shadow: var(--shadow-sm);
+  transition: background .3s ease, border-color .3s ease,
+              transform .3s ease, box-shadow .3s ease;
+}
+.btn:hover {
+  background: #79404a;
+  border-color: #79404a;
+  transform: translateY(-2px);
+  box-shadow: var(--shadow);
+}
+.btn:active { transform: translateY(0); }
+.btn__arrow { font-size: .85em; transition: transform .3s ease; }
+.btn:hover .btn__arrow { transform: translateX(4px); }
+
+.btn--ghost {
+  color: var(--rose-ink);
+  background: rgba(255,253,251,.6);
+  border-color: var(--rose);
+}
+.btn--ghost:hover { color: var(--white); background: var(--rose-deep); border-color: var(--rose-deep); }
+
+.cta-note {
+  margin-top: 1.1rem;
+  font-size: var(--fs-xs);
+  color: var(--ink-soft);
+  letter-spacing: .06em;
+}
+
+/* =========================================================
+   4. ヘッダー
+   ========================================================= */
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  height: var(--header-h);
+  background: rgba(251,247,242,.82);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-bottom: 1px solid transparent;
+  transition: border-color .3s ease;
+}
+.header.is-scrolled { border-bottom-color: var(--line); }
+.header__inner { display: flex; align-items: center; gap: .75rem; height: 100%; }
+.header__brand { display: inline-flex; align-items: center; gap: .7rem; text-decoration: none; color: var(--ink); }
+.header__icon { width: 34px; height: 34px; border-radius: 50%; object-fit: cover; border: 1px solid var(--line); }
+.header__name { font-family: var(--mincho); font-size: 1.0625rem; font-weight: 600; letter-spacing: .18em; }
+.header__tag { margin-left: auto; font-size: var(--fs-xs); letter-spacing: .14em; color: var(--ink-soft); }
+
+/* =========================================================
+   5. ヒーロー（動画背景・既存LPと共通）
+   ========================================================= */
+.hero {
+  position: relative;
+  display: flex;
+  align-items: center;
+  min-height: min(calc(100svh - var(--header-h)), 760px);
+  padding-block: clamp(3rem, 8vw, 5rem);
+  overflow: hidden;
+  isolation: isolate;
+}
+.hero__media { position: absolute; inset: 0; z-index: -2; background: var(--sand); }
+.hero__video {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  object-position: 30% 45%;
+  display: block;
+}
+.hero__veil {
+  position: absolute; inset: 0; z-index: -1;
+  background:
+    linear-gradient(105deg,
+      rgba(251,247,242,.62) 0%,
+      rgba(251,247,242,.48) 45%,
+      rgba(246,223,220,.30) 100%),
+    linear-gradient(180deg,
+      rgba(251,247,242,.20) 0%,
+      rgba(251,247,242,.05) 40%,
+      rgba(239,228,216,.42) 100%);
+}
+.hero__inner { display: flex; flex-direction: column; align-items: flex-start; gap: 1.5rem; max-width: 40rem; }
+.hero__badge {
+  display: inline-flex; align-items: center; gap: .5em;
+  padding: .5em 1.1em;
+  font-size: var(--fs-xs); font-weight: 500; letter-spacing: .12em;
+  color: var(--rose-ink);
+  background: rgba(255,253,251,.9);
+  border: 1px solid rgba(201,138,146,.35);
+  border-radius: 999px; line-height: 1.4;
+}
+.hero__title {
+  font-family: var(--mincho);
+  font-size: var(--fs-3xl);
+  font-weight: 600;
+  line-height: 1.5;
+  letter-spacing: .04em;
+  text-wrap: balance;
+  text-shadow: 0 1px 14px rgba(251,247,242,.95), 0 1px 3px rgba(251,247,242,.9);
+}
+.hero__title .accent { background: linear-gradient(transparent 66%, rgba(201,138,146,.28) 66%); }
+.hero__lead {
+  max-width: var(--measure);
+  font-size: var(--fs-lg);
+  line-height: 1.95;
+  color: var(--ink);
+  text-shadow: 0 1px 12px rgba(251,247,242,.95), 0 1px 3px rgba(251,247,242,.85);
+}
+.hero__actions { display: flex; flex-wrap: wrap; gap: .875rem; }
+
+/* =========================================================
+   6. 共感（Feelings）
+   ========================================================= */
+.feelings {
+  display: grid; gap: 1px;
+  max-width: 48rem; margin-inline: auto;
+  background: var(--line);
+  border-block: 1px solid var(--line);
+}
+.feeling {
+  position: relative;
+  padding: 1.4rem clamp(1rem, 4vw, 2rem);
+  padding-left: clamp(2.1rem, 4vw + 1.1rem, 3.1rem);
+  background: var(--cream);
+  font-family: var(--mincho);
+  font-size: var(--fs-xl);
+  line-height: 1.9;
+  letter-spacing: .05em;
+}
+.feeling::before {
+  content: "";
+  position: absolute;
+  left: clamp(1rem, 4vw, 2rem);
+  top: 1.4rem;
+  width: .4em; height: .4em;
+  margin-top: .62em;
+  border-radius: 50%;
+  background: var(--rose);
+}
+.feeling strong { font-weight: 600; color: var(--rose-deep); }
+
+/* =========================================================
+   7. 共感エピソード（わたしも、お金がなかった）
+   ========================================================= */
+.story {
+  display: grid; grid-template-columns: 1fr;
+  gap: clamp(1.75rem, 5vw, 2.5rem);
+  align-items: center;
+  max-width: 48rem; margin-inline: auto;
+}
+.story__photo {
+  width: min(200px, 58%);
+  justify-self: center;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  object-fit: cover;
+  box-shadow: var(--shadow);
+}
+.story__body { display: grid; gap: 1.15rem; max-width: var(--measure); }
+.story__body p { font-size: var(--fs-sm); line-height: 2.1; color: var(--ink-soft); }
+.story__body strong { color: var(--ink); font-weight: 500; }
+.story__lead {
+  font-family: var(--mincho);
+  font-size: var(--fs-xl) !important;
+  line-height: 1.8 !important;
+  color: var(--ink) !important;
+  letter-spacing: .05em;
+}
+
+/* =========================================================
+   8. 安心させる一文（reassure）
+   ========================================================= */
+.reassure { text-align: center; }
+.reassure__text {
+  max-width: 30rem; margin-inline: auto;
+  font-family: var(--mincho);
+  font-size: var(--fs-2xl);
+  font-weight: 500;
+  line-height: 1.85;
+  letter-spacing: .06em;
+  text-wrap: balance;
+}
+.reassure__text em { font-style: normal; color: var(--rose-deep); }
+
+/* =========================================================
+   9. What（できること）＋ 作品グリッド
+   ========================================================= */
+.abilities {
+  display: grid; gap: 1rem;
+  max-width: 40rem; margin: 0 auto clamp(2.5rem, 6vw, 3.5rem);
+}
+.ability {
+  display: flex; gap: .9rem;
+  padding: 1.2rem 1.4rem;
+  background: var(--white);
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  font-size: var(--fs-sm);
+  line-height: 1.9;
+}
+.ability::before {
+  content: "🌸";
+  flex: 0 0 auto;
+  font-size: 1.05em;
+  line-height: 1.8;
+}
+.ability strong { font-weight: 600; color: var(--ink); }
+
+.works {
+  display: grid; grid-template-columns: repeat(2, 1fr);
+  gap: clamp(.75rem, 2.5vw, 1.25rem);
+}
+.work {
+  position: relative; overflow: hidden;
+  border-radius: 3px; background: var(--sand);
+  box-shadow: var(--shadow-sm);
+}
+.work img {
+  width: 100%; height: 100%;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  transition: transform 1.2s cubic-bezier(.22,.61,.36,1);
+}
+.work:hover img { transform: scale(1.04); }
+.work--p1 img { object-position: 64% 38%; }
+.work--p2 img { object-position: 50% 45%; }
+.work--p3 img { object-position: 52% 42%; }
+.work--p4 img { object-position: 32% 45%; }
+.works-note {
+  margin-top: 1.5rem;
+  font-size: var(--fs-sm);
+  color: var(--ink);
+  text-align: center;
+}
+
+/* =========================================================
+   10. ①→③ 2ステップ
+   ========================================================= */
+.steps2 {
+  display: grid; grid-template-columns: 1fr;
+  gap: 1.25rem;
+  max-width: 52rem; margin-inline: auto;
+  align-items: stretch;
+}
+.plan {
+  position: relative;
+  display: flex; flex-direction: column;
+  padding: clamp(1.6rem, 4vw, 2.25rem);
+  background: var(--white);
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  box-shadow: var(--shadow-sm);
+}
+.plan--step2 { border-color: var(--rose); box-shadow: var(--shadow); }
+.plan__step {
+  align-self: flex-start;
+  padding: .3em 1em;
+  font-size: var(--fs-xs); font-weight: 600; letter-spacing: .12em;
+  color: var(--white); background: var(--rose);
+  border-radius: 999px; line-height: 1.6;
+}
+.plan--step2 .plan__step { background: var(--rose-ink); }
+.plan__name {
+  margin-top: 1rem;
+  font-family: var(--mincho);
+  font-size: var(--fs-lg);
+  font-weight: 500;
+  line-height: 1.6;
+  letter-spacing: .03em;
+}
+.plan__price {
+  margin-top: .4rem;
+  font-family: var(--mincho);
+  font-size: var(--fs-xl);
+  font-weight: 600;
+  color: var(--rose-ink);
+  font-variant-numeric: tabular-nums;
+}
+.plan__price small { font-size: .55em; font-weight: 400; color: var(--ink-soft); margin-left: .5em; letter-spacing: .04em; }
+.plan__dl {
+  display: grid; gap: 1rem;
+  margin: 1.4rem 0;
+  padding-top: 1.4rem;
+  border-top: 1px solid var(--line);
+}
+.plan__dl > div { display: grid; gap: .3rem; }
+.plan__dl dt {
+  font-size: var(--fs-xs); font-weight: 600; letter-spacing: .1em;
+  color: var(--rose-ink);
+}
+.plan__dl dd { font-size: var(--fs-sm); line-height: 1.85; color: var(--ink-soft); }
+.plan__dl dd strong { color: var(--ink); font-weight: 500; }
+.plan .btn { margin-top: auto; }
+
+.steps2-note {
+  max-width: 40rem;
+  margin: clamp(2rem, 5vw, 2.75rem) auto 0;
+  padding: clamp(1.25rem, 4vw, 1.75rem);
+  text-align: center;
+  font-family: var(--mincho);
+  font-size: var(--fs-lg);
+  line-height: 1.95;
+  letter-spacing: .05em;
+  color: var(--ink);
+  background: var(--blush);
+  border-radius: 4px;
+  text-wrap: balance;
+}
+
+/* =========================================================
+   11. お客様の声
+   ========================================================= */
+.voice {
+  max-width: 42rem; margin-inline: auto;
+  padding: clamp(1.75rem, 5vw, 3rem);
+  background: var(--white);
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  box-shadow: var(--shadow);
+}
+.voice__quote { display: grid; gap: 1.1rem; font-size: var(--fs-sm); line-height: 2.05; color: var(--ink); }
+.voice__quote p:first-child::before {
+  content: "“";
+  font-family: var(--mincho);
+  font-size: 2.5em; line-height: 0;
+  color: var(--rose);
+  vertical-align: -.35em; margin-right: .1em;
+}
+.voice__who {
+  margin-top: 1.75rem; padding-top: 1.25rem;
+  border-top: 1px solid var(--line);
+  font-size: var(--fs-xs); color: var(--ink-soft); letter-spacing: .08em;
+}
+.voice--placeholder { text-align: center; color: var(--ink-soft); }
+.voice--placeholder p { font-size: var(--fs-sm); }
+
+/* =========================================================
+   12. FAQ
+   ========================================================= */
+.faq { display: grid; gap: .75rem; max-width: 44rem; margin-inline: auto; }
+.faq__item { background: var(--white); border: 1px solid var(--line); border-radius: 4px; overflow: hidden; }
+.faq__q {
+  display: flex; align-items: flex-start; gap: .9rem;
+  padding: 1.25rem clamp(1rem, 3vw, 1.5rem);
+  font-size: var(--fs-sm); font-weight: 500; line-height: 1.8;
+  cursor: pointer; list-style: none;
+}
+.faq__q::-webkit-details-marker { display: none; }
+.faq__q::before { content: "Q"; flex: 0 0 auto; font-family: var(--mincho); color: var(--rose); line-height: 1.8; }
+.faq__q::after {
+  content: ""; flex: 0 0 auto;
+  width: 9px; height: 9px; margin-top: .55em; margin-left: auto;
+  border-right: 1.5px solid var(--rose);
+  border-bottom: 1.5px solid var(--rose);
+  transform: rotate(45deg); transition: transform .3s ease;
+}
+.faq__item[open] .faq__q::after { transform: rotate(-135deg); margin-top: .8em; }
+.faq__a { display: flex; gap: .9rem; padding: 0 clamp(1rem, 3vw, 1.5rem) 1.4rem; font-size: var(--fs-sm); line-height: 2; color: var(--ink-soft); }
+.faq__a::before { content: "A"; flex: 0 0 auto; font-family: var(--mincho); color: var(--ink-soft); }
+
+/* =========================================================
+   13. クロージングCTA
+   ========================================================= */
+.final {
+  position: relative;
+  padding-block: clamp(4.5rem, 12vw, 7.5rem);
+  text-align: center;
+  background:
+    radial-gradient(120% 90% at 50% 0%, var(--blush) 0%, transparent 65%),
+    var(--sand);
+}
+.final__inner { display: flex; flex-direction: column; align-items: center; gap: 1.5rem; }
+.final__title {
+  font-family: var(--mincho);
+  font-size: var(--fs-2xl);
+  font-weight: 500;
+  line-height: 1.7;
+  letter-spacing: .07em;
+  text-wrap: balance;
+}
+.final__lead { max-width: 30em; color: var(--ink-soft); font-size: var(--fs-sm); }
+
+.final__buttons {
+  display: grid; gap: 1rem;
+  width: 100%; max-width: 26rem;
+  margin-top: .5rem;
+}
+.final__buy { display: grid; gap: .5rem; }
+.final__buy .btn { width: 100%; }
+.final__buy .price {
+  font-size: var(--fs-xs); color: var(--ink); letter-spacing: .06em;
+}
+.final__buy .price strong { font-family: var(--mincho); color: var(--rose-ink); font-weight: 600; }
+
+/* =========================================================
+   14. この先にあるもの（匂わせ・CTAなし）
+   ========================================================= */
+.beyond {
+  padding-block: clamp(4rem, 10vw, 6.5rem);
+  text-align: center;
+  background: var(--cream);
+}
+.beyond__inner { max-width: 34rem; margin-inline: auto; display: grid; gap: 1.5rem; }
+.beyond__text {
+  font-family: var(--mincho);
+  font-size: var(--fs-lg);
+  line-height: 2.1;
+  letter-spacing: .05em;
+  color: var(--ink);
+  text-wrap: balance;
+}
+.beyond__soft { font-size: var(--fs-sm); line-height: 2; color: var(--ink-soft); }
+
+/* =========================================================
+   15. フッター
+   ========================================================= */
+.footer {
+  padding-block: 2.75rem 2.25rem;
+  background: var(--cream);
+  border-top: 1px solid var(--line);
+  text-align: center;
+}
+.footer__inner { display: flex; flex-direction: column; align-items: center; gap: 1.1rem; }
+.footer__name { font-family: var(--mincho); font-size: 1.0625rem; letter-spacing: .2em; }
+.footer__links { display: flex; flex-wrap: wrap; justify-content: center; gap: 1.5rem; }
+.footer__links a {
+  font-size: var(--fs-xs); letter-spacing: .1em; color: var(--ink-soft);
+  text-decoration: none; border-bottom: 1px solid transparent;
+  transition: color .25s ease, border-color .25s ease;
+}
+.footer__links a:hover { color: var(--rose-deep); border-bottom-color: var(--rose); }
+.footer__copy { font-size: var(--fs-xs); color: var(--ink-soft); letter-spacing: .06em; }
+
+/* =========================================================
+   16. スクロールで現れる演出
+   ========================================================= */
+.reveal { transition: opacity 1s cubic-bezier(.22,.61,.36,1), transform 1s cubic-bezier(.22,.61,.36,1); }
+.reveal-on .reveal { opacity: 0; transform: translateY(16px); }
+.reveal-on .reveal.is-in { opacity: 1; transform: none; }
+
+/* =========================================================
+   17. 画面幅による調整
+   ========================================================= */
+@media (min-width: 40rem) {
+  .works { grid-template-columns: repeat(4, 1fr); }
+  .steps2 { grid-template-columns: 1fr 1fr; }
+}
+@media (min-width: 52rem) {
+  .story { grid-template-columns: 200px minmax(0, 1fr); }
+  .story__photo { width: 200px; justify-self: start; }
+}
+@media (max-width: 39.99rem) {
+  .hero__actions .btn { flex: 1 1 100%; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; }
+  .reveal-on .reveal { opacity: 1; transform: none; }
+  .work:hover img { transform: none; }
+}
+@media print {
+  .header, .hero__media, .hero__veil { display: none; }
+  .reveal-on .reveal { opacity: 1 !important; transform: none !important; }
+}
+</style>
+</head>
+<body>
+
+<!-- ============ ヘッダー ============ -->
+<header class="header" id="header">
+  <div class="wrap header__inner">
+    <a class="header__brand" href="#top">
+      <img class="header__icon" src="assets/soi-portrait.png" alt="" width="34" height="34">
+      <span class="header__name">soi</span>
+    </a>
+    <span class="header__tag">AIアート×世界観</span>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- ============ ヒーロー ============ -->
+  <section class="hero">
+    <div class="hero__media" aria-hidden="true">
+      <video class="hero__video" id="hero-video"
+             src="assets/hero.mp4"
+             poster="assets/soi-portrait.png"
+             autoplay muted loop playsinline preload="metadata"
+             tabindex="-1"></video>
+    </div>
+    <div class="hero__veil" aria-hidden="true"></div>
+
+    <div class="wrap hero__inner">
+      <span class="hero__badge">🌸 この夏、はじめての方へ</span>
+      <h1 class="hero__title">
+        今年の夏、<br>
+        AIアートを<br>
+        <span class="accent">はじめてみない？</span>
+      </h1>
+      <p class="hero__lead">
+        時間に少し余裕がある、この連休。
+        「いつかやってみたい」を、「今日から」に変えてみませんか。
+      </p>
+      <div class="hero__actions">
+        <a class="btn" href="#steps">はじめかたを見る <span class="btn__arrow" aria-hidden="true">→</span></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 共感（Feelings） ============ -->
+  <section class="section" aria-labelledby="feelings-title">
+    <div class="wrap">
+      <div class="band-head reveal">
+        <p class="eyebrow">Feelings</p>
+        <h2 class="band-title" id="feelings-title">こんなふうに、思っていませんか。</h2>
+      </div>
+
+      <ul class="feelings reveal">
+        <li class="feeling">AIアート、気になってるけど<strong>何から始めたらいいか分からない。</strong></li>
+        <li class="feeling">プロンプトって、英語の呪文みたいで難しそう。</li>
+        <li class="feeling">センスがないと、綺麗な画像なんて作れないんじゃないか。</li>
+        <li class="feeling">始めたいと思っているうちに、時間だけが過ぎていく。</li>
+        <li class="feeling">休みの間に、何か新しいことにチャレンジしたい。</li>
+        <li class="feeling">独学は不安だからスクールも考えてる。でも、正直、金額を見て一歩引いてしまう。</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ============ 共感エピソード ============ -->
+  <section class="section section--sand" aria-labelledby="story-title">
+    <div class="wrap">
+      <div class="band-head reveal">
+        <p class="eyebrow">My Story</p>
+        <h2 class="band-title" id="story-title">わたしも、お金がなかった。</h2>
+      </div>
+
+      <div class="story reveal">
+        <img class="story__photo" src="assets/soi-portrait.png"
+             alt="soiのポートレート" width="200" height="200" loading="lazy" decoding="async">
+        <div class="story__body">
+          <p class="story__lead">
+            わたしは専業主婦で、正直、スクールに通うようなお金の余裕はありませんでした。
+          </p>
+          <p>
+            だから、全部独学で学びました。人より遠回りしたし、時間もかかりました。
+          </p>
+          <p>
+            でも、遠回りしたからこそ、<strong>どこでつまずくのか、痛いほど分かります。</strong>
+            最初に何が「呪文」に見えて、どこで手が止まってしまうのか。
+          </p>
+          <p>
+            だから ①③ は、そのつまずきをまるごと飛ばせるように、
+            <strong>気軽に手に取れる価格</strong>で作りました。遠回りした分を、ぎゅっと詰め込んでいます。
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 安心させる一文 ============ -->
+  <section class="section section--blush reassure" aria-label="安心のメッセージ">
+    <div class="wrap">
+      <p class="reassure__text reveal">
+        センスも、英語力も、必要ありません。<br>
+        必要なのは、<em>あなたの“好き”</em>だけです。
+      </p>
+    </div>
+  </section>
+
+  <!-- ============ What（できること）＋作品 ============ -->
+  <section class="section" aria-labelledby="what-title">
+    <div class="wrap">
+      <div class="band-head reveal">
+        <p class="eyebrow">First Step</p>
+        <h2 class="band-title" id="what-title">はじめの一歩で、<br>できるようになること。</h2>
+      </div>
+
+      <div class="abilities reveal">
+        <p class="ability">
+          <span><strong>好きな色を選ぶ。好きなモチーフを選ぶ。</strong>
+          この2つの感覚さえあれば、あなただけのオリジナル画像が作れるようになります。</span>
+        </p>
+        <p class="ability">
+          <span>むずかしい専門知識も、<strong>センスも英語力も要りません。</strong>
+          「なんか好き」という気持ちを、そのまま形にしていきます。</span>
+        </p>
+      </div>
+
+      <div class="works reveal">
+        <figure class="work work--p1">
+          <img src="assets/work-1.jpg" alt="やわらかな光に透ける横顔と淡いピンクの花のAIアート作品例" width="1200" height="904" loading="lazy" decoding="async">
+        </figure>
+        <figure class="work work--p2">
+          <img src="assets/work-2.jpg" alt="瞳とシャボン玉を捉えた繊細な質感のAIアート作品例" width="1080" height="1350" loading="lazy" decoding="async">
+        </figure>
+        <figure class="work work--p3">
+          <img src="assets/work-3.jpg" alt="かすみ草の花束と淡いピンクのドレス、海辺の光のAIアート作品例" width="1080" height="1350" loading="lazy" decoding="async">
+        </figure>
+        <figure class="work work--p4">
+          <img src="assets/work-4.jpg" alt="やわらかな光の中でほほえむ横顔のAIアート作品例" width="1200" height="904" loading="lazy" decoding="async">
+        </figure>
+      </div>
+      <p class="works-note reveal">こんな世界観も、色とモチーフの選び方から生まれています。</p>
+    </div>
+  </section>
+
+  <!-- ============ ①→③ 2ステップ ============ -->
+  <section class="section section--sand" id="steps" aria-labelledby="steps-title">
+    <div class="wrap">
+      <div class="band-head reveal">
+        <p class="eyebrow">2 Steps</p>
+        <h2 class="band-title" id="steps-title">①から③へ、<br>2ステップで完成します。</h2>
+      </div>
+
+      <div class="steps2">
+        <!-- STEP 1 -->
+        <article class="plan plan--step1 reveal">
+          <span class="plan__step">STEP 1</span>
+          <h3 class="plan__name">『好き』を言葉にするところから始める、AIアートプロンプトの作り方🌸</h3>
+          <p class="plan__price">¥2,580<small>買い切り／note記事</small></p>
+          <dl class="plan__dl">
+            <div>
+              <dt>得られるもの</dt>
+              <dd>プロンプトの<strong>仕組みの理解</strong>。6つの構成要素と、色とモチーフの選び方が分かります。</dd>
+            </div>
+            <div>
+              <dt>ゴール</dt>
+              <dd>「プロンプトって、こういうものか」が<strong>腑に落ちている</strong>状態。</dd>
+            </div>
+            <div>
+              <dt>位置づけ</dt>
+              <dd><strong>基礎の教科書。</strong>一度学べば、理解はずっと残ります。</dd>
+            </div>
+          </dl>
+          <a class="btn btn--ghost" href="#note1-link">①から始める <span class="btn__arrow" aria-hidden="true">→</span></a>
+        </article>
+
+        <!-- STEP 2 -->
+        <article class="plan plan--step2 reveal">
+          <span class="plan__step">STEP 2</span>
+          <h3 class="plan__name">あなたの世界観を、AIプロンプトに🌸</h3>
+          <p class="plan__price">¥3,980<small>買い切り／GPTsツール</small></p>
+          <dl class="plan__dl">
+            <div>
+              <dt>得られるもの</dt>
+              <dd>対話するだけで、<strong>何度でも</strong>自分の世界観のプロンプトを生成できる実践ツール。</dd>
+            </div>
+            <div>
+              <dt>ゴール</dt>
+              <dd>「実際に、自分の好きな世界観を<strong>作り続けられる</strong>」状態。</dd>
+            </div>
+            <div>
+              <dt>位置づけ</dt>
+              <dd><strong>実践の相棒。</strong>その後、何度でも使い続けられます。</dd>
+            </div>
+          </dl>
+          <a class="btn" href="#note3-link">③を見てみる <span class="btn__arrow" aria-hidden="true">→</span></a>
+        </article>
+      </div>
+
+      <p class="steps2-note reveal">
+        ①でプロンプトの仕組みを理解してから、③で実際に作り続けられるようになる。
+        この2つで、あなたのAIアートは完成します🌸
+      </p>
+    </div>
+  </section>
+
+  <!-- ============ お客様の声（プレースホルダー） ============ -->
+  <section class="section" aria-labelledby="voice-title">
+    <div class="wrap">
+      <div class="band-head reveal">
+        <p class="eyebrow">Voice</p>
+        <h2 class="band-title" id="voice-title">受け取ってくださった方の声。</h2>
+      </div>
+
+      <figure class="voice voice--placeholder reveal">
+        <div class="voice__quote">
+          <p>（ここに、①③を受け取ってくださった方の感想が入ります。）</p>
+        </div>
+        <figcaption class="voice__who">※ 掲載する声は後日そいが差し替えます</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <!-- ============ FAQ ============ -->
+  <section class="section section--sand" aria-labelledby="faq-title">
+    <div class="wrap">
+      <div class="band-head reveal">
+        <p class="eyebrow">FAQ</p>
+        <h2 class="band-title" id="faq-title">よくあるご質問</h2>
+      </div>
+
+      <div class="faq reveal">
+        <details class="faq__item">
+          <summary class="faq__q">ChatGPTの無料版でも使えますか？</summary>
+          <div class="faq__a">
+            <p>
+              ①の特典としてお渡しするGPTsは、<strong>無料版でもお使いいただけます。</strong>
+              ③のツールは、より快適にお使いいただくために<strong>ChatGPT Plus（有料版）を推奨</strong>しています。
+              まずは①から、無料で試していただくこともできます🌸
+            </p>
+          </div>
+        </details>
+
+        <details class="faq__item">
+          <summary class="faq__q">絵心もセンスもないのですが、大丈夫ですか？</summary>
+          <div class="faq__a">
+            <p>
+              大丈夫です。ここで大切なのは、上手に描く力ではなく「なんか好き」という感覚だけ。
+              好きな色と好きなモチーフを選ぶところから、ゆっくり始められます。
+            </p>
+          </div>
+        </details>
+
+        <details class="faq__item">
+          <summary class="faq__q">英語が苦手でも大丈夫ですか？</summary>
+          <div class="faq__a">
+            <p>
+              はい、日本語だけで大丈夫です。プロンプトは「呪文」ではなく、
+              あなたの“好き”を言葉にしたもの。①で、その仕組みをやさしくお伝えします。
+            </p>
+          </div>
+        </details>
+
+        <details class="faq__item">
+          <summary class="faq__q">①だけでも、AIアートは作れますか？</summary>
+          <div class="faq__a">
+            <p>
+              ①は、プロンプトの仕組みを理解するところまでの教科書です。
+              「こういうものか」が分かるようになります。
+              そのうえで、<strong>実際に自分の世界観を自在に作り続けられるようになるには、③もあわせて</strong>どうぞ。
+              ①→③で、理解から実践までがひとつながりになります🌸
+            </p>
+          </div>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ クロージングCTA ============ -->
+  <section class="final" aria-labelledby="final-title">
+    <div class="wrap wrap--narrow final__inner">
+      <p class="eyebrow">Start</p>
+      <h2 class="final__title" id="final-title">この夏、はじめの一歩を。</h2>
+      <p class="final__lead">
+        ①でプロンプトを理解し、③で作り続けられるようになる。
+        どちらも買い切りなので、あなたのペースで進められます。
+      </p>
+
+      <div class="final__buttons">
+        <div class="final__buy">
+          <a class="btn btn--ghost" href="#note1-link">① から始める <span class="btn__arrow" aria-hidden="true">→</span></a>
+          <p class="price">note記事 ／ <strong>¥2,580</strong>（買い切り）</p>
+        </div>
+        <div class="final__buy">
+          <a class="btn" href="#note3-link">③ を見てみる <span class="btn__arrow" aria-hidden="true">→</span></a>
+          <p class="price">GPTsツール ／ <strong>¥3,980</strong>（買い切り）</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ この先にあるもの（CTAなし） ============ -->
+  <section class="beyond" aria-label="この先にあるもの">
+    <div class="wrap beyond__inner">
+      <p class="beyond__text reveal">
+        色とモチーフが決まれば、世界観は作れます。<br>
+        そして、その世界観を発信としてどう育てていくか——<br>
+        その先の話も、また少しずつお伝えしていく予定です🌸
+      </p>
+      <p class="beyond__soft reveal">
+        そして近々、AIアートの本当のはじめの一歩から、
+        気軽な価格で二人三脚でサポートしていくサービスも、募集を始める予定です。
+        詳しくは、また改めてお知らせします🌸
+      </p>
+    </div>
+  </section>
+
+</main>
+
+<!-- ============ フッター ============ -->
+<footer class="footer">
+  <div class="wrap footer__inner">
+    <p class="footer__name">soi</p>
+    <nav class="footer__links" aria-label="外部リンク">
+      <a href="https://www.threads.com/@soi.ai.studio" target="_blank" rel="noopener">Threads</a>
+      <a href="https://note.com/soi_ai_studio" target="_blank" rel="noopener">note</a>
+      <a href="/">サポートについて</a>
+    </nav>
+    <p class="footer__copy">&copy; 2026 soi. All rights reserved.</p>
+  </div>
+</footer>
+
+<script>
+(function () {
+  'use strict';
+
+  var header = document.getElementById('header');
+  var ticking = false;
+  function onScroll() {
+    if (header) header.classList.toggle('is-scrolled', window.scrollY > 8);
+    ticking = false;
+  }
+  window.addEventListener('scroll', function () {
+    if (!ticking) { window.requestAnimationFrame(onScroll); ticking = true; }
+  }, { passive: true });
+  onScroll();
+
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)');
+  var video = document.getElementById('hero-video');
+  if (video && reduce.matches) { video.removeAttribute('autoplay'); video.pause(); }
+
+  var targets = document.querySelectorAll('.reveal');
+  if (!targets.length || !('IntersectionObserver' in window) || reduce.matches) return;
+
+  var fired = false;
+  var io = new IntersectionObserver(function (entries) {
+    fired = true;
+    entries.forEach(function (entry) {
+      var passed = entry.boundingClientRect.bottom < 0;
+      if (!entry.isIntersecting && !passed) return;
+      entry.target.classList.add('is-in');
+      io.unobserve(entry.target);
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -48px 0px' });
+
+  document.documentElement.classList.add('reveal-on');
+  targets.forEach(function (el) { io.observe(el); });
+
+  setTimeout(function () {
+    if (fired) return;
+    io.disconnect();
+    targets.forEach(function (el) { el.classList.add('is-in'); });
+  }, 1200);
+})();
+</script>
+</body>
+</html>
