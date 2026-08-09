@@ -10,8 +10,7 @@
 <meta name="color-scheme" content="light">
 
 <!-- SNS（LINE・X・Threadsなど）でシェアされたときの表示。
-     og:image と og:url は「https://」から始まる完全なURLでないと
-     読み込まれないため、相対パスにしないこと。 -->
+     og:image と og:url は「https://」から始まる完全なURLでないと読み込まれないため、相対パスにしないこと。 -->
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="soi">
 <meta property="og:title" content="あなたらしさを、カタチに。｜soi">
@@ -33,9 +32,7 @@
 
 <style>
 /* =========================================================
-   1. デザイントークン
-      色は hero.mp4 から実測した色みを基準にしています。
-      ベース(生成り・砂) + メイン(ローズ) + 文字(焦茶) の3系統。
+   1. デザイントークン色は hero.mp4 から実測した色みを基準にしています。ベース(生成り・砂) + メイン(ローズ) + 文字(焦茶) の3系統。
    ========================================================= */
 :root {
   --cream:      #fbf7f2;   /* ベース：生成り */
@@ -104,9 +101,7 @@ a { color: var(--rose-deep); }
 .nowrap { white-space: nowrap; }
 
 /* 自然な折り返しで、行末に1〜3文字だけ取り残される「孤立行」を防ぐ。
-   text-wrap: pretty は日本語の短い文ではほぼ効かないため、
-   複数行をならして調整する balance を使う（短〜中くらいの文向け）。
-   対応ブラウザでのみ効き、未対応でも通常の折り返しに戻るだけなので安全。 */
+   text-wrap: pretty は日本語の短い文ではほぼ効かないため、複数行をならして調整する balance を使う（短〜中くらいの文向け）。対応ブラウザでのみ効き、未対応でも通常の折り返しに戻るだけなので安全。 */
 .feeling, .step__text, .faq__q {
   text-wrap: balance;
 }
@@ -287,15 +282,12 @@ a { color: var(--rose-deep); }
   width: 100%;
   height: 100%;
   object-fit: cover;
-  /* 横長(864x496)の映像を縦画面に敷くと左右が大きく切れる。
-     被写体は画面の左寄りにいるため、左に寄せて顔が入るようにする */
+  /* 横長(864x496)の映像を縦画面に敷くと左右が大きく切れる。被写体は画面の左寄りにいるため、左に寄せて顔が入るようにする */
   object-position: 30% 45%;
   display: block;
 }
 
-/* 動画は明るさが 92〜203 と大きく振れる（実測）。そのままだと
-   明るい瞬間は白飛びし、暗転する瞬間は文字が沈む。
-   ベールで明るさを一定に均しつつ、映像の動きは感じられる濃さに留める。 */
+/* 動画は明るさが 92〜203 と大きく振れる（実測）。そのままだと明るい瞬間は白飛びし、暗転する瞬間は文字が沈む。ベールで明るさを一定に均しつつ、映像の動きは感じられる濃さに留める。 */
 .hero__veil {
   position: absolute;
   inset: 0;
@@ -405,8 +397,7 @@ a { color: var(--rose-deep); }
   background: var(--sand);
   box-shadow: var(--shadow-sm);
 }
-/* 作品は全枚数を同じ比率で並べる。ただし縦長にしすぎると、
-   横長の作品の左右が切れて「片目だけ」のような絵になるため、
+/* 作品は全枚数を同じ比率で並べる。ただし縦長にしすぎると、横長の作品の左右が切れて「片目だけ」のような絵になるため、
    4:5 のゆるやかな比率にとどめる。 */
 .work img {
   width: 100%;
@@ -698,6 +689,9 @@ a { color: var(--rose-deep); }
   line-height: 1.8;
   cursor: pointer;
   list-style: none;
+  /* flexコンテナ内なので、質問文に<span>を入れるとgapが効いて語間に隙間が空いてしまう。折り返しの制御はここで行うこと。 */
+  word-break: keep-all;
+  overflow-wrap: anywhere;
 }
 .faq__q::-webkit-details-marker { display: none; }
 .faq__q::before {
@@ -836,8 +830,7 @@ a { color: var(--rose-deep); }
 }
 
 @media (max-width: 39.99rem) {
-  /* スマホは縦長。ヒーローを高くしすぎると横長の動画が拡大されすぎて
-     被写体が切れるため、高さを抑えて映像が見える範囲を広げる */
+  /* スマホは縦長。ヒーローを高くしすぎると横長の動画が拡大されすぎて被写体が切れるため、高さを抑えて映像が見える範囲を広げる */
   .hero { min-height: min(calc(74svh - var(--header-h)), 620px); }
   .ba__arrow { transform: rotate(90deg); }
   .hero__actions .btn { flex: 1 1 100%; }
@@ -986,9 +979,7 @@ a { color: var(--rose-deep); }
           <div>
             <h3 class="step__title">自分を知る</h3>
             <p class="step__text">
-              まずは、あなた自身を知るところから。本当は何が好きで、何に心が動いて、
-              誰を助けたいのか。Midjourneyがまだ手元にない方は、登録から一緒に進めます。
-              いちばん大切なことを、一緒に言葉にしていきます。
+              まずは、あなた自身を知るところから。本当は何が好きで、何に心が動いて、誰を助けたいのか。Midjourneyがまだ手元にない方は、登録から一緒に進めます。いちばん大切なことを、一緒に言葉にしていきます。
             </p>
           </div>
         </li>
@@ -1015,9 +1006,7 @@ a { color: var(--rose-deep); }
           <div>
             <h3 class="step__title">AIアートで可視化する</h3>
             <p class="step__text">
-              言葉になった世界観を、AIアートで形にします。操作方法も一つひとつ
-              丁寧にお伝えするので、はじめてでも大丈夫。最初の1枚が生まれる瞬間を、
-              一緒に体験しましょう。AIは目的ではなく、あなたを映すための手段です。
+              言葉になった世界観を、AIアートで形にします。操作方法も一つひとつ丁寧にお伝えするので、はじめてでも大丈夫。最初の1枚が生まれる瞬間を、一緒に体験しましょう。AIは目的ではなく、あなたを映すための手段です。
             </p>
           </div>
         </li>
@@ -1072,8 +1061,7 @@ a { color: var(--rose-deep); }
           一緒に育てていきます。
         </p>
         <p class="goal__sub">
-          一緒に作るもの：ブランド<span class="nowrap">コンセプト</span>／世界観<span class="nowrap">キーワード</span>／世界観<span class="nowrap">ボード</span>／ブランド<span class="nowrap">コピー</span>／
-          <span class="nowrap">プロフィール</span>／発信軸／<span class="nowrap">AIアート</span><span class="nowrap">プロンプト</span>／ブランド<span class="nowrap">ガイド</span>／投稿の方向性／商品との導線
+          一緒に作るもの：ブランド<span class="nowrap">コンセプト</span>／世界観<span class="nowrap">キーワード</span>／世界観<span class="nowrap">ボード</span>／ブランド<span class="nowrap">コピー</span>／<span class="nowrap">プロフィール</span>／発信軸／<span class="nowrap">AIアート</span><span class="nowrap">プロンプト</span>／ブランド<span class="nowrap">ガイド</span>／投稿の方向性／商品との導線
         </p>
       </div>
     </div>
@@ -1138,33 +1126,25 @@ a { color: var(--rose-deep); }
       <figure class="voice reveal">
         <blockquote class="voice__quote">
           <p>
-            そいさんが一つひとつ丁寧に<span class="nowrap">AIアート</span>について教えてくださり、
-            私の考えや理想のイメージもじっくり<span class="nowrap">ヒアリング</span>してくださいました。
+            そいさんが一つひとつ丁寧に<span class="nowrap">AIアート</span>について教えてくださり、私の考えや理想のイメージもじっくり<span class="nowrap">ヒアリング</span>してくださいました。
           </p>
           <p>
-            AIアートにまったく慣れていなかった私でも、
-            資料がとても見やすく、噛み砕いて整理してくださっていました。
+            AIアートにまったく慣れていなかった私でも、資料がとても見やすく、噛み砕いて整理してくださっていました。
           </p>
           <p>
             本当にありがたかったです。
           </p>
           <p>
-            頭の中にぼんやりあった「こんな世界観にしたいな」というイメージが、
-            実際に画像として形になった時は感動しました。
-            今ではnoteや自分のサイト、SNS投稿など様々な場面で活用させていただいています。
+            頭の中にぼんやりあった「こんな世界観にしたいな」というイメージが、実際に画像として形になった時は感動しました。今ではnoteや自分のサイト、SNS投稿など様々な場面で活用させていただいています。
           </p>
           <p>
-            私は考えることやコンセプトを作ることは好きなのですが、
-            それをデザインとして表現することが苦手でした。
+            私は考えることやコンセプトを作ることは好きなのですが、それをデザインとして表現することが苦手でした。
           </p>
           <p>
-            だからこそ、今回のサポートは本当に助かりました。
-            特に発信やサイトに使った時に、一気に世界観の統一感が生まれて
-            「これだ！」と思えるものができたのが嬉しかったです。
+            だからこそ、今回のサポートは本当に助かりました。特に発信やサイトに使った時に、一気に世界観の統一感が生まれて「これだ！」と思えるものができたのが嬉しかったです。
           </p>
           <p class="voice__highlight">
-            ただ綺麗な画像が作れるだけではなく、自分の発信に愛着が持てるようになったことが、
-            一番の価値でした。私だけの世界観、<span class="nowrap">大好き</span>です。
+            ただ綺麗な画像が作れるだけではなく、自分の発信に愛着が持てるようになったことが、一番の価値でした。私だけの世界観、<span class="nowrap">大好き</span>です。
           </p>
         </blockquote>
         <figcaption class="voice__who">サポートを受けてくださった方より</figcaption>
@@ -1192,8 +1172,7 @@ a { color: var(--rose-deep); }
 
           <div class="profile__body">
             <p>
-              AIアートに出会って、自分らしさを言葉（<span class="nowrap">プロンプト</span>）にのせて
-              世界観として表現できるようになったとき、心から感動しました。
+              AIアートに出会って、自分らしさを言葉（<span class="nowrap">プロンプト</span>）にのせて世界観として表現できるようになったとき、心から感動しました。
             </p>
             <p>
               自分らしさをAIアートを通して多くの人に受け取っていただくことで、
@@ -1247,8 +1226,7 @@ a { color: var(--rose-deep); }
                 センスは必要ありません。ここで作るのは「上手な絵」ではなく「あなたらしさ」だからです。
               </p>
               <p>
-                考えることは好きだけれど表現が苦手、という方こそ力になれると思っています。
-                あなたの中にすでにあるものを、一緒に言葉と形にしていきます。
+                考えることは好きだけれど表現が苦手、という方こそ力になれると思っています。あなたの中にすでにあるものを、一緒に言葉と形にしていきます。
               </p>
             </div>
           </div>
@@ -1259,8 +1237,7 @@ a { color: var(--rose-deep); }
           <div class="faq__a">
             <div class="faq__a-body">
               <p>
-                期間は決めていません。あなたの目標が叶うまで伴走します。
-                進むペースもお任せいただけるので、お仕事や暮らしの合間で無理なく進められます。
+                期間は決めていません。あなたの目標が叶うまで伴走します。進むペースもお任せいただけるので、お仕事や暮らしの合間で無理なく進められます。
               </p>
               <p>
                 急がなくて大丈夫です。
@@ -1274,8 +1251,7 @@ a { color: var(--rose-deep); }
           <div class="faq__a">
             <div class="faq__a-body">
               <p>
-                ブランド<span class="nowrap">コンセプト</span>、世界観<span class="nowrap">キーワード</span>、世界観<span class="nowrap">ボード</span>、ブランド<span class="nowrap">コピー</span>、<span class="nowrap">プロフィール</span>、
-                発信軸、<span class="nowrap">AIアート</span><span class="nowrap">プロンプト</span>、ブランド<span class="nowrap">ガイド</span>、投稿の方向性、商品との導線までを一緒に作ります。
+                ブランド<span class="nowrap">コンセプト</span>、世界観<span class="nowrap">キーワード</span>、世界観<span class="nowrap">ボード</span>、ブランド<span class="nowrap">コピー</span>、<span class="nowrap">プロフィール</span>、発信軸、<span class="nowrap">AIアート</span><span class="nowrap">プロンプト</span>、ブランド<span class="nowrap">ガイド</span>、投稿の方向性、商品との導線までを一緒に作ります。
               </p>
               <p>
                 くわしい内容はnoteに書いていますので、ぜひ読んでみてください。
@@ -1285,7 +1261,7 @@ a { color: var(--rose-deep); }
         </details>
 
         <details class="faq__item">
-          <summary class="faq__q">InstagramやXの発信<span class="nowrap">サポート</span>もしてもらえますか？</summary>
+          <summary class="faq__q">InstagramやXの発信サポートもしてもらえますか？</summary>
           <div class="faq__a">
             <div class="faq__a-body">
               <p>
@@ -1318,8 +1294,7 @@ a { color: var(--rose-deep); }
         必ずカタチにできます。
       </p>
       <p class="final__lead">
-        サポートの内容とお申し込みについては、noteにすべて書いています。
-        読んでみて「話してみたい」と思ってもらえたら、うれしいです。
+        サポートの内容とお申し込みについては、noteにすべて書いています。読んでみて「話してみたい」と思ってもらえたら、うれしいです。
       </p>
 
       <p class="limited">
@@ -1373,8 +1348,7 @@ a { color: var(--rose-deep); }
   }
 
   /* --- スクロールで現れる演出 ------------------------------
-     監視が確実に動くと分かってから伏せる。JSやIntersectionObserverが
-     使えない環境でも本文が必ず読める状態を保つため。            */
+     監視が確実に動くと分かってから伏せる。JSやIntersectionObserverが使えない環境でも本文が必ず読める状態を保つため。            */
   var targets = document.querySelectorAll('.reveal');
   if (!targets.length || !('IntersectionObserver' in window) || reduce.matches) return;
 
