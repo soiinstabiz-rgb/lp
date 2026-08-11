@@ -102,12 +102,9 @@ a { color: var(--rose-deep); }
 
 /* 自然な折り返しで、行末に1〜3文字だけ取り残される「孤立行」を防ぐ。
    text-wrap: pretty は日本語の短い文ではほぼ効かないため、複数行をならして調整する balance を使う（短〜中くらいの文向け）。対応ブラウザでのみ効き、未対応でも通常の折り返しに戻るだけなので安全。 */
-.feeling, .step__text, .faq__q {
+.feeling, .step__text, .faq__q,
+.voice__quote p, .profile__body p, .faq__a p, .final__lead {
   text-wrap: balance;
-}
-/* 長めの段落は balance が効きにくいことがあるため pretty を併用 */
-.voice__quote p, .profile__body p, .faq__a p {
-  text-wrap: pretty;
 }
 
 :focus-visible {
@@ -516,13 +513,6 @@ a { color: var(--rose-deep); }
   letter-spacing: .06em;
   text-wrap: balance;
 }
-.goal__note {
-  margin-top: 1.25rem;
-  font-size: var(--fs-sm);
-  line-height: 1.9;
-  color: var(--ink-soft);
-  text-wrap: balance;
-}
 .goal__sub {
   margin-top: 1.5rem;
   padding-top: 1.25rem;
@@ -765,20 +755,6 @@ a { color: var(--rose-deep); }
 }
 .final__lead { max-width: 28em; color: var(--ink-soft); font-size: var(--fs-sm); }
 
-.limited {
-  display: inline-flex;
-  align-items: center;
-  gap: .6em;
-  padding: .7em 1.4em;
-  font-size: var(--fs-xs);
-  letter-spacing: .06em;
-  line-height: 1.7;
-  color: var(--rose-ink);
-  background: var(--white);
-  border: 1px solid rgba(201,138,146,.35);
-  border-radius: 999px;
-}
-
 /* =========================================================
    14. フッター
    ========================================================= */
@@ -918,11 +894,8 @@ a { color: var(--rose-deep); }
 
       <ul class="feelings reveal">
         <li class="feeling">AIアート、気になってるけど、何から始めたらいいか分からない。</li>
-        <li class="feeling">Midjourneyの登録方法すら、実はまだよく分かっていない。</li>
         <li class="feeling">Threadsに毎日投稿しているのに、<strong>“私らしさ”が見えてこない。</strong></li>
         <li class="feeling">人気の投稿を真似してみたけど、なんだかしっくりこない。</li>
-        <li class="feeling">AI画像は作れるようになった。でも、自分らしいとは思えない。</li>
-        <li class="feeling">発信するたびに軸が<span class="nowrap">ブレて</span>、何を届けたいのか分からなくなる。</li>
         <li class="feeling">このままだと、<strong>“誰でもいい人”</strong>のままな気がする。</li>
       </ul>
 
@@ -979,7 +952,7 @@ a { color: var(--rose-deep); }
           <div>
             <h3 class="step__title">自分を知る</h3>
             <p class="step__text">
-              まずは、あなた自身を知るところから。本当は何が好きで、何に心が動いて、誰を助けたいのか。Midjourneyがまだ手元にない方は、登録から一緒に進めます。いちばん大切なことを、一緒に言葉にしていきます。
+              本当は何が好きで、何に心が動いて、誰を助けたいのか。まずは、あなた自身を知るところから始めます。
             </p>
           </div>
         </li>
@@ -1006,7 +979,7 @@ a { color: var(--rose-deep); }
           <div>
             <h3 class="step__title">AIアートで可視化する</h3>
             <p class="step__text">
-              言葉になった世界観を、AIアートで形にします。操作方法も一つひとつ丁寧にお伝えするので、はじめてでも大丈夫。最初の1枚が生まれる瞬間を、一緒に体験しましょう。AIは目的ではなく、あなたを映すための手段です。
+              言葉になった世界観を、AIアートで形にします。操作も一つひとつ丁寧にお伝えするので、はじめてでも大丈夫です。
             </p>
           </div>
         </li>
@@ -1016,7 +989,7 @@ a { color: var(--rose-deep); }
           <div>
             <h3 class="step__title">ブランド設計</h3>
             <p class="step__text">
-              世界観を、Threads発信全体に落とし込みます。全部を一本の線でつなぎます。
+              世界観を、Threads発信の全体に一本の線でつなぎます。
             </p>
             <div class="step__tags">
               <span class="step__tag">プロフィール</span>
@@ -1049,16 +1022,9 @@ a { color: var(--rose-deep); }
       <div class="goal reveal">
         <p class="goal__label">Goal</p>
         <p class="goal__text">
-          はじまりも、目指す場所も、人それぞれ。<br>
-          その目標に届くまで、<br>
-          隣で伴走します。
-        </p>
-        <p class="goal__note">
-          目指すのは、AI画像が上手に<br>
-          なることではありません。<br>
-          「あなただからお願いしたい。」と<br>
-          言われる——そんな存在を、<br>
-          一緒に育てていきます。
+          目指すのは、AI画像が上手になることではありません。<br>
+          「あなただからお願いしたい。」と言われる存在を、<br>
+          隣で伴走しながら一緒に育てていきます。
         </p>
         <p class="goal__sub">
           一緒に作るもの：ブランド<span class="nowrap">コンセプト</span>／世界観<span class="nowrap">キーワード</span>／世界観<span class="nowrap">ボード</span>／ブランド<span class="nowrap">コピー</span>／<span class="nowrap">プロフィール</span>／発信軸／<span class="nowrap">AIアート</span><span class="nowrap">プロンプト</span>／ブランド<span class="nowrap">ガイド</span>／投稿の方向性／商品との導線
@@ -1126,22 +1092,10 @@ a { color: var(--rose-deep); }
       <figure class="voice reveal">
         <blockquote class="voice__quote">
           <p>
-            そいさんが一つひとつ丁寧に<span class="nowrap">AIアート</span>について教えてくださり、私の考えや理想のイメージもじっくり<span class="nowrap">ヒアリング</span>してくださいました。
+            私は考えることや<span class="nowrap">コンセプト</span>を作ることは好きなのですが、それを<span class="nowrap">デザイン</span>として表現することが苦手でした。
           </p>
           <p>
-            AIアートにまったく慣れていなかった私でも、資料がとても見やすく、噛み砕いて整理してくださっていました。
-          </p>
-          <p>
-            本当にありがたかったです。
-          </p>
-          <p>
-            頭の中にぼんやりあった「こんな世界観にしたいな」というイメージが、実際に画像として形になった時は感動しました。今ではnoteや自分のサイト、SNS投稿など様々な場面で活用させていただいています。
-          </p>
-          <p>
-            私は考えることやコンセプトを作ることは好きなのですが、それをデザインとして表現することが苦手でした。
-          </p>
-          <p>
-            だからこそ、今回のサポートは本当に助かりました。特に発信やサイトに使った時に、一気に世界観の統一感が生まれて「これだ！」と思えるものができたのが嬉しかったです。
+            頭の中にぼんやりあった「こんな世界観にしたいな」という<span class="nowrap">イメージ</span>が、実際に画像として形になった時は感動しました。
           </p>
           <p class="voice__highlight">
             ただ綺麗な画像が作れるだけではなく、自分の発信に愛着が持てるようになったことが、一番の価値でした。私だけの世界観、<span class="nowrap">大好き</span>です。
@@ -1175,14 +1129,10 @@ a { color: var(--rose-deep); }
               AIアートに出会って、自分らしさを言葉（<span class="nowrap">プロンプト</span>）にのせて世界観として表現できるようになったとき、心から感動しました。
             </p>
             <p>
-              自分らしさをAIアートを通して多くの人に受け取っていただくことで、
-              <strong>自分を好きになれた。自信をもつことができた。</strong>
+              自分の考えや想いを発信できるようになり、<strong>自分を好きになれた。自信をもつことができた。</strong>
             </p>
             <p>
-              AIアートのおかげで、自分の考えや想いを発信できるようになりました。
-            </p>
-            <p>
-              あのときの感動を、今度はあなたと一緒に見つけにいきたいと思っています。
+              あのときの感動を、今度はあなたと一緒に見つけにいきたいです。
             </p>
           </div>
         </div>
@@ -1226,7 +1176,7 @@ a { color: var(--rose-deep); }
                 センスは必要ありません。ここで作るのは「上手な絵」ではなく「あなたらしさ」だからです。
               </p>
               <p>
-                考えることは好きだけれど表現が苦手、という方こそ力になれると思っています。あなたの中にすでにあるものを、一緒に言葉と形にしていきます。
+                考えることは好きだけれど表現が苦手、という方こそ力になれます。
               </p>
             </div>
           </div>
@@ -1237,10 +1187,10 @@ a { color: var(--rose-deep); }
           <div class="faq__a">
             <div class="faq__a-body">
               <p>
-                期間は決めていません。あなたの目標が叶うまで伴走します。進むペースもお任せいただけるので、お仕事や暮らしの合間で無理なく進められます。
+                期間は決めていません。あなたの目標が叶うまで伴走します。
               </p>
               <p>
-                急がなくて大丈夫です。
+                進むペースもお任せいただけるので、急がなくて大丈夫です。
               </p>
             </div>
           </div>
@@ -1294,11 +1244,7 @@ a { color: var(--rose-deep); }
         必ずカタチにできます。
       </p>
       <p class="final__lead">
-        サポートの内容とお申し込みについては、noteにすべて書いています。読んでみて「話してみたい」と思ってもらえたら、うれしいです。
-      </p>
-
-      <p class="limited">
-        お一人おひとりに深く寄り添いたいので、同時にお受けできる人数はかぎられています。
+        サポートの内容とお申し込みは、noteにまとめています。お一人おひとりに深く寄り添いたいので、同時にお受けできる人数はかぎられています。
       </p>
 
       <a class="btn" href="https://note.com/soi_ai_studio/n/n50258840e07c" target="_blank" rel="noopener">
