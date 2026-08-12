@@ -45,6 +45,18 @@
 flexコンテナ内のテキストには`<span class="nowrap">`を使わないこと。
 折り返し制御は `word-break: keep-all` 等でCSS側から行う。
 
+### hasshin.html（note新記事のteaser LP）── 2026-07-24 公開準備
+- 目的：note新記事への誘導。**index.htmlからはリンクしない独立ページ**（Threads投稿・note本文から直接誘導する運用）
+- 公開URL：https://soiart.vercel.app/hasshin
+- `NOTE_URL`（script内）は意図的に空のまま：note記事は翌日公開予定のため、
+  ボタンを押すと「noteは近日公開予定です」のアラートが出る仕様。
+  **note公開後、本人からURLをもらったら `<script>` 内の `var NOTE_URL = '';` に設定すること**
+- 孤立行（オーファン）を6箇所修正、`.teaser__confess`と`.refrain p`に`text-wrap:balance`を補完
+  （index.html/start.htmlの対策時にはこのファイルは含まれていなかった）
+- 語間の隙間・カタカナ語分断は検証済み・問題なし
+- デザインはindex.htmlと明確に別トーン（記事的・文学的。ボタンも角丸ではなく枠線の四角）
+  → 意図的な差別化と思われるため、index.htmlに合わせて統一する必要はない
+
 ### カタカナ語の途中改行 ── 2026-07-23 全ページ対応済み
 症状：「スマ／ホ壁紙」「プロン／プト」のように、カタカナ語が行の変わり目で真っ二つに割れる。
 孤立行（オーファン）とは**別の問題**で、balance/prettyでは解決しない。
