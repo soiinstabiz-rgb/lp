@@ -217,12 +217,9 @@ a { color: var(--rose-deep); }
 .filter__text--strong { position: relative; padding-top: 1.75rem; }
 .filter__text--strong::before { content: ""; position: absolute; top: 0; left: 50%; transform: translateX(-50%); width: 2rem; height: 1px; background: var(--rose); }
 
-.band-sub { font-family: var(--mincho); font-size: var(--fs-md); letter-spacing: .08em; color: var(--rose-deep); }
-
 .teaser .wrap { display: flex; flex-direction: column; align-items: center; gap: 1.75rem; text-align: center; }
 .teaser__text { font-family: var(--mincho); font-size: var(--fs-lg); line-height: 2.05; letter-spacing: .06em; color: var(--ink); text-wrap: balance; }
 .teaser__confess { font-family: var(--mincho); font-size: var(--fs-xl); line-height: 1.9; letter-spacing: .08em; color: var(--rose-deep); text-wrap: balance; }
-.teaser__rule { width: 3rem; height: 1px; background: var(--rose); }
 
 /* =========================================================
    5つの階層
@@ -412,7 +409,7 @@ a { color: var(--rose-deep); }
     </div>
   </section>
 
-  <!-- 突き放し（読者を絞る） -->
+  <!-- 突き放し（読者を絞る）+ 探さない -->
   <section class="filter">
     <div class="wrap wrap--narrow">
       <p class="filter__text reveal">
@@ -420,21 +417,8 @@ a { color: var(--rose-deep); }
         「とにかく早く数字を伸ばしたい」方には、向いていません。
       </p>
       <p class="filter__text filter__text--strong reveal">
-        でも、発信しているのに「まだ“あの人だ”と分かる個性がない」<br>
-        「どこか、自分の言葉じゃない気がする」と感じているなら。<br>
-        それは、<strong>センスの問題ではありません</strong>。
-      </p>
-    </div>
-  </section>
-
-  <!-- 第2章 探さない -->
-  <section class="filter section--blush">
-    <div class="wrap wrap--narrow">
-      <p class="filter__text reveal">
-        自分らしさは、探さなくていい。
-      </p>
-      <p class="filter__text filter__text--strong reveal">
-        センスじゃありません。<br><strong>探す“順番”を、知らないだけ</strong>です。
+        発信しているのに、「まだ“あの人だ”と分かる個性がない」<br>
+        と感じているなら。それは<strong>センスの問題ではなく、<br>探す“順番”を知らないだけ</strong>です。
       </p>
     </div>
   </section>
@@ -487,7 +471,6 @@ a { color: var(--rose-deep); }
       <div class="band-head reveal">
         <p class="eyebrow">Grow</p>
         <h2 class="band-title" id="grow-title">世界観は、Threadsで“育てる”。</h2>
-        <p class="band-sub">── 作って終わり、では伸びない</p>
       </div>
 
       <p class="prose reveal">
@@ -500,7 +483,6 @@ a { color: var(--rose-deep); }
   <section class="teaser section" aria-labelledby="teaser-title">
     <div class="wrap wrap--narrow">
       <h2 class="sr-only" id="teaser-title">ここまで読んでくれたあなたへ</h2>
-      <span class="teaser__rule reveal" aria-hidden="true"></span>
       <p class="teaser__text reveal">
         ここまで読んでくれた、あなたへ。<br>
         きれいな画像の作り方より、ずっと伝えたかったことがあります。
