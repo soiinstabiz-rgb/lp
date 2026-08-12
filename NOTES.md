@@ -8,6 +8,14 @@
 - 前作「ことばの温度」→ https://soiart.vercel.app/kotoba-no-ondo
 - ⚠️ URLを変えたら index.html の og:url / og:image / canonical の3か所も必ず更新すること
 
+## ⚠️ index.html の note リンクは現在すべて「準備中」表示（2026-08-13〜）
+- 背景：本LP公開は8/13。サポートのnote記事を新しく書き直し中で、新記事の申込みは8/18予定。
+  旧記事URL(n50258840e07c)にリンクしたままだと内容が古くなるため、hasshin.htmlと同じ仕組みに変更。
+- 対象：ヒーロー／中間CTA／最終CTA／フッターの計4箇所。すべて `href="#" data-note-link` に統一。
+- `<script>`冒頭に `var NOTE_URL = '';` を追加。空の間はクリックしても遷移せず、
+  「noteは近日公開予定です。もう少しだけお待ちください🌸」とアラートが出るだけ。
+- **新しいnote記事が公開されたら、`NOTE_URL` にURLを設定すること**（4箇所とも自動で反映される）
+
 ## 🌐 start.html（お盆・初心者向けLP）関連の追記
 - note①（プロンプトの作り方）: https://note.com/soi_ai_studio/n/n09814ba8ac5e
 - note②/GPTs（世界観をAIプロンプトに）: https://note.com/soi_ai_studio/n/n9706880ded3b

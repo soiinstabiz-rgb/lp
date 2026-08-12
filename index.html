@@ -874,7 +874,7 @@ a { color: var(--rose-deep); }
       </p>
 
       <div class="hero__actions">
-        <a class="btn" href="https://note.com/soi_ai_studio/n/n50258840e07c" target="_blank" rel="noopener">
+        <a class="btn" href="#" data-note-link>
           noteでサポートの詳細を読む <span class="btn__arrow" aria-hidden="true">→</span>
         </a>
         <a class="btn btn--ghost" href="#steps">どんなサポート？</a>
@@ -1069,7 +1069,7 @@ a { color: var(--rose-deep); }
       </div>
 
       <div class="cta-block reveal">
-        <a class="btn" href="https://note.com/soi_ai_studio/n/n50258840e07c" target="_blank" rel="noopener">
+        <a class="btn" href="#" data-note-link>
           サポートの全体像をnoteで読む <span class="btn__arrow" aria-hidden="true">→</span>
         </a>
         <p class="cta-note">くわしい内容と料金は、noteに書いています。</p>
@@ -1245,7 +1245,7 @@ a { color: var(--rose-deep); }
         サポートの内容とお申し込みは、noteにまとめています。お一人おひとりに深く寄り添いたいので、同時にお受けできる人数はかぎられています。
       </p>
 
-      <a class="btn" href="https://note.com/soi_ai_studio/n/n50258840e07c" target="_blank" rel="noopener">
+      <a class="btn" href="#" data-note-link>
         noteでサポートの詳細を読む <span class="btn__arrow" aria-hidden="true">→</span>
       </a>
     </div>
@@ -1261,7 +1261,7 @@ a { color: var(--rose-deep); }
     <p class="footer__name">soi</p>
     <nav class="footer__links" aria-label="外部リンク">
       <a href="https://www.threads.com/@soi.ai.studio" target="_blank" rel="noopener">Threads</a>
-      <a href="https://note.com/soi_ai_studio/n/n50258840e07c" target="_blank" rel="noopener">note</a>
+      <a href="#" data-note-link>note</a>
     </nav>
     <p class="footer__copy">&copy; 2026 soi. All rights reserved.</p>
   </div>
@@ -1270,6 +1270,26 @@ a { color: var(--rose-deep); }
 <script>
 (function () {
   'use strict';
+
+  /* --- noteのリンク -----------------------------------------
+     新しいサポート記事を書き直し中（申込みは8/18予定）。
+     公開したら、ここにURLを入れるとページ内の全リンクに反映される。
+     空のうちは「準備中です」と伝えて、まだ飛ばないようにしておく。 */
+  var NOTE_URL = '';
+
+  var noteLinks = document.querySelectorAll('[data-note-link]');
+  noteLinks.forEach(function (a) {
+    if (NOTE_URL) {
+      a.setAttribute('href', NOTE_URL);
+      a.setAttribute('target', '_blank');
+      a.setAttribute('rel', 'noopener');
+    } else {
+      a.addEventListener('click', function (e) {
+        e.preventDefault();
+        alert('noteは近日公開予定です。もう少しだけお待ちください🌸');
+      });
+    }
+  });
 
   /* --- スクロールでヘッダーに境界線 ------------------------ */
   var header = document.getElementById('header');
