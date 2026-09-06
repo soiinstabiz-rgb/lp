@@ -9,13 +9,21 @@
 - hasshin.html（note記事teaser）→ https://soiart.vercel.app/hasshin
   - NOTE_URL設定済み：https://note.com/soi_ai_studio/n/n5051b467467e （2026-09-03公開分）
 - **seminar-0909.html**（りょうじ×そい 9/9コラボセミナー募集LP）→ https://soiart.vercel.app/seminar-0909
-  - index.html/hasshin.htmlとは別トーン（DARK EDITORIAL×FLORAL、りょうじ=ゴールド／そい=ピンク）
   - 参加ボタンのリンク先は `<script>` 内の `JOIN_URL`（LINEオープンチャット）を1箇所変更すれば全ボタンに反映
   - ✅ 画像2点は2026-09-07に反映済み：
     - ヒーロー背景：`assets/seminar-0909-hero.jpg`（元PNGをJPEG変換・軽量化。1.57MB→135KB）
       object-position は 30% 60%（中央だと白い空ばかり写るため、左下寄りの花を見せる位置に調整）
     - りょうじの写真：`assets/ryoji-portrait.jpg`（元1030x1170を正方形にクロップ→500x500）
-    - ヒーローのベールは当初濃すぎて花の彩度が消えていたため、上部のみ暗くする方向に調整済み
+  - ⚠️ **配色は2026-09-07に「DARK EDITORIAL」から「クリーム×ゴールド」へ全面変更した**：
+    本人からりょうじ×そいコラボの実際の告知素材（LIVE TALK等）を見せてもらい、
+    当初のダーク系だと運用中のブランドと世界観がズレる（違和感）と分かったため。
+    今後このページを触るときは、**ダーク系には絶対に戻さないこと**。
+    トークン名は当初のダーク版から流用しており、`--cream`が実際には
+    "見出し用の濃い焦茶インク色"を指すなど、変数名と値の意味がねじれている点に注意
+    （コメントに理由を明記済み）。
+  - ボタン／特典バッジは、白文字コントラスト確保のため`--rose-ink`（#9c4650）という
+    通常の`--rose-deep`よりさらに濃いローズを使っている。安易に`--rose`や`--rose-deep`に
+    戻すとコントラスト不足で警告が出るので注意
       （`.hero__veil` のグラデーション。今後ヒーロー画像を差し替えたら、この濃さも要再確認）
 - ⚠️ URLを変えたら index.html の og:url / og:image / canonical の3か所も必ず更新すること
 
