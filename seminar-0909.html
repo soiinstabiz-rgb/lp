@@ -201,8 +201,13 @@ a { color: inherit; }
 .hero__sub strong { color: var(--cream); font-weight: 500; }
 
 .hero__meta {
-  display: flex; flex-wrap: wrap; justify-content: center; gap: .6rem;
-  margin-top: .5rem;
+  /* 狭い画面では「3個+1個」の半端な折り返しにならないよう、
+     常に2個ずつのペアで揃える。広い画面では1行に収まるのでflexに戻す */
+  display: grid; grid-template-columns: repeat(2, auto); justify-content: center;
+  gap: .6rem; margin-top: .5rem;
+}
+@media (min-width: 30rem) {
+  .hero__meta { display: flex; flex-wrap: wrap; }
 }
 .hero__meta span {
   padding: .55em 1.1em; border: 1px solid var(--line); border-radius: 999px;
