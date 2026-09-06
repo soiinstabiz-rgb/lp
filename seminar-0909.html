@@ -6,8 +6,8 @@
 <title>「あなたにお願いしたい」が生まれる発信へ｜世界観×ブランディング コラボセミナー</title>
 <meta name="description" content="9月9日(水)21:00〜Zoom開催・無料・顔出し不要。note収益化のプロ りょうじ🌻 と AIアート×世界観 そい🌸 が、「好き」から見つける自分だけの世界観と、選ばれる発信のつくり方を話します。">
 
-<meta name="theme-color" content="#151515">
-<meta name="color-scheme" content="dark">
+<meta name="theme-color" content="#FBF6EC">
+<meta name="color-scheme" content="light">
 
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="世界観×ブランディング コラボセミナー">
@@ -28,29 +28,34 @@
 <style>
 /* =========================================================
    デザイントークン
-   このセミナー専用の世界観：DARK EDITORIAL × FLORAL
-   soi本体サイト（index.html/hasshin.html）とは意図的に別トーン。
+   りょうじ×そい コラボの実際の告知素材（LIVE TALK等）に合わせた、
+   温かいクリーム×ゴールドの世界観。
    りょうじ＝ひまわり（ゴールド）／そい＝淡いピンク の2アクセント。
+
+   ⚠️ 変数名は当初のダーク版から引き継いでいるため、
+   「--cream」は実際には見出し用の"濃い焦茶インク色"を指す
+   （ライト背景での可読性を保つため、名前と値の意味がねじれている点に注意）。
    ========================================================= */
 :root {
-  --bg:        #151515;   /* ベース：黒に近いチャコール */
-  --bg-deep:   #0e0e0f;   /* もっとも暗い階調（グラデーション用） */
-  --panel:     #1d1c1f;   /* カードなど、地より少し明るい面 */
-  --panel-2:   #232226;
-  --line:      #343236;   /* 暗背景用の罫線 */
-  --cream:     #f4eee3;   /* 見出し用の温かい生成り白 */
-  --text:      #d9d2c8;   /* 本文 */
-  --text-soft: #9a9089;   /* 補足・キャプション */
+  --bg:        #fbf6ec;   /* ベース：温かいアイボリー */
+  --bg-deep:   #f3e8d2;   /* 少し濃いクリーム（グラデーション用） */
+  --panel:     #ffffff;   /* カード：白 */
+  --panel-2:   #fffbf2;
+  --line:      #ecdfc4;   /* 明背景用の、金みを帯びた罫線 */
+  --cream:     #3a2a1e;   /* 見出し用の濃い焦茶インク（旧ダーク版の白文字色を置き換え） */
+  --text:      #5b4634;   /* 本文：温かい焦茶 */
+  --text-soft: #6f5c46;   /* 補足・キャプション：くすんだタウプ（クリーム地でも4.5:1を確保） */
 
-  --gold:      #e3a94e;   /* りょうじ＝ひまわり */
-  --gold-deep: #c98a2e;
-  --gold-soft: rgba(227,169,78,.16);
+  --gold:      #c9963a;   /* りょうじ＝ひまわり */
+  --gold-deep: #a87826;
+  --gold-soft: rgba(201,150,58,.15);
 
-  --rose:      #eaacb2;   /* そい＝淡いピンク */
-  --rose-deep: #d98d95;
-  --rose-soft: rgba(234,172,178,.16);
+  --rose:      #d98b93;   /* そい＝淡いピンク */
+  --rose-deep: #c06670;
+  --rose-ink:  #9c4650;   /* 白文字を乗せるボタン/バッジ用の、より濃いローズ */
+  --rose-soft: rgba(217,139,147,.15);
 
-  --shadow: 0 20px 60px rgba(0,0,0,.45);
+  --shadow: 0 20px 50px rgba(140,105,55,.14);
 
   --mincho: "Shippori Mincho", "Hiragino Mincho ProN", "Yu Mincho", "YuMincho", "BIZ UDMincho", serif;
   --gothic: "Zen Kaku Gothic New", "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic", "YuGothic", "BIZ UDPGothic", Meiryo, sans-serif;
@@ -129,12 +134,12 @@ a { color: inherit; }
   padding: 1.15em 2.4em;
   font-family: var(--gothic); font-size: var(--fs-md); font-weight: 700;
   letter-spacing: .08em; text-decoration: none; text-align: center;
-  color: #1a1408; background: linear-gradient(135deg, var(--gold), var(--rose));
+  color: #fffaf4; background: var(--rose-ink);
   border: none; border-radius: 999px;
-  box-shadow: 0 10px 30px rgba(227,169,78,.25);
-  transition: transform .3s ease, box-shadow .3s ease, filter .3s ease;
+  box-shadow: 0 10px 26px rgba(156,70,80,.35);
+  transition: transform .3s ease, box-shadow .3s ease, background-color .3s ease;
 }
-.btn:hover { transform: translateY(-2px); box-shadow: 0 14px 38px rgba(227,169,78,.35); filter: brightness(1.06); }
+.btn:hover { transform: translateY(-2px); box-shadow: 0 14px 34px rgba(156,70,80,.42); background-color: #833a43; }
 .btn:active { transform: translateY(0); }
 .btn__arrow { font-size: .85em; transition: transform .3s ease; }
 .btn:hover .btn__arrow { transform: translateX(4px); }
@@ -159,15 +164,15 @@ a { color: inherit; }
 .hero__bg-fallback {
   position: absolute; inset: 0; z-index: 0;
   background:
-    radial-gradient(38% 55% at 10% 30%, rgba(227,169,78,.30), transparent 70%),
-    radial-gradient(40% 60% at 92% 60%, rgba(234,172,178,.26), transparent 70%),
-    radial-gradient(120% 80% at 50% 100%, rgba(0,0,0,.6), transparent 60%),
+    radial-gradient(38% 55% at 10% 30%, rgba(201,150,58,.30), transparent 70%),
+    radial-gradient(40% 60% at 92% 60%, rgba(217,139,147,.24), transparent 70%),
     var(--bg-deep);
 }
 .hero__veil {
   position: absolute; inset: 0; z-index: -1;
-  /* 花の彩度を活かしつつ、文字が乗る上部だけ少し暗くする */
-  background: linear-gradient(180deg, rgba(21,21,21,.55) 0%, rgba(21,21,21,.2) 30%, rgba(21,21,21,.15) 60%, var(--bg) 96%);
+  /* 花の彩度を活かしつつ、文字が乗る上部〜下部の地色になじむ場所だけ
+     クリーム色でやさしく馴染ませる（ダーク版とは逆で「明るく」する） */
+  background: linear-gradient(180deg, rgba(251,246,236,.72) 0%, rgba(251,246,236,.28) 28%, rgba(251,246,236,.22) 62%, var(--bg) 97%);
 }
 
 .hero__inner { display: flex; flex-direction: column; align-items: center; gap: 1.5rem; text-align: center; }
@@ -175,7 +180,7 @@ a { color: inherit; }
 .hero__badge {
   display: inline-flex; align-items: center; gap: .7em;
   padding: .5em 1.2em; border-radius: 999px;
-  border: 1px solid var(--line); background: rgba(29,28,31,.7); backdrop-filter: blur(6px);
+  border: 1px solid var(--line); background: rgba(255,253,247,.78); backdrop-filter: blur(6px);
   font-size: var(--fs-xs); letter-spacing: .14em; color: var(--text-soft);
 }
 .hero__badge strong { color: var(--cream); font-weight: 500; }
@@ -187,8 +192,7 @@ a { color: inherit; }
 }
 .hero__title em {
   font-style: normal;
-  background: linear-gradient(90deg, var(--gold), var(--rose));
-  -webkit-background-clip: text; background-clip: text; color: transparent;
+  color: var(--gold-deep);
 }
 
 .hero__sub {
@@ -203,7 +207,7 @@ a { color: inherit; }
 .hero__meta span {
   padding: .55em 1.1em; border: 1px solid var(--line); border-radius: 999px;
   font-size: var(--fs-xs); letter-spacing: .06em; color: var(--text-soft);
-  background: rgba(29,28,31,.6);
+  background: rgba(255,253,247,.7);
 }
 .hero__meta strong { color: var(--cream); font-weight: 500; }
 
@@ -291,7 +295,7 @@ a { color: inherit; }
 }
 .gift__badge {
   padding: .4em 1.1em; border-radius: 999px; font-size: var(--fs-xs); letter-spacing: .1em;
-  color: var(--bg); background: linear-gradient(135deg, var(--gold), var(--rose)); font-weight: 700;
+  color: #fffaf4; background: var(--rose-ink); font-weight: 700;
 }
 .gift__icon { font-size: 2.25rem; line-height: 1; }
 .gift__title {
