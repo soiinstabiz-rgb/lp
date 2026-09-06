@@ -152,13 +152,12 @@ a { color: inherit; }
   background: var(--bg);
 }
 .hero__bg img {
-  width: 100%; height: 100%; object-fit: cover; object-position: 50% 45%;
-  opacity: .9;
+  position: absolute; inset: 0; z-index: 1;
+  width: 100%; height: 100%; object-fit: cover; object-position: 30% 60%;
 }
-/* 花の写真が届くまでの仮の背景：チャコールに、りょうじ＝ゴールド／そい＝ピンクの
-   にじみを左右に置き、暗闇に花が浮かぶ雰囲気を先取りしておく */
+/* 花の写真が読み込めない万一の場合の下敷き（imgより先にDOMへ置き、z-indexで確実に背面へ） */
 .hero__bg-fallback {
-  position: absolute; inset: 0;
+  position: absolute; inset: 0; z-index: 0;
   background:
     radial-gradient(38% 55% at 10% 30%, rgba(227,169,78,.30), transparent 70%),
     radial-gradient(40% 60% at 92% 60%, rgba(234,172,178,.26), transparent 70%),
@@ -167,7 +166,8 @@ a { color: inherit; }
 }
 .hero__veil {
   position: absolute; inset: 0; z-index: -1;
-  background: linear-gradient(180deg, rgba(21,21,21,.35) 0%, rgba(21,21,21,.55) 45%, var(--bg) 92%);
+  /* 花の彩度を活かしつつ、文字が乗る上部だけ少し暗くする */
+  background: linear-gradient(180deg, rgba(21,21,21,.55) 0%, rgba(21,21,21,.2) 30%, rgba(21,21,21,.15) 60%, var(--bg) 96%);
 }
 
 .hero__inner { display: flex; flex-direction: column; align-items: center; gap: 1.5rem; text-align: center; }
@@ -400,10 +400,9 @@ a { color: inherit; }
        ========================================================== -->
   <section class="hero">
     <div class="hero__bg" aria-hidden="true">
-      <!-- 花のメインビジュアルは準備中。届き次第 <img> を有効化してください。
-           それまでは下のCSSグラデーションが仮の背景として機能します。 -->
+      <!-- 画像が万一読み込めない時のための下敷き（imgより先に描画される） -->
       <div class="hero__bg-fallback"></div>
-      <!-- <img src="assets/seminar-0909-hero.jpg" alt=""> -->
+      <img src="assets/seminar-0909-hero.jpg" alt="" fetchpriority="high">
     </div>
     <div class="hero__veil" aria-hidden="true"></div>
 
@@ -535,8 +534,7 @@ a { color: inherit; }
 
       <div class="speakers">
         <article class="speaker speaker--gold reveal">
-          <!-- 写真は準備中。届いたら placeholder を <img class="speaker__photo" src="assets/ryoji-portrait.jpg" alt=""> に差し替え -->
-          <span class="speaker__photo--placeholder" aria-hidden="true">🌻</span>
+          <img class="speaker__photo" src="assets/ryoji-portrait.jpg" alt="りょうじのプロフィール写真" width="92" height="92" loading="lazy" decoding="async">
           <div>
             <p class="speaker__name">りょうじ<span>🌻</span></p>
             <p class="speaker__role">note収益化のプロ</p>
