@@ -6,6 +6,20 @@
   - lp-five-kappa.vercel.app → 307で soiart へ転送
   - lp-soiinstabiz-7611s-projects.vercel.app → 表示される
 - 前作「ことばの温度」→ https://soiart.vercel.app/kotoba-no-ondo
+- hasshin.html（note記事teaser）→ https://soiart.vercel.app/hasshin
+  - NOTE_URL設定済み：https://note.com/soi_ai_studio/n/n5051b467467e （2026-09-03公開分）
+- **seminar-0909.html**（りょうじ×そい 9/9コラボセミナー募集LP）→ https://soiart.vercel.app/seminar-0909
+  - index.html/hasshin.htmlとは別トーン（DARK EDITORIAL×FLORAL、りょうじ=ゴールド／そい=ピンク）
+  - 参加ボタンのリンク先は `<script>` 内の `JOIN_URL`（LINEオープンチャット）を1箇所変更すれば全ボタンに反映
+  - ⚠️ **未対応の画像が2点**：
+    1. ヒーローのメインビジュアル（ひまわり×ピンクの花・りょうじ×そいを象徴する横長写真）
+       → チャット添付では受け取ったが、ファイルとして保存されていなかったため未使用。
+         現在はCSSグラデーションで代用中。`assets/`に保存してもらい次第、
+         `.hero__bg`内のコメントアウトした`<img>`を有効化する
+    2. りょうじのプロフィール写真 → 現在はひまわり絵文字のプレースホルダー。
+       本人曰く「人物画像は後から追加する」とのことなので、届き次第
+       `.speaker__photo--placeholder`を`<img class="speaker__photo">`に差し替える
+       （そいの写真は既存の assets/soi-portrait.png を先に反映済み）
 - ⚠️ URLを変えたら index.html の og:url / og:image / canonical の3か所も必ず更新すること
 
 ## ⚠️ index.html の note リンクは現在すべて「準備中」表示（2026-08-13〜）
