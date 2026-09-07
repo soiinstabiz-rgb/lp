@@ -337,6 +337,17 @@ a { color: inherit; }
 .speaker__role { margin-top: .3rem; font-size: var(--fs-xs); letter-spacing: .06em; color: var(--text-soft); }
 .speaker__bio { margin-top: .7rem; font-size: var(--fs-sm); line-height: 1.85; color: var(--text); text-wrap: balance; }
 
+.speaker__links { display: flex; flex-wrap: wrap; gap: .5rem; margin-top: 1rem; }
+.speaker__links a {
+  display: inline-flex; align-items: center; gap: .4em;
+  padding: .4em 1em; border-radius: 999px; border: 1px solid var(--line);
+  font-size: var(--fs-xs); letter-spacing: .04em; text-decoration: none;
+  color: var(--text-soft); background: var(--bg);
+  transition: color .25s ease, border-color .25s ease, background-color .25s ease;
+}
+.speaker--gold .speaker__links a:hover { color: var(--gold-deep); border-color: var(--gold); background: var(--gold-soft); }
+.speaker--rose .speaker__links a:hover { color: var(--rose-deep); border-color: var(--rose); background: var(--rose-soft); }
+
 /* =========================================================
    開催概要 + 最終CTA
    ========================================================= */
@@ -554,6 +565,11 @@ a { color: inherit; }
               「強みがない」に<br>
               向き合ってきました。
             </p>
+            <div class="speaker__links">
+              <a href="https://www.threads.com/@porsche911ss" target="_blank" rel="noopener">Threads</a>
+              <a href="https://note.com/porsche0911s" target="_blank" rel="noopener">note</a>
+              <a href="https://x.com/RYOJI_PORSCHE" target="_blank" rel="noopener">X</a>
+            </div>
           </div>
         </article>
 
@@ -568,6 +584,10 @@ a { color: inherit; }
               自分の中にある想いを、<br>
               目に見えるカタチへ。
             </p>
+            <div class="speaker__links">
+              <a href="https://www.threads.com/@soi.ai.studio" target="_blank" rel="noopener">Threads</a>
+              <a href="https://note.com/soi_ai_studio" target="_blank" rel="noopener">note</a>
+            </div>
           </div>
         </article>
       </div>
