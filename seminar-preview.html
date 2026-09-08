@@ -46,6 +46,12 @@ a{ color:inherit; }
 .wrap{ max-width:900px; margin-inline:auto; padding-inline:var(--pad); }
 .wrap--narrow{ max-width:680px; }
 
+/* PC幅で意味の途中に強制改行が入るのを防ぐための最小限の横幅調整。
+   .wrap の内側パディング分だけ、その要素だけ左右に広げる（余白・デザインは変えない）。 */
+@media (min-width:900px){
+  .bleed-pad{ margin-inline:calc(-1 * var(--pad) - 6rem); padding-inline:1rem; max-width:none; }
+}
+
 /* =========================================================
    1. 共通パーツ
    ========================================================= */
@@ -63,7 +69,7 @@ a{ color:inherit; }
 .accent{ color:var(--rose-deep); }
 .section--charcoal .statement{ color:var(--ivory); }
 
-.body-text{ font-size:clamp(1rem, .95rem + .3vw, 1.125rem); line-height:2; color:var(--ink-soft); max-width:34em; }
+.body-text{ font-size:clamp(1rem, .95rem + .3vw, 1.125rem); line-height:2; color:var(--ink-soft); max-width:34em; text-wrap:pretty; }
 .section--charcoal .body-text{ color:rgba(250,247,243,.75); }
 
 .reveal{ opacity:0; transform:translateY(16px); transition:opacity .9s cubic-bezier(.22,.61,.36,1), transform .9s cubic-bezier(.22,.61,.36,1); }
@@ -101,7 +107,7 @@ a{ color:inherit; }
    3. 生の声（散らす。カード化しない）
    ========================================================= */
 .voices{ margin-top:2.5rem; display:flex; flex-direction:column; gap:1.1rem; }
-.voices li{ font-family:var(--mincho); font-size:clamp(1rem,.92rem+.5vw,1.2rem); color:var(--ink-soft); line-height:1.8; padding-left:1.3em; position:relative; }
+.voices li{ font-family:var(--mincho); font-size:clamp(1rem,.92rem+.5vw,1.2rem); color:var(--ink-soft); line-height:1.8; padding-left:1.3em; position:relative; text-wrap:pretty; }
 .voices li::before{ content:"—"; position:absolute; left:0; color:var(--rose); }
 
 /* =========================================================
@@ -117,7 +123,7 @@ a{ color:inherit; }
 .progression__item{ flex:1 1 130px; display:flex; flex-direction:column; gap:.75rem; }
 .progression__item .media{ width:100%; aspect-ratio:3/4; position:relative; overflow:hidden; }
 .progression__item .media::after{ font-size:10px !important; left:8px !important; bottom:8px !important; padding:.3em .6em !important; }
-.progression__cap{ font-size:.82rem; line-height:1.7; color:var(--ink-soft); }
+.progression__cap{ font-size:.82rem; line-height:1.7; color:var(--ink-soft); text-wrap:balance; }
 .progression__arrow{ flex:0 0 auto; align-self:center; margin-top:clamp(2.5rem,15vw,3.2rem); color:var(--ink-soft); font-size:.9rem; }
 @media (max-width:640px){
   .progression{ flex-direction:column; }
@@ -135,7 +141,7 @@ a{ color:inherit; }
 .ask__label{ font-size:13px; letter-spacing:.1em; color:var(--rose-ink); margin-bottom:.75rem; }
 .section--charcoal .ask__label{ color:var(--rose); }
 .ask__q{ font-family:var(--mincho); font-weight:500; font-size:clamp(1.1rem,1rem+.5vw,1.4rem); line-height:1.7; }
-.ask__hint{ margin-top:.9rem; font-size:.9rem; color:var(--ink-soft); }
+.ask__hint{ margin-top:.9rem; font-size:.9rem; color:var(--ink-soft); text-wrap:pretty; }
 
 /* =========================================================
    6. 地図（09だけで使う。振り返り用の図解）
@@ -157,14 +163,14 @@ a{ color:inherit; }
 .translate{ margin-top:2.5rem; display:grid; gap:0; }
 .translate__row{ padding-block:1.75rem; border-top:1px solid var(--line); display:grid; gap:.5rem; }
 .translate__ch{ font-family:var(--en); font-style:italic; font-size:13px; letter-spacing:.16em; color:var(--rose-ink); text-transform:uppercase; }
-.translate__txt{ font-family:var(--mincho); font-size:clamp(1.05rem,1rem+.4vw,1.3rem); line-height:1.8; }
+.translate__txt{ font-family:var(--mincho); font-size:clamp(1.05rem,1rem+.4vw,1.3rem); line-height:1.8; text-wrap:pretty; }
 .section--charcoal .translate__row{ border-top-color:rgba(250,247,243,.18); }
 
 /* =========================================================
    8. 想像リスト（11）
    ========================================================= */
 .imagine-list{ margin-top:1.5rem; display:grid; gap:.6rem; }
-.imagine-list li{ font-family:var(--mincho); font-size:clamp(1.05rem,1rem+.4vw,1.3rem); color:var(--ink-soft); }
+.imagine-list li{ font-family:var(--mincho); font-size:clamp(1.05rem,1rem+.4vw,1.3rem); color:var(--ink-soft); text-wrap:balance; }
 .section--charcoal .imagine-list li{ color:rgba(250,247,243,.75); }
 
 /* =========================================================
@@ -173,7 +179,7 @@ a{ color:inherit; }
 .bonus{ margin-top:2.25rem; }
 .bonus__label{ font-family:var(--en); font-style:italic; font-weight:500; font-size:14px; letter-spacing:.22em; text-transform:uppercase; color:var(--rose-ink); margin-bottom:.7rem; }
 .bonus__title{ font-family:var(--mincho); font-weight:600; font-size:clamp(1.3rem,1.1rem+.9vw,1.7rem); line-height:1.6; }
-.bonus__desc{ margin-top:1rem; color:var(--ink-soft); line-height:2; }
+.bonus__desc{ margin-top:1rem; color:var(--ink-soft); line-height:2; text-wrap:pretty; }
 
 .appdemo{ margin-top:1.5rem; display:flex; flex-wrap:wrap; gap:1rem; }
 .appdemo__screen{ width:min(150px,40vw); aspect-ratio:9/16; border-radius:16px; overflow:hidden; position:relative; box-shadow:0 14px 30px rgba(30,25,22,.12); }
@@ -212,7 +218,7 @@ a{ color:inherit; }
 .steps__item{ padding-top:1.5rem; border-top:1px solid rgba(250,247,243,.18); }
 .steps__num{ font-family:var(--en); font-style:italic; font-size:13px; letter-spacing:.2em; color:var(--rose); margin-bottom:.6rem; }
 .steps__title{ font-family:var(--mincho); font-weight:600; font-size:clamp(1.2rem,1.05rem+.7vw,1.5rem); margin-bottom:.5rem; }
-.steps__desc{ font-size:.95rem; color:rgba(250,247,243,.75); line-height:1.9; }
+.steps__desc{ font-size:.95rem; color:rgba(250,247,243,.75); line-height:1.9; text-wrap:pretty; }
 
 .footer{ padding-block:2.5rem; text-align:center; font-size:13px; color:var(--ink-soft); border-top:1px solid var(--line); }
 
@@ -242,16 +248,16 @@ a{ color:inherit; }
        ============================================================ -->
   <section class="section">
     <div class="wrap wrap--narrow">
-      <p class="statement statement--lg reveal">
+      <p class="statement statement--lg reveal bleed-pad">
         世界観って、<br>見た目を揃えることだと思ってた。
       </p>
-      <p class="body-text reveal" style="margin-top:1.5rem;">
+      <p class="body-text reveal bleed-pad" style="margin-top:1.5rem;">
         同じ色。同じ花。同じ雰囲気。私も、最初はそう思っていました。
       </p>
       <p class="statement statement--md accent reveal reveal-d1" style="margin-top:2rem;">
         でも、それだけじゃなかった。
       </p>
-      <p class="statement statement--lg reveal reveal-d2" style="margin-top:2.75rem;">
+      <p class="statement statement--lg reveal reveal-d2 bleed-pad" style="margin-top:2.75rem;">
         世界観って、<br>その人が大切にしているものが、<br>どこから見ても伝わること。
       </p>
     </div>
@@ -262,7 +268,7 @@ a{ color:inherit; }
        ============================================================ -->
   <section class="section section--tight">
     <div class="wrap wrap--narrow">
-      <p class="statement statement--xl reveal">
+      <p class="statement statement--xl reveal bleed-pad">
         どうして今、<br>「世界観」なんだろう？
       </p>
       <p class="body-text reveal reveal-d1" style="margin-top:2.25rem;">
@@ -288,8 +294,8 @@ a{ color:inherit; }
        ============================================================ -->
   <section class="section section--charcoal">
     <div class="wrap wrap--narrow">
-      <p class="statement statement--xl reveal">
-        「何が作れるか」だけじゃなく、<br>「誰が作るか」。
+      <p class="statement statement--xl reveal bleed-pad">
+        「何が作れるか」<br>だけじゃなく、<br>「誰が作るか」。
       </p>
       <p class="body-text reveal reveal-d1" style="margin-top:2.25rem;">
         何を大切にしている人なのか。
@@ -336,10 +342,10 @@ a{ color:inherit; }
        ============================================================ -->
   <section class="section section--sand">
     <div class="wrap wrap--narrow">
-      <p class="statement statement--xl reveal">
-        でも……<br>じゃあ、<span class="accent">私が大切にしているもの</span>って何？
+      <p class="statement statement--xl reveal bleed-pad">
+        でも……<br>じゃあ、<br><span class="accent">私が大切にしているもの</span><br>って何？
       </p>
-      <ul class="voices reveal reveal-d1">
+      <ul class="voices reveal reveal-d1 bleed-pad">
         <li>そもそも自分の軸って何？</li>
         <li>自分をどう見せたいかも、正直分からない。</li>
         <li>話すと伝わるのに、文章にすると自分らしさをうまく出せない気がする。</li>
@@ -352,7 +358,7 @@ a{ color:inherit; }
        ============================================================ -->
   <section class="section section--tight">
     <div class="wrap wrap--narrow">
-      <p class="statement statement--xl reveal">私も、<br>分かりませんでした。</p>
+      <p class="statement statement--xl reveal bleed-pad">私も、<br>分かりませんでした。</p>
     </div>
   </section>
 
@@ -408,7 +414,7 @@ a{ color:inherit; }
       <div class="ask reveal">
         <p class="ask__label">問い</p>
         <p class="ask__q">最近、“なんか好き”って思ったもの、ありますか？</p>
-        <p class="ask__hint">色でもいい。光でもいい。景色でも、言葉でも、音楽でも。難しく考えなくて大丈夫です。</p>
+        <p class="ask__hint">色でもいい。光でもいい。景色でも、言葉でも、音楽でも。<br>難しく考えなくて大丈夫です。</p>
       </div>
     </div>
   </section>
@@ -428,7 +434,7 @@ a{ color:inherit; }
         そう思って、好きなものを素直に好きと言えずにいました。
       </p>
 
-      <p class="statement statement--md reveal" style="margin-top:2.5rem;">
+      <p class="statement statement--md reveal bleed-pad" style="margin-top:2.5rem;">
         なんで、私はこんなにピンクが好きなんだろう？<br>
         可愛いから？　優しい気持ちになるから？
       </p>
@@ -454,7 +460,7 @@ a{ color:inherit; }
       <p class="statement statement--lg reveal">
         私が大切にしていたのは、<br>ピンクじゃなかった。
       </p>
-      <p class="statement statement--xl accent reveal reveal-d2" style="margin-top:2.5rem;">
+      <p class="statement statement--xl accent reveal reveal-d2 bleed-pad" style="margin-top:2.5rem;">
         自分の「好き」を、<br>隠さなくていい。
       </p>
 
@@ -462,9 +468,9 @@ a{ color:inherit; }
         今は、ピンクも。花も。自分が好きな世界も。<br>
         「これが好き」って、ちゃんと言えるようになりました。
       </p>
-      <p class="body-text reveal reveal-d1" style="margin-top:1rem; color:rgba(250,247,243,.78);">
-        そして不思議なことに、そうやって自分の「好き」を出すようになってから、<br>
-        <span class="accent">「そいさんの世界観、好きです」</span>と言っていただけるようになったんです。
+      <p class="body-text reveal reveal-d1 bleed-pad" style="margin-top:1rem; color:rgba(250,247,243,.78);">
+        そして不思議なことに、<br>そうやって自分の「好き」を出すようになってから、<br>
+        <span class="accent">「そいさんの世界観、好きです」</span>と<br>言っていただけるようになったんです。
       </p>
     </div>
 
@@ -511,7 +517,7 @@ a{ color:inherit; }
       <p class="body-text reveal">
         先日のライブトークで、こんな質問をいただきました。
       </p>
-      <p class="statement statement--md reveal reveal-d1" style="margin-top:1.25rem;">
+      <p class="statement statement--md reveal reveal-d1 bleed-pad" style="margin-top:1.25rem;">
         「AIアートをやっていると、自分の好きは見えてくる。<br>
         でも、それをThreadsの投稿にするのが難しい」
       </p>
@@ -553,7 +559,7 @@ a{ color:inherit; }
        ============================================================ -->
   <section class="section">
     <div class="wrap wrap--narrow">
-      <p class="statement statement--lg reveal">
+      <p class="statement statement--lg reveal bleed-pad">
         もし、その大切な想いが<br>叶っている世界があったら、<br>どんな世界でしょう？
       </p>
       <ul class="imagine-list reveal reveal-d1">
@@ -607,7 +613,7 @@ a{ color:inherit; }
 
   <section class="section section--sand">
     <div class="wrap wrap--narrow">
-      <p class="body-text reveal">
+      <p class="body-text reveal bleed-pad">
         自分が大切にしているものが見えてくると、<br>
         AIアートは“きれいな作品を作るためのもの”だけではなくなります。
       </p>
@@ -656,14 +662,14 @@ a{ color:inherit; }
 
   <section class="section section--tight section--charcoal">
     <div class="wrap wrap--narrow">
-      <p class="statement statement--xl accent reveal">
+      <p class="statement statement--xl accent reveal bleed-pad">
         AIアートは、<br>世界観を伝えるための手段。
       </p>
       <p class="body-text reveal reveal-d1" style="margin-top:2rem;">
         私が伝えたいのは、<br>
         AIアートの作り方だけじゃありません。
       </p>
-      <p class="body-text reveal reveal-d2" style="margin-top:1.25rem;">
+      <p class="body-text reveal reveal-d2 bleed-pad" style="margin-top:1.25rem;">
         自分が大切にしているものを見つけて、<br>
         それをAIアートにも、言葉にも、発信にも、商品にもつなげていく。
       </p>
@@ -694,7 +700,7 @@ a{ color:inherit; }
           <div class="media is-placeholder appdemo__screen" data-label="WORLDVIEW_APP_03"><img alt=""></div>
         </div>
       </div>
-      <p class="statement statement--md accent reveal reveal-d2" style="margin-top:2.5rem;">
+      <p class="statement statement--md accent reveal reveal-d2 bleed-pad" style="margin-top:2.5rem;">
         続きは、お家でゆっくり覗いてみてください🌸
       </p>
     </div>
