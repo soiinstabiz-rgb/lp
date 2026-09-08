@@ -115,7 +115,7 @@ a{ color:inherit; }
 
 .progression{ display:flex; align-items:flex-start; gap:0 .5rem; margin-top:2rem; flex-wrap:wrap; }
 .progression__item{ flex:1 1 130px; display:flex; flex-direction:column; gap:.75rem; }
-.progression__item .media{ aspect-ratio:3/4; position:relative; }
+.progression__item .media{ width:100%; aspect-ratio:3/4; position:relative; overflow:hidden; }
 .progression__item .media::after{ font-size:10px !important; left:8px !important; bottom:8px !important; padding:.3em .6em !important; }
 .progression__cap{ font-size:.82rem; line-height:1.7; color:var(--ink-soft); }
 .progression__arrow{ flex:0 0 auto; align-self:center; margin-top:clamp(2.5rem,15vw,3.2rem); color:var(--ink-soft); font-size:.9rem; }
