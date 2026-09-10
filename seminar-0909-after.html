@@ -135,8 +135,13 @@ a { color: inherit; }
 /* =========================================================
    01. ファーストビュー（体験会）
    ========================================================= */
-.top { padding-block: clamp(3rem, 8vw, 4.5rem) 0; }
+.top { padding-block: clamp(2rem, 6vw, 3rem) 0; }
 .top__inner { text-align: center; display: flex; flex-direction: column; align-items: center; gap: 1.25rem; }
+.top__hero {
+  width: 100%; max-width: 26rem;
+  aspect-ratio: 21 / 9; object-fit: cover; object-position: center 55%;
+  border-radius: 16px; margin-bottom: .25rem;
+}
 .top__title {
   font-family: var(--mincho); font-size: var(--fs-3xl); font-weight: 500;
   line-height: 1.6; letter-spacing: .04em; color: var(--cream); text-wrap: balance;
@@ -244,7 +249,8 @@ a { color: inherit; }
        ========================================================== -->
   <section class="top">
     <div class="wrap top__inner reveal">
-      <h1 class="top__title">昨日の“世界観”の続きを。</h1>
+      <img class="top__hero" src="assets/app-flower.jpg" alt="" loading="eager" fetchpriority="high">
+      <h1 class="top__title">昨日の<span class="nowrap">“世界観”</span>の続きを。</h1>
       <p class="top__sub">あなたの中にある世界を、<br>今度は一緒にカタチにしてみませんか？</p>
       <p class="top__body">セミナーで少し覗いた
 あなたの「好き」や大切な想い。
