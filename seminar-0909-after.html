@@ -139,8 +139,11 @@ a { color: inherit; }
 .top__inner { text-align: center; display: flex; flex-direction: column; align-items: center; gap: 1.25rem; }
 .top__hero {
   width: 100%; max-width: 26rem;
-  aspect-ratio: 21 / 9; object-fit: cover; object-position: center 55%;
+  aspect-ratio: 4 / 3; object-fit: cover; object-position: 50% 38%;
   border-radius: 16px; margin-bottom: .25rem;
+}
+@media (min-width: 40rem) {
+  .top__hero { max-width: 30rem; aspect-ratio: 16 / 9; object-position: 50% 30%; }
 }
 .top__title {
   font-family: var(--mincho); font-size: clamp(1.35rem, 1rem + 1.9vw, 2.3rem); font-weight: 500;
@@ -250,7 +253,7 @@ a { color: inherit; }
        ========================================================== -->
   <section class="top">
     <div class="wrap top__inner reveal">
-      <img class="top__hero" src="assets/app-flower.jpg" alt="" loading="eager" fetchpriority="high">
+      <img class="top__hero" src="assets/after-hero.jpg" alt="" loading="eager" fetchpriority="high">
       <h1 class="top__title">あなたの中にある世界を、<br>今度は<em>カタチにしてみよう。</em></h1>
       <p class="top__sub">あなたの「好き」や大切な想いを、<br>一緒に1枚のAIアートにしてみませんか？🌸</p>
       <p class="top__body">セミナーで少し覗いた
