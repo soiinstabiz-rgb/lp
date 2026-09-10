@@ -203,7 +203,7 @@ a { color: inherit; }
   transform: rotate(45deg); transition: transform .3s ease;
 }
 .faq__item[open] .faq__q::after { transform: rotate(-135deg); margin-top: .8em; }
-.faq__a { display: flex; gap: .9rem; padding: 0 clamp(1rem, 3vw, 1.4rem) 1.3rem; font-size: var(--fs-sm); line-height: 2; color: var(--text-soft); white-space: pre-line; }
+.faq__a { display: flex; gap: .9rem; padding: 0 clamp(1rem, 3vw, 1.4rem) 1.3rem; font-size: var(--fs-sm); line-height: 2; color: var(--text-soft); white-space: pre-line; word-break: keep-all; overflow-wrap: anywhere; }
 .faq__a::before { content: "A"; flex: 0 0 auto; font-family: var(--mincho); color: var(--text-soft); }
 
 .recta { text-align: center; margin-top: clamp(2rem, 5vw, 2.75rem); }
@@ -331,9 +331,9 @@ a { color: inherit; }
         </details>
 
         <details class="faq__item">
-          <summary class="faq__q"><span class="nowrap">AIアート</span>をやったことがなくても大丈夫ですか？</summary>
+          <summary class="faq__q">AIアートをやったことがなくても大丈夫ですか？</summary>
           <div class="faq__a">もちろん大丈夫です🙆‍♀️✨
-<span class="nowrap">AIアート</span>が初めての方も、そのままご参加ください。
+AIアートが初めての方も、そのままご参加ください。
 そいが画面を共有しながら、
 一緒にカタチにしていきます🌸</div>
         </details>
