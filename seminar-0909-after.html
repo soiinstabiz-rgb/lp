@@ -164,22 +164,36 @@ a { color: inherit; }
    ========================================================= */
 .schedule { padding-block: clamp(2rem, 5vw, 3rem) var(--band); scroll-margin-top: 1.5rem; }
 .schedule__grid { display: grid; gap: 1rem; max-width: 60rem; margin-inline: auto; }
-@media (min-width: 40rem) {
-  .schedule__grid { grid-template-columns: repeat(3, 1fr); align-items: stretch; }
+@media (min-width: 34rem) {
+  .schedule__grid { grid-template-columns: repeat(2, 1fr); align-items: stretch; }
+}
+@media (min-width: 56rem) {
+  .schedule__grid { grid-template-columns: repeat(4, 1fr); }
 }
 .schedule__card {
   display: flex; flex-direction: column; align-items: center; gap: .9rem; text-align: center;
   padding: clamp(1.5rem, 4vw, 1.9rem) clamp(1.25rem, 3vw, 1.5rem);
   border: 1px solid var(--line); border-radius: 16px; background: var(--panel);
 }
+.schedule__card--closed { background: var(--panel-2); opacity: .82; }
 .schedule__num {
   width: 1.9rem; height: 1.9rem; display: inline-flex; align-items: center; justify-content: center;
   border-radius: 50%; background: var(--rose-soft); color: var(--rose-ink);
   font-family: var(--mincho); font-size: var(--fs-sm);
 }
+.schedule__tag {
+  display: inline-flex; padding: .3em 1em; border-radius: 999px;
+  font-size: var(--fs-xs); letter-spacing: .06em; color: var(--rose-ink); background: var(--rose-soft);
+}
 .schedule__date { font-family: var(--mincho); font-size: var(--fs-lg); color: var(--cream); letter-spacing: .04em; }
 .schedule__time { font-size: var(--fs-md); color: var(--text-soft); }
 .schedule__card .btn { width: 100%; margin-top: .3rem; padding: .85em 1em; font-size: var(--fs-xs); gap: .5em; white-space: normal; line-height: 1.5; }
+.schedule__status {
+  display: inline-flex; align-items: center; justify-content: center; width: 100%;
+  margin-top: .3rem; padding: .85em 1em; border-radius: 999px;
+  font-size: var(--fs-xs); letter-spacing: .06em; line-height: 1.5;
+  color: var(--text-soft); background: var(--panel); border: 1px solid var(--line);
+}
 
 .schedule__other { text-align: center; margin-top: 1.5rem; }
 .schedule__other .btn--ghost { padding: .85em 1.8em; font-size: var(--fs-sm); }
@@ -271,18 +285,18 @@ a { color: inherit; }
       <h2 class="band-title reveal" id="schedule-title" style="text-align:center; margin-bottom:2rem;">参加したい日程を選ぶ</h2>
 
       <div class="schedule__grid">
-        <article class="schedule__card reveal">
+        <article class="schedule__card schedule__card--closed reveal">
           <span class="schedule__num" aria-hidden="true">①</span>
           <p class="schedule__date">9/16<span class="nowrap">（水）</span></p>
           <p class="schedule__time">22:00〜</p>
-          <a class="btn" data-schedule="0916_2200" href="#">この日程で参加する <span class="btn__arrow" aria-hidden="true">→</span></a>
+          <p class="schedule__status">受付終了🌸</p>
         </article>
 
-        <article class="schedule__card reveal">
+        <article class="schedule__card schedule__card--closed reveal">
           <span class="schedule__num" aria-hidden="true">②</span>
           <p class="schedule__date">9/17<span class="nowrap">（木）</span></p>
           <p class="schedule__time">10:00〜</p>
-          <a class="btn" data-schedule="0917_1000" href="#">この日程で参加する <span class="btn__arrow" aria-hidden="true">→</span></a>
+          <p class="schedule__status">受付終了🌸</p>
         </article>
 
         <article class="schedule__card reveal">
@@ -290,6 +304,14 @@ a { color: inherit; }
           <p class="schedule__date">9/19<span class="nowrap">（土）</span></p>
           <p class="schedule__time">22:00〜</p>
           <a class="btn" data-schedule="0919_2200" href="#">この日程で参加する <span class="btn__arrow" aria-hidden="true">→</span></a>
+        </article>
+
+        <article class="schedule__card reveal">
+          <span class="schedule__num" aria-hidden="true">④</span>
+          <span class="schedule__tag">追加日程✨</span>
+          <p class="schedule__date">9/24<span class="nowrap">（木）</span></p>
+          <p class="schedule__time">22:00〜</p>
+          <a class="btn" data-schedule="0924_2200" href="#">この日程で参加する <span class="btn__arrow" aria-hidden="true">→</span></a>
         </article>
       </div>
 
@@ -422,6 +444,7 @@ Zoomでゆったりお話ししながら進めます。</div>
     '0916_2200': '9/16（水）22:00の無料体験会を希望します🌸',
     '0917_1000': '9/17（木）10:00の無料体験会を希望します🌸',
     '0919_2200': '9/19（土）22:00の無料体験会を希望します🌸',
+    '0924_2200': '9/24（木）22:00の無料体験会を希望します🌸',
     'other':     '無料体験会を希望します🌸\n日程について相談したいです☺️',
   };
 
