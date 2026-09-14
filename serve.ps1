@@ -9,7 +9,7 @@
 #      .\serve.ps1
 #  ブラウザで http://localhost:5500/ を開く。停止は Ctrl+C。
 # =========================================================
-param([int]$Port = 5500)
+param([int]$Port = $(if ($env:PORT) { [int]$env:PORT } else { 5500 }))
 
 $ErrorActionPreference = 'Stop'
 $root = $PSScriptRoot

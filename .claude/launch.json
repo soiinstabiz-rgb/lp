@@ -5,7 +5,8 @@
       "name": "lp",
       "runtimeExecutable": "powershell",
       "runtimeArgs": ["-NoProfile", "-ExecutionPolicy", "Bypass", "-File", "serve.ps1"],
-      "port": 5500
+      "port": 5500,
+      "autoPort": true
     }
   ]
 }
