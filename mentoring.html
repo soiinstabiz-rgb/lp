@@ -415,18 +415,49 @@ a { color: inherit; text-decoration: none; }
 .paths-note { max-width: 28rem; margin: clamp(2rem, 5vw, 2.75rem) auto 0; text-align: center; font-family: var(--mincho); font-size: var(--fs-md); line-height: 2; letter-spacing: .04em; text-wrap: balance; }
 
 /* =========================================================
-   07. そいのストーリー
+   07. About Soi（自己紹介・editorial 2カラム）
    ========================================================= */
-.story { display: grid; gap: clamp(2rem, 6vw, 3rem); max-width: 46rem; margin-inline: auto; align-items: start; }
-@media (min-width: 42rem) { .story { grid-template-columns: 15rem minmax(0,1fr); } }
-.story__media { display: flex; flex-direction: column; align-items: center; gap: 1rem; text-align: center; }
-.story__photo { width: min(12rem, 60%); aspect-ratio: 1; border-radius: 50%; object-fit: cover; box-shadow: var(--shadow); }
-.story__name { font-family: var(--mincho); font-size: var(--fs-md); letter-spacing: .14em; }
-.story__role { font-size: var(--fs-xs); color: var(--ink-faint); letter-spacing: .08em; }
-.story__body { font-size: var(--fs-sm); line-height: 2.05; color: var(--ink-soft); white-space: pre-line; text-wrap: pretty; }
-.story__body strong { color: var(--rose-deep); font-weight: 600; }
-.story__closing {
-  margin-top: 1.75rem; font-family: var(--mincho); font-size: var(--fs-lg); font-weight: 500;
+.section--about { background: linear-gradient(180deg, var(--base) 0%, var(--ivory) 40%, var(--ivory) 60%, var(--base) 100%); }
+
+.about-grid {
+  display: grid; grid-template-columns: 1fr; row-gap: clamp(1.75rem, 5vw, 2.5rem);
+  grid-template-areas: "head" "photo" "body";
+  max-width: 30rem; margin-inline: auto;
+}
+@media (min-width: 48rem) {
+  .about-grid {
+    grid-template-columns: minmax(0, 43%) minmax(0, 1fr);
+    grid-template-areas: "photo head" "photo body";
+    column-gap: clamp(2.5rem, 6vw, 4.5rem); row-gap: 0;
+    max-width: 58rem;
+  }
+}
+
+.about-head { grid-area: head; }
+.about-name { display: flex; align-items: baseline; gap: .65em; margin-top: 1rem; }
+.about-name__en {
+  font-family: var(--mincho); font-style: italic; font-weight: 600;
+  font-size: clamp(2rem, 4vw, 2.75rem); letter-spacing: .03em; color: var(--ink);
+}
+.about-name__ja { font-family: var(--gothic); font-size: var(--fs-sm); color: var(--ink-faint); letter-spacing: .08em; }
+.about-role { margin-top: .6rem; font-size: var(--fs-xs); letter-spacing: .16em; color: var(--rose-deep); font-weight: 500; }
+
+.about-visual { grid-area: photo; position: relative; }
+.about-visual::before {
+  content: ""; position: absolute; inset: 1.1rem -1.1rem -1.1rem 1.1rem; z-index: -1;
+  border: 1px solid var(--rose); opacity: .45;
+}
+.about-photo { width: 100%; aspect-ratio: 3 / 4; object-fit: cover; object-position: 50% 32%; display: block; }
+@media (min-width: 48rem) {
+  .about-visual { position: sticky; top: calc(var(--header-h) + 2.5rem); align-self: start; }
+}
+
+.about-body-wrap { grid-area: body; }
+@media (min-width: 48rem) { .about-head, .about-body-wrap { max-width: 30em; } }
+.about-body { display: grid; gap: clamp(1.25rem, 3vw, 1.75rem); margin-top: clamp(1.5rem, 4vw, 2rem); }
+.about-body p { font-size: var(--fs-sm); line-height: 2; color: var(--ink-soft); white-space: pre-line; }
+.about-closing {
+  margin-top: clamp(1.5rem, 4vw, 2rem); font-family: var(--mincho); font-size: var(--fs-lg); font-weight: 500;
   line-height: 1.9; letter-spacing: .05em; color: var(--rose-deep); text-wrap: balance;
 }
 
@@ -794,56 +825,54 @@ a { color: inherit; text-decoration: none; }
   </section>
 
   <!-- ==========================================================
-       07. そいのストーリー
+       07. About Soi｜自己紹介（editorial 2カラム）
        ========================================================== -->
-  <section class="section section--blush" aria-labelledby="story-title">
+  <section class="section section--about" aria-labelledby="about-title">
     <div class="wrap">
-      <div class="band-head reveal">
-        <p class="eyebrow">About Soi</p>
-        <h2 class="band-title" id="story-title">“なんか好き”の中に、<br>もう世界観はある。</h2>
-      </div>
-
-      <div class="story reveal">
-        <div class="story__media">
-          <img class="story__photo" src="assets/soi-portrait.png" alt="soiのプロフィール写真" loading="lazy" decoding="async">
-          <p class="story__name">soi</p>
-          <p class="story__role"><span class="nowrap">AIアート</span>×<span class="nowrap">世界観設計</span></p>
+      <div class="about-grid reveal">
+        <div class="about-head">
+          <p class="eyebrow" id="about-title">自己紹介</p>
+          <p class="about-name"><span class="about-name__en">soi</span><span class="about-name__ja">/ そい</span></p>
+          <p class="about-role"><span class="nowrap">AIアート</span> × <span class="nowrap">世界観設計</span></p>
         </div>
 
-        <div class="story__body">
-          <p>わたしは以前、
+        <div class="about-visual">
+          <img class="about-photo" src="assets/soi-portrait.png" alt="花畑でブーケを持つそいのポートレート写真" loading="lazy" decoding="async">
+        </div>
+
+        <div class="about-body-wrap">
+          <div class="about-body">
+            <p>私自身、<span class="nowrap">AIアート</span>を始めたことで、
+「私、これが好きだったんだ」
+と、自分の中にあるものに
+たくさん気づきました。</p>
+
+            <p>以前の私は、
 「自分には<span class="nowrap">世界観</span>なんてない」
 と思っていました。
-
-昔、「ぶりっ子」と言われたことがあって。
 本当はピンクが好きなのに、
-その好きを、しばらく隠していた時期があります。</p>
+その「好き」を隠していた時期もあります。</p>
 
-          <p><span class="nowrap">AIアート</span>を始めてから、
-
+            <p>でも、
 「これ好き」「これは違う」「もっとこっち」
-
 と選び続けていくうちに、
+自分が何を好きで、
+何を大切にしているのかが
+少しずつ見えるようになりました。</p>
 
-「あ、わたしってこれが好きだったんだ」
+            <p><span class="nowrap">AIアート</span>は、
+綺麗な画像を作るためだけではなく、
+自分の中にあるものを
+目に見えるカタチにしてくれるものになりました。</p>
 
-と、自分の中にあるものに、
-少しずつ気づいていきました。</p>
-
-          <p><span class="nowrap">AIアート</span>は、
-<strong>綺麗な画像を作るだけのものじゃなくて、
-自分の中にあるものを、目に見えるカタチに
-してくれるもの</strong>になりました。</p>
-
-          <p>だから今度は、
+            <p>だから今度は、
 その体験を、誰かと一緒にやってみたい。
-
-1枚作って終わりじゃなく、
+1枚作って終わりではなく、
 その先の発信や活動まで、一緒に進みたい。
-
 そう思って、このサポートを始めました。</p>
+          </div>
 
-          <p class="story__closing reveal">あなたの中にあるものを、<br>あなたらしく、伝わるカタチへ。</p>
+          <p class="about-closing">あなたの中にあるものを、<br>あなたらしく、伝わるカタチへ。</p>
         </div>
       </div>
     </div>
