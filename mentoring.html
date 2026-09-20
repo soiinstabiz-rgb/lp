@@ -194,31 +194,16 @@ a { color: inherit; text-decoration: none; }
   width: 100%; height: 100%; object-fit: cover; object-position: 68% 42%;
   animation: hero-breathe 22s ease-in-out infinite;
 }
-@media (max-width: 40rem) {
-  .hero__img { object-position: 78% 22%; }
-}
 /* 動画の上には強い白ワッシュをかけず、文字が乗る左側だけ
    ごく薄いグラデーションで可読性を確保する。写真本来の
    ブルー・ピンク・光を残すのが目的（ブリーフの指定） */
 .hero__veil {
-  position: absolute; inset: 0; z-index: -1;
+  position: absolute; inset: 0;
   background: linear-gradient(105deg,
     rgba(251,248,243,.6) 0%,
     rgba(251,248,243,.34) 32%,
     rgba(251,248,243,.08) 56%,
     rgba(251,248,243,0) 72%);
-}
-@media (max-width: 40rem) {
-  /* スマホは文字ブロックが横幅いっぱいになり、人物を避ける余白を
-     横方向の位置調整だけでは作れないため、縦方向にしっかりめの
-     ウォッシュをかけて可読性を確保する（写真の色みは残す濃さに留める） */
-  .hero__veil {
-    background: linear-gradient(180deg,
-      rgba(251,248,243,.58) 0%,
-      rgba(251,248,243,.52) 24%,
-      rgba(251,248,243,.66) 48%,
-      rgba(251,248,243,.74) 100%);
-  }
 }
 .hero__inner { display: flex; flex-direction: column; align-items: flex-start; gap: 1.35rem; max-width: 34rem; }
 .hero__kicker, .hero__meta {
@@ -242,6 +227,33 @@ a { color: inherit; text-decoration: none; }
   position: absolute; left: 50%; bottom: clamp(1.5rem, 4vw, 2.5rem); transform: translateX(-50%);
   display: flex; flex-direction: column; align-items: center; gap: .6rem;
   color: var(--ink-soft); text-shadow: 0 1px 8px rgba(251,248,243,.9);
+}
+
+/* ---------------------------------------------------------
+   Mobile FV：動画は「見せる」ことに専念させ、コピーは
+   下の専用エリア（Ivory〜White）へ完全に分離する。
+   PC版のような映像上へのテキスト重ねは行わない。
+   --------------------------------------------------------- */
+@media (max-width: 40rem) {
+  .hero {
+    display: block; min-height: 100svh; padding-block: 0;
+  }
+  .hero__media {
+    position: relative; inset: auto; z-index: auto;
+    height: 72svh; width: 100%;
+  }
+  .hero__img { object-position: 62% 28%; }
+  .hero__veil { display: none; }
+  .hero__inner {
+    align-items: center; text-align: center; gap: .8rem; max-width: none;
+    padding-block: 1.6rem 2.1rem;
+    background: linear-gradient(180deg, var(--base) 0%, var(--ivory) 100%);
+  }
+  .hero__kicker, .hero__meta, .hero__title, .hero__sub { text-shadow: none; }
+  .hero__title { font-size: clamp(1.5rem, 6.5vw, 1.875rem); line-height: 1.5; }
+  .hero__sub { font-size: var(--fs-sm); }
+  .hero__meta { font-size: .7rem; }
+  .hero__scroll { display: none; }
 }
 .hero__scroll-label { font-size: var(--fs-xs); letter-spacing: .3em; }
 .hero__scroll-line {
@@ -325,6 +337,15 @@ a { color: inherit; text-decoration: none; }
 .work img { width: 100%; height: auto; display: block; transition: transform 1.4s cubic-bezier(.22,.61,.36,1); }
 .work:hover img { transform: scale(1.03); }
 .works-note { margin-top: clamp(1.5rem, 4vw, 2rem); text-align: center; font-size: var(--fs-xs); color: var(--ink-faint); letter-spacing: .04em; }
+
+.create-gallery {
+  display: grid; grid-template-columns: 1fr; gap: clamp(1rem, 4vw, 1.75rem);
+  max-width: 24rem; margin-inline: auto;
+}
+@media (min-width: 40rem) {
+  .create-gallery { grid-template-columns: repeat(3, 1fr); max-width: 58rem; }
+}
+.create-gallery .work { margin-bottom: 0; }
 
 /* =========================================================
    04a. 大きな流れ（見つける→整える→カタチにする→届ける）
@@ -735,16 +756,22 @@ a { color: inherit; text-decoration: none; }
   </section>
 
   <!-- ==========================================================
-       07. CREATE｜カタチになる（写真の帯④）
+       07. CREATE｜言葉になったものが、目に見える世界になる
        ========================================================== -->
-  <section class="quote-strip quote-strip--tall">
-    <img class="quote-strip__img" src="assets/mentoring-form.jpg" alt="広い淡いブルーの空と花畑の中に、ピンク〜アイボリーのドレスを着て立つ女性" loading="lazy" decoding="async" style="object-position: 62% 40%;">
-    <div class="quote-strip__veil" aria-hidden="true"></div>
+  <section class="section section--ivory" aria-labelledby="create-title">
     <div class="wrap">
-      <p class="quote-strip__text reveal">
-        これが、私。<br><span>と思える一枚へ。</span>
-      </p>
-      <p class="quote-strip__note reveal"><span class="nowrap">AIアート</span>は、綺麗な画像を作るためだけじゃない。<br>あなたの中にあるものを、目に見えるカタチにできる。</p>
+      <div class="band-head reveal">
+        <p class="eyebrow">Create</p>
+        <h2 class="band-title" id="create-title">言葉になったものが、<br>目に見える世界になる。</h2>
+      </div>
+
+      <div class="create-gallery reveal">
+        <figure class="work"><img src="assets/work-summer-3.jpg" alt="夕暮れの海を背景に、風になびく髪と淡い花柄の衣装をまとう女性のAIアート作品" width="1080" height="1350" loading="lazy" decoding="async"></figure>
+        <figure class="work"><img src="assets/work-summer-1.jpg" alt="コーラルピンクの大きな花と水滴に包まれる横顔のAIアート作品" width="1080" height="1350" loading="lazy" decoding="async"></figure>
+        <figure class="work"><img src="assets/work-summer-4.jpg" alt="青い空とパステルカラーの壁を背景に、花畑の中でグラスを傾ける女性のAIアート作品" width="1080" height="1350" loading="lazy" decoding="async"></figure>
+      </div>
+
+      <p class="works-note reveal"><span class="nowrap">AIアート</span>は、綺麗な画像を作るためだけじゃない。<br>あなたの中にあるものを、目に見えるカタチにできる。</p>
     </div>
   </section>
 
