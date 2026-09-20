@@ -125,6 +125,7 @@ a { color: inherit; text-decoration: none; }
 .band-lead { max-width: var(--measure); color: var(--ink-soft); font-size: var(--fs-sm); line-height: 2; text-wrap: balance; white-space: pre-line; }
 
 .section { padding-block: var(--band); }
+.section--tight { padding-block: clamp(2.75rem, 6vw, 4rem); }
 .section--ivory { background: var(--ivory); }
 .section--blush { background: linear-gradient(180deg, var(--base) 0%, var(--blush) 22%, var(--blush) 78%, var(--base) 100%); }
 .section--sky { background: linear-gradient(180deg, var(--base) 0%, var(--sky) 22%, var(--sky) 78%, var(--base) 100%); }
@@ -198,36 +199,38 @@ a { color: inherit; text-decoration: none; }
   animation: hero-breathe 24s ease-in-out infinite;
 }
 /* 動画は明るさが大きく振れるため、白飛び・暗転どちらでも文字が読める濃さに均す
-   （index.htmlで実測・確定済みの配合をそのまま踏襲） */
+   （index.htmlで実測・確定済みの配合をベースに、文字が乗る範囲だけ少し強めた） */
 .hero__veil {
   position: absolute; inset: 0;
   background:
     linear-gradient(105deg,
-      rgba(251,248,243,.62) 0%,
-      rgba(251,248,243,.48) 45%,
-      rgba(246,223,220,.30) 100%),
+      rgba(251,248,243,.7) 0%,
+      rgba(251,248,243,.54) 42%,
+      rgba(246,223,220,.32) 78%,
+      rgba(246,223,220,.14) 100%),
     linear-gradient(180deg,
-      rgba(251,248,243,.20) 0%,
-      rgba(251,248,243,.05) 40%,
-      rgba(239,228,216,.42) 100%);
+      rgba(251,248,243,.22) 0%,
+      rgba(251,248,243,.06) 38%,
+      rgba(239,228,216,.46) 100%);
 }
 .hero__inner { display: flex; flex-direction: column; align-items: flex-start; gap: 1.35rem; max-width: 34rem; }
 .hero__kicker, .hero__meta {
   font-family: var(--gothic); font-weight: 500; font-size: var(--fs-xs);
   letter-spacing: .22em; color: var(--rose-ink);
-  text-shadow: 0 1px 10px rgba(251,248,243,.9), 0 1px 3px rgba(251,248,243,.85);
+  text-shadow: 0 1px 2px rgba(51,46,45,.18), 0 1px 10px rgba(251,248,243,.92), 0 1px 3px rgba(251,248,243,.85);
 }
 .hero__meta { color: var(--ink-faint); }
 .hero__title {
   font-family: var(--mincho); font-size: var(--fs-3xl); font-weight: 600;
   line-height: 1.55; letter-spacing: .04em; text-wrap: balance;
-  text-shadow: 0 1px 16px rgba(254,253,251,.95), 0 1px 4px rgba(254,253,251,.9);
+  color: #2a2624;
+  text-shadow: 0 1px 3px rgba(42,38,36,.22), 0 1px 18px rgba(254,253,251,.96), 0 1px 4px rgba(254,253,251,.92);
 }
-.hero__title em { font-style: normal; color: var(--rose-deep); }
+.hero__title em { font-style: normal; color: var(--rose-hover); }
 .hero__sub {
   font-family: var(--mincho); font-size: var(--fs-lg); font-weight: 500;
-  color: var(--ink); letter-spacing: .05em;
-  text-shadow: 0 1px 14px rgba(254,253,251,.95), 0 1px 3px rgba(254,253,251,.85);
+  color: #2a2624; letter-spacing: .05em;
+  text-shadow: 0 1px 2px rgba(42,38,36,.2), 0 1px 14px rgba(254,253,251,.95), 0 1px 3px rgba(254,253,251,.88);
 }
 .hero__scroll {
   position: absolute; left: 50%; bottom: clamp(1.5rem, 4vw, 2.5rem); transform: translateX(-50%);
@@ -395,13 +398,13 @@ a { color: inherit; text-decoration: none; }
 /* =========================================================
    VOICE｜口コミ（editorialな引用レイアウト。カード化しない）
    ========================================================= */
-.voice { text-align: center; max-width: 34rem; margin-inline: auto; }
+.voice { text-align: center; max-width: 32rem; margin-inline: auto; }
 .voice-quote {
-  margin-top: clamp(1.5rem, 4vw, 2.25rem); font-family: var(--mincho); font-size: var(--fs-xl); font-weight: 500;
-  line-height: 1.85; letter-spacing: .05em; color: var(--ink);
+  margin-top: clamp(1rem, 3vw, 1.5rem); font-family: var(--mincho); font-size: var(--fs-xl); font-weight: 500;
+  line-height: 1.65; letter-spacing: .05em; color: var(--ink);
 }
-.voice-support { margin-top: clamp(2rem, 5vw, 2.75rem); display: grid; gap: 1.1rem; font-size: var(--fs-sm); line-height: 2; color: var(--ink-soft); }
-.voice-attr { margin-top: clamp(1.5rem, 4vw, 2rem); font-size: var(--fs-xs); letter-spacing: .08em; color: var(--ink-faint); }
+.voice-support { margin-top: clamp(1.5rem, 3.5vw, 2rem); display: grid; gap: .75rem; font-size: var(--fs-sm); line-height: 1.85; color: var(--ink-soft); }
+.voice-attr { margin-top: clamp(1rem, 3vw, 1.5rem); font-size: var(--fs-xs); letter-spacing: .08em; color: var(--ink-faint); }
 
 /* =========================================================
    07. About Soi（自己紹介・editorial 2カラム）
@@ -473,11 +476,7 @@ a { color: inherit; text-decoration: none; }
 .fits { display: grid; gap: .65rem; max-width: 34rem; margin-inline: auto; }
 .fit-item { padding-left: 1.3em; text-indent: -1.3em; font-size: var(--fs-sm); line-height: 1.85; }
 .fit-item::before { content: "・"; display: inline-block; width: 1.3em; color: var(--rose); }
-.fits-note {
-  max-width: 30rem; margin: clamp(2rem, 5vw, 2.75rem) auto 0; padding: clamp(1.25rem, 4vw, 1.6rem);
-  text-align: center; background: var(--panel); border: 1px solid var(--line); border-radius: 14px;
-  font-size: var(--fs-sm); line-height: 1.95; color: var(--ink-soft);
-}
+.fits-note { max-width: 30rem; margin: clamp(2rem, 5vw, 2.75rem) auto 0; text-align: center; font-size: var(--fs-xs); color: var(--ink-faint); line-height: 1.9; }
 
 /* =========================================================
    10. FAQ
@@ -622,21 +621,24 @@ a { color: inherit; text-decoration: none; }
   </section>
 
   <!-- ==========================================================
-       03. DISCOVER｜自分の中を見る（写真の帯）
+       03. DISCOVER｜自分の中を見る（文章のみ・余白優先）
+       前後の写真の帯が連続しないよう、ここはテキストのみにして
+       大きなビジュアルは次のCLARITYの1枚に集約している。
        ========================================================== -->
-  <section class="quote-strip quote-strip--tall">
-    <img class="quote-strip__img" src="assets/mentoring-inner.jpg" alt="窓辺でノートを開き、自分の中にあるものを見つめる女性" loading="lazy" decoding="async" style="object-position: 68% 42%;">
-    <div class="quote-strip__veil" aria-hidden="true"></div>
-    <div class="wrap">
-      <p class="quote-strip__text reveal">
-        世界観の材料は、もう<br><span>あなたの中にあります。</span>
-      </p>
-      <p class="quote-strip__note reveal">好き。想い。価値観。<br>大切にしていること。これまでの経験。届けたいこと。<br>それらを、ひとつずつ見つけていく。</p>
+  <section class="section" aria-labelledby="discover-title">
+    <div class="wrap wrap--narrow">
+      <div class="band-head reveal">
+        <p class="eyebrow">Discover</p>
+        <h2 class="band-title" id="discover-title">世界観の材料は、<br>もうあなたの中にあります。</h2>
+        <p class="band-lead">好き。想い。価値観。
+大切にしていること。これまでの経験。届けたいこと。
+それらを、ひとつずつ見つけていく。</p>
+      </div>
     </div>
   </section>
 
   <!-- ==========================================================
-       04. CLARITY｜輪郭が生まれる（写真の帯）
+       04. CLARITY｜輪郭が生まれる（前半で見せる唯一の大きな写真）
        ========================================================== -->
   <section class="quote-strip quote-strip--center">
     <img class="quote-strip__img" src="assets/mentoring-outline.jpg" alt="パウダーブルーの背景に、前ボケしたピンクの花と、輪郭のはっきりした一輪の花" loading="lazy" decoding="async" style="object-position: 50% 55%;">
@@ -663,7 +665,6 @@ a { color: inherit; text-decoration: none; }
         <figure class="work"><img src="assets/work-2.jpg" alt="瞳とシャボン玉を近くから捉えた、繊細な質感のAIアート作品" width="1080" height="1350" loading="lazy" decoding="async"></figure>
         <figure class="work"><img src="assets/work-1.jpg" alt="やわらかな光に透ける横顔と、淡いピンクの花のAIアート作品" width="1200" height="904" loading="lazy" decoding="async"></figure>
         <figure class="work"><img src="assets/work-4.jpg" alt="やわらかな光の中でほほえむ横顔のAIアート作品" width="1200" height="904" loading="lazy" decoding="async"></figure>
-        <figure class="work"><img src="assets/work-3.jpg" alt="かすみ草の花束と淡いピンクのドレス、海辺の光のAIアート作品" width="1080" height="1350" loading="lazy" decoding="async"></figure>
       </div>
     </div>
   </section>
@@ -729,9 +730,12 @@ a { color: inherit; text-decoration: none; }
 
   <!-- ==========================================================
        AIアートが「カタチになる」場面（写真の帯）
+       ギャラリーで使用していたwork-3.jpg（かすみ草の花束＋淡いピンクの
+       ドレス＋海辺の光）をこちらへ移動。人物が主張しすぎず、Powder Blue
+       ×Blush Pink×Ivoryに馴染み、前後の写真とも重複しないため選定した。
        ========================================================== -->
   <section class="quote-strip quote-strip--tall">
-    <img class="quote-strip__img" src="assets/mentoring-form.jpg" alt="広い淡いブルーの空と花畑の中に、ピンク〜アイボリーのドレスを着て立つ女性" loading="lazy" decoding="async" style="object-position: 62% 40%;">
+    <img class="quote-strip__img" src="assets/work-3.jpg" alt="かすみ草の花束と淡いピンクのドレス、海辺の光のAIアート作品" loading="lazy" decoding="async" style="object-position: 50% 28%;">
     <div class="quote-strip__veil" aria-hidden="true"></div>
     <div class="wrap">
       <p class="quote-strip__text reveal">
@@ -745,7 +749,7 @@ a { color: inherit; text-decoration: none; }
        VOICE｜口コミ（editorialな引用レイアウト）
        文章は既存ページ（index.html）にある実際の声のみを使用。
        ========================================================== -->
-  <section class="section section--ivory" aria-labelledby="voice-title">
+  <section class="section section--ivory section--tight" aria-labelledby="voice-title">
     <div class="wrap wrap--narrow voice reveal">
       <p class="eyebrow" id="voice-title">Voice</p>
       <blockquote class="voice-quote">ただ綺麗な画像が<br>作れるだけではなく、<br>自分の発信に愛着が<br>持てるようになったことが、<br>一番の価値でした。</blockquote>
@@ -793,7 +797,8 @@ a { color: inherit; text-decoration: none; }
 
         <p class="scope__note">LP・<span class="nowrap">Web</span>への<span class="nowrap">世界観</span>活用についてご相談いただくことは可能ですが、実際の制作は別サービスとなります。
 <span class="nowrap">Midjourney</span>等、外部<span class="nowrap">AI</span>ツールの利用料金は含まれません。
-メッセージは順次返信となり、即時の返信をお約束するものではありません。</p>
+メッセージは順次返信となり、即時の返信をお約束するものではありません。
+<span class="nowrap">AIアート</span>を少し試してみたい、という体験だけを目的としたサポートではありません。</p>
       </div>
     </div>
   </section>
@@ -811,11 +816,9 @@ a { color: inherit; text-decoration: none; }
 
       <div class="goals reveal">
         <p class="goal-item">自分の好きや大切にしていることを、言葉にできる</p>
-        <p class="goal-item">自分らしい<span class="nowrap">世界観</span>を、言葉と<span class="nowrap">ビジュアル</span>で表現できる</p>
+        <p class="goal-item">自分らしい<span class="nowrap">世界観</span>を、<span class="nowrap">AIアート</span>で表現できる</p>
         <p class="goal-item">「なんか違う」を自分で分析して、修正できる</p>
-        <p class="goal-item">自分の発信や活動で、実際に活用できる</p>
-        <p class="goal-item">「これを、こう活かしたい」という次の一歩が見えている</p>
-        <p class="goal-item">サポート終了後も、自分で考え、選び、育てていける</p>
+        <p class="goal-item">発信・活動・商品・作品など、自分なりの形で活かしていける</p>
       </div>
 
       <p class="goals-note reveal">売上やフォロワー数など、<br>外部の成果を<br>お約束するものではありません。</p>
@@ -863,12 +866,10 @@ a { color: inherit; text-decoration: none; }
         <p class="fit-item">自分の中にあるものを、何かのカタチで外へ届けたい</p>
         <p class="fit-item">自分らしい発信や活動をしていきたい</p>
         <p class="fit-item"><span class="nowrap">AIアート</span>を、作って終わりにしたくない</p>
-        <p class="fit-item">自分の「好き」や想いを、表現できるようになりたい</p>
         <p class="fit-item">まだ何をするか決まっていないけれど、何か始めたい気持ちがある</p>
       </div>
 
-      <p class="fits-note reveal">「少しだけ<span class="nowrap">AIアート</span>に触れてみたい」<br>という段階の方には、他にも学べる場があります。
-この3ヶ月は、<br>その先まで一緒に育てていきたい方のための時間です。</p>
+      <p class="fits-note reveal">まだ何も決まっていない人も、<br>すでに発信や活動をしている人も、対象です。</p>
     </div>
   </section>
 
@@ -890,28 +891,17 @@ a { color: inherit; text-decoration: none; }
 
         <div class="about-body-wrap">
           <div class="about-body">
-            <p>私自身、<span class="nowrap">AIアート</span>を始めたことで、
-「私、これが好きだったんだ」
-と、自分の中にあるものに
-たくさん気づきました。</p>
-
             <p>以前の私は、
 「自分には<span class="nowrap">世界観</span>なんてない」
 と思っていました。
 本当はピンクが好きなのに、
 その「好き」を隠していた時期もあります。</p>
 
-            <p>でも、
-「これ好き」「これは違う」「もっとこっち」
-と選び続けていくうちに、
-自分が何を好きで、
-何を大切にしているのかが
-少しずつ見えるようになりました。</p>
-
-            <p><span class="nowrap">AIアート</span>は、
-綺麗な画像を作るためだけではなく、
-自分の中にあるものを
-目に見えるカタチにしてくれるものになりました。</p>
+            <p><span class="nowrap">AIアート</span>を始めてから、
+「これ好き」「これは違う」と選び続けていくうちに、
+「私、これが好きだったんだ」と、
+自分の中にあるものに気づき、
+目に見えるカタチにできることを知りました。</p>
 
             <p>だから今度は、
 その体験を、誰かと一緒にやってみたい。
@@ -1058,9 +1048,7 @@ a { color: inherit; text-decoration: none; }
 
       <p class="final__prompt">公式<span class="nowrap">LINE</span>から、<br><span>「サポート相談」</span>と送ってください。</p>
 
-      <p class="btn-note">「私にも合うかな？」<br>「こんなことをやってみたいけど対象になる？」<br>という段階でのご相談も、大歓迎です。
-
-申し込み・決済の前には、必ず事前相談を行います。</p>
+      <p class="btn-note">申し込み・決済の前には、必ず事前相談を行います。</p>
     </div>
   </section>
 
