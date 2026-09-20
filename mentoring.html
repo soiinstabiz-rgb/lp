@@ -220,12 +220,13 @@ a { color: inherit; text-decoration: none; }
       rgba(251,248,243,.74) 100%);
   }
 }
-.hero__inner { display: flex; flex-direction: column; align-items: flex-start; gap: 1.5rem; max-width: 36rem; }
-.hero__badge {
-  display: inline-flex; align-items: center; padding: .55em 1.2em;
-  font-size: var(--fs-xs); letter-spacing: .14em; color: var(--rose-ink);
-  background: rgba(255,255,255,.78); border: 1px solid rgba(201,138,146,.35); border-radius: 999px;
+.hero__inner { display: flex; flex-direction: column; align-items: flex-start; gap: 1.35rem; max-width: 34rem; }
+.hero__kicker, .hero__meta {
+  font-family: var(--gothic); font-weight: 500; font-size: var(--fs-xs);
+  letter-spacing: .22em; color: var(--rose-ink);
+  text-shadow: 0 1px 10px rgba(251,248,243,.9), 0 1px 3px rgba(251,248,243,.85);
 }
+.hero__meta { color: var(--ink-faint); }
 .hero__title {
   font-family: var(--mincho); font-size: var(--fs-3xl); font-weight: 600;
   line-height: 1.55; letter-spacing: .04em; text-wrap: balance;
@@ -237,12 +238,20 @@ a { color: inherit; text-decoration: none; }
   color: var(--ink); letter-spacing: .05em;
   text-shadow: 0 1px 14px rgba(254,253,251,.95), 0 1px 3px rgba(254,253,251,.85);
 }
-.hero__lead {
-  max-width: var(--measure); font-size: var(--fs-sm); line-height: 2; color: var(--ink-soft);
-  text-shadow: 0 1px 12px rgba(254,253,251,.9);
-  white-space: pre-line;
+.hero__scroll {
+  position: absolute; left: 50%; bottom: clamp(1.5rem, 4vw, 2.5rem); transform: translateX(-50%);
+  display: flex; flex-direction: column; align-items: center; gap: .6rem;
+  color: var(--ink-soft); text-shadow: 0 1px 8px rgba(251,248,243,.9);
 }
-.hero__actions { display: flex; flex-wrap: wrap; gap: .875rem; margin-top: .25rem; }
+.hero__scroll-label { font-size: var(--fs-xs); letter-spacing: .3em; }
+.hero__scroll-line {
+  width: 1px; height: 2.25rem; background: linear-gradient(180deg, var(--rose-deep), transparent);
+  animation: scroll-cue 2.4s ease-in-out infinite;
+}
+@keyframes scroll-cue {
+  0%, 100% { transform: scaleY(1); opacity: .9; }
+  50%      { transform: scaleY(.55); opacity: .5; }
+}
 
 /* 静止画だと思ったら、少しだけ息をしている程度のごくゆるやかな拡大 */
 @keyframes hero-breathe {
@@ -273,15 +282,6 @@ a { color: inherit; text-decoration: none; }
 .feelings-turn strong { color: var(--rose-deep); font-weight: 600; }
 
 /* =========================================================
-   03. 考え方（定義カード）
-   ========================================================= */
-.defs { display: grid; gap: 1.1rem; max-width: 42rem; margin-inline: auto; }
-.def { padding: clamp(1.6rem, 4.5vw, 2.1rem); background: var(--panel); border: 1px solid var(--line); border-radius: 18px; box-shadow: var(--shadow-sm); }
-.def__label { display: inline-flex; padding: .3em 1em; font-size: var(--fs-xs); letter-spacing: .1em; color: var(--rose-ink); background: var(--blush); border-radius: 999px; margin-bottom: 1rem; }
-.def__title { font-family: var(--mincho); font-size: var(--fs-lg); font-weight: 500; line-height: 1.7; letter-spacing: .04em; text-wrap: balance; }
-.def__body { margin-top: .75rem; font-size: var(--fs-sm); line-height: 2; color: var(--ink-soft); white-space: pre-line; text-wrap: balance; }
-
-/* =========================================================
    写真の帯（引用）
    ========================================================= */
 .quote-strip {
@@ -309,6 +309,22 @@ a { color: inherit; text-decoration: none; }
 .quote-strip--center .quote-strip__text { margin-inline: auto; }
 .quote-strip__text span { color: var(--rose-deep); }
 .quote-strip__text--sm { font-size: var(--fs-lg); max-width: 20rem; }
+.quote-strip__note {
+  margin-top: .9rem; max-width: 24rem; font-size: var(--fs-xs); line-height: 2; color: var(--ink-soft);
+  text-shadow: 0 1px 10px rgba(251,248,243,.9), 0 1px 3px rgba(251,248,243,.8);
+  white-space: pre-line;
+}
+.quote-strip--center .quote-strip__note { margin-inline: auto; }
+
+/* =========================================================
+   作品ギャラリー（editorial masonry）
+   ========================================================= */
+.works { columns: 1; column-gap: clamp(.9rem, 3vw, 1.5rem); max-width: 44rem; margin-inline: auto; }
+@media (min-width: 34rem) { .works { columns: 2; } }
+.work { break-inside: avoid; margin-bottom: clamp(.9rem, 3vw, 1.5rem); overflow: hidden; }
+.work img { width: 100%; height: auto; display: block; transition: transform 1.4s cubic-bezier(.22,.61,.36,1); }
+.work:hover img { transform: scale(1.03); }
+.works-note { margin-top: clamp(1.5rem, 4vw, 2rem); text-align: center; font-size: var(--fs-xs); color: var(--ink-faint); letter-spacing: .04em; }
 
 /* =========================================================
    04a. 大きな流れ（見つける→整える→カタチにする→届ける）
@@ -399,6 +415,10 @@ a { color: inherit; text-decoration: none; }
 .story__role { font-size: var(--fs-xs); color: var(--ink-faint); letter-spacing: .08em; }
 .story__body { font-size: var(--fs-sm); line-height: 2.05; color: var(--ink-soft); white-space: pre-line; text-wrap: pretty; }
 .story__body strong { color: var(--rose-deep); font-weight: 600; }
+.story__closing {
+  margin-top: 1.75rem; font-family: var(--mincho); font-size: var(--fs-lg); font-weight: 500;
+  line-height: 1.9; letter-spacing: .05em; color: var(--rose-deep); text-wrap: balance;
+}
 
 /* =========================================================
    08. サポート内容／対象外
@@ -530,22 +550,19 @@ a { color: inherit; text-decoration: none; }
     <div class="hero__veil" aria-hidden="true"></div>
 
     <div class="wrap hero__inner">
-      <span class="hero__badge">3ヶ月 個別伴走サポート</span>
+      <span class="hero__kicker">AI ART × WORLDVIEW DESIGN</span>
 
       <h1 class="hero__title">あなたらしさを、<br><em>カタチに。</em>その先へ。</h1>
 
       <p class="hero__sub">作れるようになって、終わりじゃない。</p>
 
-      <p class="hero__lead"><span class="nowrap">AIアート</span>を入り口に、
-あなたの中にある「好き」や想いを一緒に見つけて、
-その先の発信・活動・作品まで、一緒に育てていく
-3ヶ月のサポートです。</p>
-
-      <div class="hero__actions">
-        <a class="btn" href="#" data-line-link="intro">3ヶ月サポートについて相談する <span class="btn__arrow" aria-hidden="true">→</span></a>
-        <a class="btn btn--ghost" href="#steps">くわしくみる</a>
-      </div>
+      <span class="hero__meta">3 MONTH PERSONAL SUPPORT</span>
     </div>
+
+    <a class="hero__scroll" href="#feelings-title" aria-label="スクロールして続きを見る">
+      <span class="hero__scroll-label">SCROLL</span>
+      <span class="hero__scroll-line" aria-hidden="true"></span>
+    </a>
   </section>
 
   <!-- ==========================================================
@@ -559,101 +576,21 @@ a { color: inherit; text-decoration: none; }
       </div>
 
       <div class="feelings reveal">
-        <p class="feeling">好きなものはあるのに、うまく言葉にできない。</p>
-        <p class="feeling">綺麗な画像は作れても、<span class="nowrap">自分らしい</span>と思えない。</p>
-        <p class="feeling">発信や活動はしているけど、誰かの真似のような気がする。</p>
-        <p class="feeling">何か始めたいのに、自分に何ができるのか分からない。</p>
-        <p class="feeling">今ある商品やサービスに、もっと<span class="nowrap">自分らしさ</span>を込めたい。</p>
+        <p class="feeling"><span class="nowrap">自分らしい</span>発信をしたいけど、何が「自分らしい」のか分からない。</p>
+        <p class="feeling"><span class="nowrap">AIアート</span>を作ってみても、綺麗だけど「私っぽくない」。</p>
+        <p class="feeling">やってみたいことはあるけど、何から始めたらいいか分からない。</p>
       </div>
 
       <p class="feelings-turn reveal">
-        「現在地」は、<br>
-        人それぞれでいい。<br>
-        大切なのは、<strong>自分の中にあるものを、<br>外へ届けたい</strong><br>という気持ちです。
+        もしかしたら、<br>
+        <strong>足りないんじゃなくて。</strong><br>
+        まだ、<strong>見つけられていない</strong><br>だけかもしれません。
       </p>
     </div>
   </section>
 
   <!-- ==========================================================
-       03. 考え方（AIアート＝ゴールではない／世界観／世界観設計）
-       ========================================================== -->
-  <section class="section section--sky" aria-labelledby="concept-title">
-    <div class="wrap">
-      <div class="band-head reveal">
-        <p class="eyebrow">Concept</p>
-        <h2 class="band-title" id="concept-title">「作れるようになる」で、<br>終わらせません。</h2>
-        <p class="band-lead"><span class="nowrap">AIアート</span>が作れるようになること自体を、
-ゴールにはしていません。</p>
-      </div>
-
-      <div class="defs reveal">
-        <article class="def">
-          <span class="def__label">考え方</span>
-          <p class="def__title">好き・想い・価値観・経験を、<br>言葉にして、カタチへ整える。</p>
-          <p class="def__body">自分の中にある
-好き、想い、価値観、
-大切にしていること、
-これまでの経験、
-届けたいこと。
-
-それらを一緒に見つけて
-言葉にし、
-あなたらしさが
-「伝わるカタチ」へ
-整えていきます。
-
-そして<span class="nowrap">AIアート</span>として
-表現し、その先の
-発信・活動・商品・作品へ
-活かしていきます。</p>
-        </article>
-
-        <article class="def">
-          <span class="def__label">世界観について</span>
-          <p class="def__title"><span class="nowrap">世界観</span>は、<br>ゼロから作る<br>ものではありません。</p>
-          <p class="def__body">センスのある人だけが
-作れるものではなく、
-その材料は、
-すでにあなたの中にあります。
-
-好き、想い、価値観、
-大切にしていること、
-これまでの経験、届けたいこと。
-
-それらが言葉や
-ビジュアル、発信、
-活動などを通して
-一貫して外に
-表れていくことで、
-あなたらしい<span class="nowrap">世界観</span>が
-伝わっていきます。</p>
-        </article>
-
-        <article class="def">
-          <span class="def__label"><span class="nowrap">世界観設計</span>とは</span>
-          <p class="def__title">自己理解だけで、<br>終わらせないこと。</p>
-          <p class="def__body">あなたの中にあるものを
-引き出して言葉にし、
-届けたい相手や目的とも
-つなぎながら、
-「あなたらしさ」が
-伝わる形へ
-整えていくこと。
-
-自己理解だけで
-終わらせず、
-<span class="nowrap">AIアート</span>や発信、
-活動など、
-実際に外へ
-届けるところまで、
-一緒に進みます。</p>
-        </article>
-      </div>
-    </div>
-  </section>
-
-  <!-- ==========================================================
-       写真の帯②｜自分の中を見る
+       03. DISCOVER｜自分の中を見る（写真の帯②）
        ========================================================== -->
   <section class="quote-strip quote-strip--tall">
     <img class="quote-strip__img" src="assets/mentoring-inner.jpg" alt="窓辺でノートを開き、自分の中にあるものを見つめる女性" loading="lazy" decoding="async" style="object-position: 68% 42%;">
@@ -662,13 +599,49 @@ a { color: inherit; text-decoration: none; }
       <p class="quote-strip__text reveal">
         世界観の材料は、もう<br><span>あなたの中にあります。</span>
       </p>
+      <p class="quote-strip__note reveal">好き。想い。価値観。<br>大切にしていること。これまでの経験。届けたいこと。<br>それらを、ひとつずつ見つけていく。</p>
     </div>
   </section>
 
   <!-- ==========================================================
-       04a. 3ヶ月の旅｜大きな流れ
+       04. WORLD / WORKS｜作品ギャラリー
        ========================================================== -->
-  <section class="section" id="steps" aria-labelledby="steps-title">
+  <section class="section" aria-labelledby="works-title">
+    <div class="wrap">
+      <div class="band-head reveal">
+        <p class="eyebrow">World / Works</p>
+        <h2 class="band-title" id="works-title">“なんか好き”が、<br>カタチになる。</h2>
+      </div>
+
+      <div class="works reveal">
+        <figure class="work"><img src="assets/work-2.jpg" alt="瞳とシャボン玉を近くから捉えた、繊細な質感のAIアート作品" width="1080" height="1350" loading="lazy" decoding="async"></figure>
+        <figure class="work"><img src="assets/work-1.jpg" alt="やわらかな光に透ける横顔と、淡いピンクの花のAIアート作品" width="1200" height="904" loading="lazy" decoding="async"></figure>
+        <figure class="work"><img src="assets/work-4.jpg" alt="やわらかな光の中でほほえむ横顔のAIアート作品" width="1200" height="904" loading="lazy" decoding="async"></figure>
+        <figure class="work"><img src="assets/work-3.jpg" alt="かすみ草の花束と淡いピンクのドレス、海辺の光のAIアート作品" width="1080" height="1350" loading="lazy" decoding="async"></figure>
+      </div>
+
+      <p class="works-note reveal">すべて、実際にわたしが制作した作品です。</p>
+    </div>
+  </section>
+
+  <!-- ==========================================================
+       05. CLARITY｜輪郭が生まれる（写真の帯③）
+       ========================================================== -->
+  <section class="quote-strip quote-strip--center">
+    <img class="quote-strip__img" src="assets/mentoring-outline.jpg" alt="パウダーブルーの背景に、前ボケしたピンクの花と、輪郭のはっきりした一輪の花" loading="lazy" decoding="async" style="object-position: 50% 55%;">
+    <div class="quote-strip__veil" aria-hidden="true"></div>
+    <div class="wrap">
+      <p class="quote-strip__text quote-strip__text--sm reveal">
+        “なんか好き”に、<span>輪郭を。</span>
+      </p>
+      <p class="quote-strip__note reveal">見つけて、言葉にして、伝わるカタチへ。</p>
+    </div>
+  </section>
+
+  <!-- ==========================================================
+       06. 3ヶ月の旅｜大きな流れ
+       ========================================================== -->
+  <section class="section section--sky" id="steps" aria-labelledby="steps-title">
     <div class="wrap">
       <div class="band-head reveal">
         <p class="eyebrow">3 Months</p>
@@ -701,20 +674,7 @@ a { color: inherit; text-decoration: none; }
   </section>
 
   <!-- ==========================================================
-       写真の帯③｜輪郭が生まれる
-       ========================================================== -->
-  <section class="quote-strip quote-strip--center">
-    <img class="quote-strip__img" src="assets/mentoring-outline.jpg" alt="パウダーブルーの背景に、前ボケしたピンクの花と、輪郭のはっきりした一輪の花" loading="lazy" decoding="async" style="object-position: 50% 55%;">
-    <div class="quote-strip__veil" aria-hidden="true"></div>
-    <div class="wrap">
-      <p class="quote-strip__text quote-strip__text--sm reveal">
-        “なんか好き”に、<span>輪郭を。</span>
-      </p>
-    </div>
-  </section>
-
-  <!-- ==========================================================
-       04b. 3ヶ月の旅｜くわしい6つのSTEP（アコーディオン）
+       くわしい6つのSTEP（アコーディオン）
        ========================================================== -->
   <section class="section section--blush">
     <div class="wrap">
@@ -775,7 +735,7 @@ a { color: inherit; text-decoration: none; }
   </section>
 
   <!-- ==========================================================
-       写真の帯④｜カタチになる
+       07. CREATE｜カタチになる（写真の帯④）
        ========================================================== -->
   <section class="quote-strip quote-strip--tall">
     <img class="quote-strip__img" src="assets/mentoring-form.jpg" alt="広い淡いブルーの空と花畑の中に、ピンク〜アイボリーのドレスを着て立つ女性" loading="lazy" decoding="async" style="object-position: 62% 40%;">
@@ -784,13 +744,14 @@ a { color: inherit; text-decoration: none; }
       <p class="quote-strip__text reveal">
         これが、私。<br><span>と思える一枚へ。</span>
       </p>
+      <p class="quote-strip__note reveal"><span class="nowrap">AIアート</span>は、綺麗な画像を作るためだけじゃない。<br>あなたの中にあるものを、目に見えるカタチにできる。</p>
     </div>
   </section>
 
   <!-- ==========================================================
-       05. 3ヶ月後に目指す状態
+       3ヶ月後に目指す状態
        ========================================================== -->
-  <section class="section section--sky" aria-labelledby="goals-title">
+  <section class="section" aria-labelledby="goals-title">
     <div class="wrap">
       <div class="band-head reveal">
         <p class="eyebrow">3 Months Later</p>
@@ -812,13 +773,16 @@ a { color: inherit; text-decoration: none; }
   </section>
 
   <!-- ==========================================================
-       06. 一人ひとり違う「その先」
+       08. BEYOND｜カタチにしたら、その先へ
        ========================================================== -->
   <section class="section" aria-labelledby="paths-title">
     <div class="wrap wrap--narrow">
       <div class="band-head reveal">
-        <p class="eyebrow">Your Path</p>
-        <h2 class="band-title" id="paths-title"><span class="nowrap">AIアート</span>を、<br>何に活かすかは、<br>人それぞれ。</h2>
+        <p class="eyebrow">Beyond</p>
+        <h2 class="band-title" id="paths-title">カタチにしたら、<br>その先へ。</h2>
+        <p class="band-lead">発信。活動。商品。作品。<br>その先は、人によって違っていい。
+まだ何をしたいか、<br>はっきり決まっていなくても構いません。
+大切なのは、<span class="nowrap">自分の中にあるもの</span>を<br>何かのカタチで外へ届けていきたいという気持ちです。</p>
       </div>
 
       <div class="paths reveal">
@@ -841,8 +805,8 @@ a { color: inherit; text-decoration: none; }
   <section class="section section--blush" aria-labelledby="story-title">
     <div class="wrap">
       <div class="band-head reveal">
-        <p class="eyebrow">Story</p>
-        <h2 class="band-title" id="story-title">わたしの話を、少しだけ。</h2>
+        <p class="eyebrow">About Soi</p>
+        <h2 class="band-title" id="story-title">“なんか好き”の中に、<br>もう世界観はある。</h2>
       </div>
 
       <div class="story reveal">
@@ -884,15 +848,17 @@ a { color: inherit; text-decoration: none; }
 その先の発信や活動まで、一緒に進みたい。
 
 そう思って、このサポートを始めました。</p>
+
+          <p class="story__closing reveal">あなたの中にあるものを、<br>あなたらしく、伝わるカタチへ。</p>
         </div>
       </div>
     </div>
   </section>
 
   <!-- ==========================================================
-       08. サポート内容／対象外
+       10. サポート内容／対象外
        ========================================================== -->
-  <section class="section" aria-labelledby="support-title">
+  <section class="section section--sky" aria-labelledby="support-title">
     <div class="wrap">
       <div class="band-head reveal">
         <p class="eyebrow">Support</p>
@@ -941,16 +907,15 @@ a { color: inherit; text-decoration: none; }
       </div>
 
       <div class="fits reveal">
-        <p class="fit-item"><span class="nowrap">AIアート</span>に興味があり、自分らしい表現をしてみたい</p>
-        <p class="fit-item">好きなものはあるけれど、うまく言葉にできない</p>
-        <p class="fit-item">綺麗な画像は作れるけれど、自分らしさが分からない</p>
-        <p class="fit-item">自分らしい発信をしたい</p>
-        <p class="fit-item">何か始めたいけれど、自分に何ができるのかまだ分からない</p>
-        <p class="fit-item">今ある商品やサービスに、自分らしさをもっと表したい</p>
-        <p class="fit-item"><span class="nowrap">AIアート</span>を、自分の活動や仕事へ活かしたい</p>
+        <p class="fit-item">自分の中にあるものを、何かのカタチで外へ届けたい</p>
+        <p class="fit-item">自分らしい発信や活動をしていきたい</p>
+        <p class="fit-item"><span class="nowrap">AIアート</span>を、作って終わりにしたくない</p>
+        <p class="fit-item">自分の「好き」や想いを、表現できるようになりたい</p>
+        <p class="fit-item">まだ何をするか決まっていないけれど、何か始めたい気持ちがある</p>
       </div>
 
-      <p class="fits-note reveal">「現在地」は問いません。<br>大切なのは、<br>自分の中にあるものを、<br>外へ届けていきたい<br>という気持ちです。</p>
+      <p class="fits-note reveal">「少しだけ<span class="nowrap">AIアート</span>に触れてみたい」<br>という段階の方には、他にも学べる場があります。
+この3ヶ月は、<br>その先まで一緒に育てていきたい方のための時間です。</p>
     </div>
   </section>
 
@@ -1003,6 +968,24 @@ a { color: inherit; text-decoration: none; }
         </details>
 
         <details class="faq__item">
+          <summary class="faq__q"><span>使用する<span class="nowrap">AI</span>ツールの費用は、<br>含まれますか？</span></summary>
+          <div class="faq__a"><span><span class="nowrap">Midjourney</span>など、
+外部<span class="nowrap">AI</span>ツールの利用料金は
+含まれません。
+
+別途、ご自身でご用意いただきます。</span></div>
+        </details>
+
+        <details class="faq__item">
+          <summary class="faq__q"><span>LPや<span class="nowrap">Web</span>サイトの制作も、<br>含まれますか？</span></summary>
+          <div class="faq__a"><span><span class="nowrap">世界観</span>の活かし方について
+ご相談いただくことは可能ですが、
+
+実際の制作は
+別サービスとなります。</span></div>
+        </details>
+
+        <details class="faq__item">
           <summary class="faq__q"><span>料金や進め方について、<br>くわしく知りたいです</span></summary>
           <div class="faq__a"><span>公式<span class="nowrap">LINE</span>での事前相談の中で、
 くわしくお伝えしています。
@@ -1050,14 +1033,19 @@ a { color: inherit; text-decoration: none; }
     <div class="wrap wrap--narrow final__inner">
       <p class="eyebrow">Start</p>
       <h2 class="final__title" id="final-title">
-        あなたの中にあるものを、<br>一緒に見つけて、その先へ。
+        あなたの中にあるものを、<br>カタチにして、その先へ。
       </h2>
-      <p class="final__lead">好き、想い、価値観、これまでの経験。
-そのすべてを一緒に見つけて、言葉にして、
-<span class="nowrap">AIアート</span>としてカタチにして、
-その先の発信や活動まで、一緒に育てていく。
+      <p class="final__lead">今の場所は、人それぞれで大丈夫です。
 
-そんな3ヶ月を、一緒に過ごしませんか。</p>
+まだ何をするか決まっていない人も。
+すでに発信している人も。
+商品や活動がある人も。
+
+「自分の中にあるものを、
+何かのカタチで外へ届けていきたい」
+
+そんな気持ちがある方と、
+一緒に進みたいと思っています。</p>
 
       <a class="btn" href="#" data-line-link="final">3ヶ月サポートについて<br class="sr-only">そいに相談する 🌸</a>
 
