@@ -336,17 +336,6 @@ a { color: inherit; text-decoration: none; }
 .work { break-inside: avoid; margin-bottom: clamp(.9rem, 3vw, 1.5rem); overflow: hidden; }
 .work img { width: 100%; height: auto; display: block; transition: transform 1.4s cubic-bezier(.22,.61,.36,1); }
 .work:hover img { transform: scale(1.03); }
-.works-note { margin-top: clamp(1.5rem, 4vw, 2rem); text-align: center; font-size: var(--fs-xs); color: var(--ink-faint); letter-spacing: .04em; }
-
-.create-gallery {
-  display: grid; grid-template-columns: 1fr; gap: clamp(1rem, 4vw, 1.75rem);
-  max-width: 24rem; margin-inline: auto;
-}
-@media (min-width: 40rem) {
-  .create-gallery { grid-template-columns: repeat(3, 1fr); max-width: 58rem; }
-}
-.create-gallery .work { margin-bottom: 0; }
-
 /* =========================================================
    04a. 大きな流れ（見つける→整える→カタチにする→届ける）
    ========================================================= */
@@ -640,8 +629,6 @@ a { color: inherit; text-decoration: none; }
         <figure class="work"><img src="assets/work-4.jpg" alt="やわらかな光の中でほほえむ横顔のAIアート作品" width="1200" height="904" loading="lazy" decoding="async"></figure>
         <figure class="work"><img src="assets/work-3.jpg" alt="かすみ草の花束と淡いピンクのドレス、海辺の光のAIアート作品" width="1080" height="1350" loading="lazy" decoding="async"></figure>
       </div>
-
-      <p class="works-note reveal">すべて、実際にわたしが制作した作品です。</p>
     </div>
   </section>
 
@@ -752,26 +739,6 @@ a { color: inherit; text-decoration: none; }
           </div>
         </div>
       </details>
-    </div>
-  </section>
-
-  <!-- ==========================================================
-       07. CREATE｜言葉になったものが、目に見える世界になる
-       ========================================================== -->
-  <section class="section section--ivory" aria-labelledby="create-title">
-    <div class="wrap">
-      <div class="band-head reveal">
-        <p class="eyebrow">Create</p>
-        <h2 class="band-title" id="create-title">言葉になったものが、<br>目に見える世界になる。</h2>
-      </div>
-
-      <div class="create-gallery reveal">
-        <figure class="work"><img src="assets/work-summer-3.jpg" alt="夕暮れの海を背景に、風になびく髪と淡い花柄の衣装をまとう女性のAIアート作品" width="1080" height="1350" loading="lazy" decoding="async"></figure>
-        <figure class="work"><img src="assets/work-summer-1.jpg" alt="コーラルピンクの大きな花と水滴に包まれる横顔のAIアート作品" width="1080" height="1350" loading="lazy" decoding="async"></figure>
-        <figure class="work"><img src="assets/work-summer-4.jpg" alt="青い空とパステルカラーの壁を背景に、花畑の中でグラスを傾ける女性のAIアート作品" width="1080" height="1350" loading="lazy" decoding="async"></figure>
-      </div>
-
-      <p class="works-note reveal"><span class="nowrap">AIアート</span>は、綺麗な画像を作るためだけじゃない。<br>あなたの中にあるものを、目に見えるカタチにできる。</p>
     </div>
   </section>
 
