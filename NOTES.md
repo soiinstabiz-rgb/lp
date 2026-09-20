@@ -820,3 +820,44 @@ AIアートを使って、あなたらしい世界観を言語化・可視化し
 - 375px／390px／430px／デスクトップ幅で、`document.documentElement.scrollWidth`が
   各ビューポート幅と一致すること、`window.scrollTo(500,0)`を試みても実際には
   スクロールしないことの両方を確認済み
+
+## mentoring.html モバイル実機overflowの真因を特定・修正（2026-09-20）
+- **本当の原因（前回の`document.documentElement.scrollWidth`チェックでは見つからなかった）**：
+  `.scope`（SUPPORT）・`.goals`（3ヶ月後）・`.fits`（こんな方へ）・`.feelings`・
+  `.steps-compact`・`.faq`・`.about-grid`（Mobile）・`.about-body`・`.scope__list`
+  が`display:grid`でありながら`grid-template-columns`を明示していなかった。
+  明示しない単一トラックのgridは内容のmax-content幅に広がろうとするため、
+  中の文章が長い場合に親（`.wrap`など）の幅を超えて子要素だけが右にはみ出す
+  （実測：`.scope__col`が右へ29px超過）。ところが`html`/`body`双方の
+  `overflow-x:hidden`がこの超過分を"クリップ"してしまうため
+  `document.documentElement.scrollWidth`は375ちょうどを返し続け、横スクロールも
+  発生しない。その結果「スクロールはできないが文字だけ右側で切れて見える」という、
+  今回のスクリーンショットで報告された症状と完全に一致する挙動になっていた。
+  これは本プロジェクトのNOTES.mdに以前から記録されていた
+  「CSS Gridはminmax(0,1fr)を必ず指定する」というルールを、今回追加・変更した
+  grid要素に適用し忘れていたことが原因。該当する全grid要素に
+  `grid-template-columns: minmax(0, 1fr)`を明示して解消した
+- **検証方法を強化**：`document.documentElement.scrollWidth`だけでなく、
+  ページ内の全要素を`getBoundingClientRect()`でスキャンし、
+  `rect.right > viewport width`となる要素が1つでもあれば検出するスクリプトに変更。
+  375/390/430pxいずれも「対象0件」を確認した（前回のscrollWidthだけのチェックでは
+  この種のoverflowを見逃すことが判明したため、今後はこの全要素スキャン方式を使う）
+- **SUPPORT**：文言を指定の4項目に変更（「一人ひとりに合わせた個別フィードバック・伴走」）。
+  fix後に「フィードバック」がカタカナ語の途中（フィード／バック）で改行される見た目に
+  なったため、`<span class="nowrap">`で保護（grid trackが正しく制約されている状態でのnowrapは
+  安全なため再度使用）
+- **3ヶ月後に、目指す状態**：4項目をさらに短縮（例：「自分の「好き」を、言葉にできる」）
+- **VOICE**：引用文フォントサイズを`fs-xl`(最大26px)→`clamp(24px,6.5vw,30px)`の指定通りへ。
+  さらに大きな引用符（“ ”）を、これまでの`display:block`で本文から離れた独立配置から、
+  `display:inline`にして本文の先頭・末尾に直接連結する構成に変更（marks自体のサイズも
+  4.5rem相当→本文の1.3em程度に縮小）。「大きなキャッチコピー」ではなく
+  「本文に寄り添う静かな引用」に見えるようにした
+- **BEYOND**：Mobileで巨大文字の2×2グリッド表示にしていた「発信/活動/商品/作品」を撤去し、
+  タイトル・リード文の下に小さな1行の補助テキスト「発信／活動／商品／作品」
+  （fs-md、Deep Dusty Rose、opacity .8）として配置し直した。あわせて非対称2カラムだった
+  `.beyond-grid`構造も廃止し、左揃えの単一カラム構成に戻した
+- **ABOUT SOI**：Mobile写真をmax-height 440px→380pxへ、max-width 20rem→19remへ調整し
+  330〜380px程度の高さ目安に近づけた。装飾用オフセット枠（`::before`）の余白を
+  非対称（top/left .8rem, right/bottom -.8rem）から対称（全辺.7rem内側）に変更し、
+  視覚的な非対称感も解消。本文コンテナに`width:100%; max-width:100%; min-width:0;`を
+  明示し、Grid/Flexの暗黙の最小サイズによる意図しない拡張を防止した

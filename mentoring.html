@@ -275,7 +275,7 @@ a { color: inherit; text-decoration: none; }
 /* =========================================================
    02. 現在地・悩み
    ========================================================= */
-.feelings { display: grid; gap: 0; max-width: 26rem; margin-inline: auto; }
+.feelings { display: grid; grid-template-columns: minmax(0, 1fr); gap: 0; max-width: 26rem; margin-inline: auto; }
 .feeling {
   padding-block: 1.15rem; border-top: 1px solid var(--line);
   font-size: var(--fs-sm); line-height: 1.9; text-align: center;
@@ -340,7 +340,7 @@ a { color: inherit; text-decoration: none; }
   font-family: var(--mincho); font-size: var(--fs-2xl); font-weight: 500;
   line-height: 1.75; letter-spacing: .08em; color: var(--ink);
 }
-.steps-compact { display: grid; gap: 0; max-width: 42rem; margin-inline: auto; }
+.steps-compact { display: grid; grid-template-columns: minmax(0, 1fr); gap: 0; max-width: 42rem; margin-inline: auto; }
 .step-row {
   display: grid; grid-template-columns: 5.5rem minmax(0, 1fr); gap: clamp(1rem, 3vw, 1.75rem);
   padding-block: clamp(1.5rem, 4vw, 2rem); border-top: 1px solid var(--line);
@@ -357,7 +357,7 @@ a { color: inherit; text-decoration: none; }
 /* =========================================================
    05. 目指す状態
    ========================================================= */
-.goals { display: grid; gap: .75rem; max-width: 34rem; margin-inline: auto; }
+.goals { display: grid; grid-template-columns: minmax(0, 1fr); gap: .75rem; max-width: 34rem; margin-inline: auto; }
 .goal-item {
   --goal-pad: clamp(1.1rem, 4vw, 1.5rem);
   position: relative;
@@ -374,37 +374,28 @@ a { color: inherit; text-decoration: none; }
 /* =========================================================
    06. BEYOND（その先へ）｜中央揃えをやめたeditorialな非対称レイアウト
    ========================================================= */
-.beyond-grid { display: grid; gap: clamp(2.25rem, 6vw, 3rem); max-width: 50rem; margin-inline: auto; }
-@media (min-width: 42rem) {
-  .beyond-grid { grid-template-columns: minmax(0, 1fr) minmax(0, .8fr); align-items: center; gap: clamp(2.5rem, 6vw, 4rem); }
-}
-.beyond-copy { text-align: left; }
+.beyond-copy { max-width: 28rem; margin-inline: auto; text-align: left; }
 .beyond-title { text-align: left; margin-top: .9rem; }
 .beyond-lead { margin-top: 1.1rem; max-width: 22rem; color: var(--ink-soft); font-size: var(--fs-sm); line-height: 2; }
-.beyond-list {
-  display: grid; grid-template-columns: repeat(2, auto); gap: .5rem 2rem;
-  justify-content: start; text-align: left; margin-top: .5rem;
-}
-.beyond-list li { font-family: var(--mincho); font-size: clamp(1.6rem, 6vw, 2.5rem); font-weight: 500; letter-spacing: .14em; color: var(--rose); opacity: .6; line-height: 1.3; }
-@media (min-width: 42rem) {
-  .beyond-list { grid-template-columns: 1fr; gap: .35rem; text-align: right; justify-content: end; margin-top: 0; }
+.beyond-words {
+  margin-top: clamp(1.5rem, 4vw, 2rem); font-family: var(--mincho); font-size: var(--fs-md);
+  letter-spacing: .1em; color: var(--rose-deep); opacity: .8;
 }
 
 /* =========================================================
-   VOICE｜口コミ（editorialな引用レイアウト。カード化しない）
+   VOICE｜口コミ（引用符を本文に寄り添わせた、静かな引用レイアウト）
    ========================================================= */
-.voice { text-align: center; max-width: 30rem; margin-inline: auto; }
-.voice-quote { margin-top: clamp(1.5rem, 4vw, 2.25rem); }
-.voice-quote__mark {
-  display: block; font-family: var(--mincho); font-size: clamp(3rem, 9vw, 4.5rem); line-height: .4;
-  color: var(--rose); opacity: .6;
-}
-.voice-quote__mark--end { margin-top: .85rem; text-align: right; }
+.voice { text-align: center; max-width: 26rem; margin-inline: auto; }
+.voice-quote { margin-top: clamp(1.25rem, 3.5vw, 2rem); }
 .voice-quote__text {
-  display: block; margin-top: 1rem; font-family: var(--mincho); font-size: var(--fs-xl); font-weight: 500;
-  line-height: 1.65; letter-spacing: .05em; color: var(--ink);
+  font-family: var(--mincho); font-weight: 500; color: var(--ink);
+  font-size: clamp(1.5rem, 6.5vw, 1.875rem); line-height: 1.7; letter-spacing: .04em;
 }
-.voice-attr { margin-top: clamp(1.75rem, 4vw, 2.25rem); font-size: var(--fs-xs); letter-spacing: .08em; color: var(--ink-faint); }
+.voice-quote__mark {
+  font-family: var(--mincho); color: var(--rose); opacity: .65;
+  font-size: 1.3em; vertical-align: -.08em;
+}
+.voice-attr { margin-top: clamp(1.5rem, 4vw, 2rem); font-size: var(--fs-xs); letter-spacing: .08em; color: var(--ink-faint); }
 
 /* =========================================================
    07. About Soi（自己紹介・editorial 2カラム）
@@ -412,7 +403,7 @@ a { color: inherit; text-decoration: none; }
 .section--about { background: linear-gradient(180deg, var(--base) 0%, var(--ivory) 40%, var(--ivory) 60%, var(--base) 100%); }
 
 .about-grid {
-  display: grid; grid-template-columns: 1fr; row-gap: clamp(1.75rem, 5vw, 2.5rem);
+  display: grid; grid-template-columns: minmax(0, 1fr); row-gap: clamp(1.75rem, 5vw, 2.5rem);
   grid-template-areas: "head" "photo" "body";
   max-width: 30rem; margin-inline: auto;
 }
@@ -434,21 +425,21 @@ a { color: inherit; text-decoration: none; }
 .about-name__ja { font-family: var(--gothic); font-size: var(--fs-sm); color: var(--ink-faint); letter-spacing: .08em; }
 .about-role { margin-top: .6rem; font-size: var(--fs-xs); letter-spacing: .16em; color: var(--rose-deep); font-weight: 500; }
 
-.about-visual { grid-area: photo; position: relative; width: 72%; max-width: 20rem; margin-inline: auto; }
+.about-visual { grid-area: photo; position: relative; width: 72%; max-width: 19rem; margin-inline: auto; justify-self: center; }
 .about-visual::before {
-  content: ""; position: absolute; inset: .8rem -.8rem -.8rem .8rem; z-index: -1;
-  border: 1px solid var(--rose); opacity: .45;
+  content: ""; position: absolute; inset: .7rem; z-index: -1;
+  border: 1px solid var(--rose); opacity: .4;
 }
-.about-photo { width: 100%; aspect-ratio: 3 / 4; max-height: 440px; object-fit: cover; object-position: 50% 28%; display: block; }
+.about-photo { width: 100%; aspect-ratio: 3 / 4; max-height: 380px; object-fit: cover; object-position: 50% 26%; display: block; }
 @media (min-width: 48rem) {
   .about-visual { width: 100%; max-width: none; margin-inline: 0; position: sticky; top: calc(var(--header-h) + 2.5rem); align-self: start; }
   .about-photo { max-height: none; }
 }
 
-.about-body-wrap { grid-area: body; }
+.about-body-wrap { grid-area: body; width: 100%; max-width: 100%; min-width: 0; }
 @media (min-width: 48rem) { .about-head, .about-body-wrap { max-width: 30em; } }
-.about-body { display: grid; gap: clamp(1.25rem, 3vw, 1.75rem); margin-top: clamp(1.5rem, 4vw, 2rem); }
-.about-body p { font-size: var(--fs-sm); line-height: 2; color: var(--ink-soft); white-space: pre-line; }
+.about-body { display: grid; grid-template-columns: minmax(0, 1fr); gap: clamp(1.25rem, 3vw, 1.75rem); margin-top: clamp(1.5rem, 4vw, 2rem); width: 100%; min-width: 0; }
+.about-body p { font-size: var(--fs-sm); line-height: 2; color: var(--ink-soft); white-space: pre-line; width: 100%; min-width: 0; }
 .about-closing {
   margin-top: clamp(1.5rem, 4vw, 2rem); font-family: var(--mincho); font-size: var(--fs-lg); font-weight: 500;
   line-height: 1.9; letter-spacing: .05em; color: var(--rose-deep); text-wrap: balance;
@@ -457,26 +448,26 @@ a { color: inherit; text-decoration: none; }
 /* =========================================================
    08. サポート内容／対象外
    ========================================================= */
-.scope { display: grid; max-width: 34rem; margin-inline: auto; }
+.scope { display: grid; grid-template-columns: minmax(0, 1fr); max-width: 34rem; margin-inline: auto; }
 .scope__col { padding: clamp(1.5rem, 4vw, 2rem); border-radius: 18px; }
 .scope__col--in { background: var(--panel); border: 1px solid var(--rose); box-shadow: var(--shadow-sm); }
 .scope__label { display: inline-block; margin-bottom: 1rem; padding: .3em 1em; font-size: var(--fs-xs); letter-spacing: .12em; border-radius: 999px; }
 .scope__col--in .scope__label { color: #fffaf8; background: var(--rose-ink); }
-.scope__list { display: grid; gap: .7rem; font-size: var(--fs-sm); line-height: 1.8; }
+.scope__list { display: grid; grid-template-columns: minmax(0, 1fr); gap: .7rem; font-size: var(--fs-sm); line-height: 1.8; }
 .scope__list li { padding-left: 1.4em; text-indent: -1.4em; }
 .scope__col--in .scope__list li::before { content: "○"; display: inline-block; width: 1.4em; color: var(--rose); }
 
 /* =========================================================
    09. こんな方へ
    ========================================================= */
-.fits { display: grid; gap: .65rem; max-width: 34rem; margin-inline: auto; }
+.fits { display: grid; grid-template-columns: minmax(0, 1fr); gap: .65rem; max-width: 34rem; margin-inline: auto; }
 .fit-item { padding-left: 1.3em; text-indent: -1.3em; font-size: var(--fs-sm); line-height: 1.85; }
 .fit-item::before { content: "・"; display: inline-block; width: 1.3em; color: var(--rose); }
 
 /* =========================================================
    10. FAQ
    ========================================================= */
-.faq { display: grid; gap: .75rem; max-width: 42rem; margin-inline: auto; }
+.faq { display: grid; grid-template-columns: minmax(0, 1fr); gap: .75rem; max-width: 42rem; margin-inline: auto; }
 .faq__item { background: var(--panel); border: 1px solid var(--line); border-radius: 14px; overflow: hidden; }
 .faq__q {
   display: flex; align-items: flex-start; gap: .9rem;
@@ -493,7 +484,7 @@ a { color: inherit; text-decoration: none; }
 }
 .faq__item[open] .faq__q::after { transform: rotate(-135deg); margin-top: .8em; }
 .faq__a { display: flex; gap: .9rem; padding: 0 clamp(1rem, 3vw, 1.4rem) 1.3rem; font-size: var(--fs-sm); line-height: 2; color: var(--ink-soft); white-space: pre-line; }
-.faq__a > span, .faq__q > span { text-wrap: balance; }
+.faq__a > span, .faq__q > span { text-wrap: balance; min-width: 0; }
 .faq__a::before { content: "A"; flex: 0 0 auto; font-family: var(--mincho); color: var(--ink-faint); }
 
 /* =========================================================
@@ -747,11 +738,7 @@ a { color: inherit; text-decoration: none; }
   <section class="section section--ivory" aria-labelledby="voice-title">
     <div class="wrap wrap--narrow voice reveal">
       <p class="eyebrow" id="voice-title">Voice</p>
-      <blockquote class="voice-quote">
-        <span class="voice-quote__mark" aria-hidden="true">“</span>
-        <span class="voice-quote__text">ただ綺麗な画像が<br>作れるだけではなく、<br>自分の発信に愛着が<br>持てるようになったことが、<br>一番の価値でした。</span>
-        <span class="voice-quote__mark voice-quote__mark--end" aria-hidden="true">”</span>
-      </blockquote>
+      <blockquote class="voice-quote"><span class="voice-quote__mark" aria-hidden="true">“</span><span class="voice-quote__text">ただ綺麗な画像が<br>作れるだけではなく、<br>自分の発信に愛着が<br>持てるようになったことが、<br>一番の価値でした。</span><span class="voice-quote__mark" aria-hidden="true">”</span></blockquote>
       <p class="voice-attr">— サポートを受けてくださった方より</p>
     </div>
   </section>
@@ -773,7 +760,7 @@ a { color: inherit; text-decoration: none; }
             <li>期間：開始日から3ヶ月</li>
             <li><span class="nowrap">Zoom</span>：目安として週1回</li>
             <li>メッセージでの質問・相談</li>
-            <li>一人ひとりに合わせた、個別<span class="nowrap">フィードバック</span>と進め方の調整</li>
+            <li>一人ひとりに合わせた個別<span class="nowrap">フィードバック</span>・伴走</li>
           </ul>
         </div>
       </div>
@@ -791,10 +778,10 @@ a { color: inherit; text-decoration: none; }
       </div>
 
       <div class="goals reveal">
-        <p class="goal-item">自分の好きや大切にしていることを、言葉にできる</p>
-        <p class="goal-item">自分らしい<span class="nowrap">世界観</span>を、<span class="nowrap">AIアート</span>で表現できる</p>
-        <p class="goal-item">「なんか違う」を自分で分析して、修正できる</p>
-        <p class="goal-item">発信・活動・商品・作品など、自分なりの形で活かしていける</p>
+        <p class="goal-item">自分の「好き」を、言葉にできる</p>
+        <p class="goal-item">自分らしい世界観を、AIアートで表現できる</p>
+        <p class="goal-item">「なんか違う」を、自分で直せる</p>
+        <p class="goal-item">発信・活動・商品・作品へ活かせる</p>
       </div>
     </div>
   </section>
@@ -804,18 +791,11 @@ a { color: inherit; text-decoration: none; }
        ========================================================== -->
   <section class="section section--tight" aria-labelledby="paths-title">
     <div class="wrap">
-      <div class="beyond-grid">
-        <div class="beyond-copy reveal">
-          <p class="eyebrow">Beyond</p>
-          <h2 class="band-title beyond-title" id="paths-title">カタチにしたら、<br>その先へ。</h2>
-          <p class="beyond-lead">あなたが届けたい形へ、<br>一緒につなげていきます。</p>
-        </div>
-        <ul class="beyond-list reveal" aria-hidden="true">
-          <li>発信</li>
-          <li>活動</li>
-          <li>商品</li>
-          <li>作品</li>
-        </ul>
+      <div class="beyond-copy reveal">
+        <p class="eyebrow">Beyond</p>
+        <h2 class="band-title beyond-title" id="paths-title">カタチにしたら、<br>その先へ。</h2>
+        <p class="beyond-lead">あなたが届けたい形へ、<br>一緒につなげていきます。</p>
+        <p class="beyond-words" aria-hidden="true">発信 ／ 活動 ／ 商品 ／ 作品</p>
       </div>
     </div>
   </section>
