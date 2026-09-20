@@ -97,7 +97,7 @@ body {
   -webkit-font-smoothing: antialiased;
   overflow-x: hidden;
   word-break: keep-all;
-  overflow-wrap: anywhere;
+  overflow-wrap: break-word;
 }
 
 h1, h2, h3, p, ul, ol, dl, dd, dt, figure, blockquote { margin: 0; padding: 0; }
@@ -198,39 +198,36 @@ a { color: inherit; text-decoration: none; }
   width: 100%; height: 100%; object-fit: cover; object-position: 30% 45%;
   animation: hero-breathe 24s ease-in-out infinite;
 }
-/* 動画は明るさが大きく振れるため、白飛び・暗転どちらでも文字が読める濃さに均す
-   （index.htmlで実測・確定済みの配合をベースに、文字が乗る範囲だけ少し強めた） */
+/* 動画は明るさが大きく振れる。ベールを広く厚くかけると動画自体が白く霞んで
+   見えてしまうため、ベールは軽くかけるだけに留め、可読性は文字側（濃い色＋
+   タイトなdrop-shadowの縁取り＋ごく薄いハロー）で確保する方針に変更した */
 .hero__veil {
   position: absolute; inset: 0;
   background:
     linear-gradient(105deg,
-      rgba(251,248,243,.7) 0%,
-      rgba(251,248,243,.54) 42%,
-      rgba(246,223,220,.32) 78%,
-      rgba(246,223,220,.14) 100%),
-    linear-gradient(180deg,
-      rgba(251,248,243,.22) 0%,
-      rgba(251,248,243,.06) 38%,
-      rgba(239,228,216,.46) 100%);
+      rgba(251,248,243,.46) 0%,
+      rgba(251,248,243,.26) 34%,
+      rgba(251,248,243,.06) 58%,
+      rgba(251,248,243,0) 74%);
 }
 .hero__inner { display: flex; flex-direction: column; align-items: flex-start; gap: 1.35rem; max-width: 34rem; }
 .hero__kicker, .hero__meta {
   font-family: var(--gothic); font-weight: 500; font-size: var(--fs-xs);
   letter-spacing: .22em; color: var(--rose-ink);
-  text-shadow: 0 1px 2px rgba(51,46,45,.18), 0 1px 10px rgba(251,248,243,.92), 0 1px 3px rgba(251,248,243,.85);
+  text-shadow: 0 1px 3px rgba(20,17,16,.3), 0 1px 8px rgba(251,248,243,.85);
 }
-.hero__meta { color: var(--ink-faint); }
+.hero__meta { color: #4a4442; }
 .hero__title {
   font-family: var(--mincho); font-size: var(--fs-3xl); font-weight: 600;
   line-height: 1.55; letter-spacing: .04em; text-wrap: balance;
-  color: #2a2624;
-  text-shadow: 0 1px 3px rgba(42,38,36,.22), 0 1px 18px rgba(254,253,251,.96), 0 1px 4px rgba(254,253,251,.92);
+  color: #1c1918;
+  text-shadow: 0 1px 2px rgba(15,13,12,.4), 0 2px 6px rgba(15,13,12,.22), 0 1px 20px rgba(254,253,251,.85);
 }
-.hero__title em { font-style: normal; color: var(--rose-hover); }
+.hero__title em { font-style: normal; color: #6b323d; }
 .hero__sub {
   font-family: var(--mincho); font-size: var(--fs-lg); font-weight: 500;
-  color: #2a2624; letter-spacing: .05em;
-  text-shadow: 0 1px 2px rgba(42,38,36,.2), 0 1px 14px rgba(254,253,251,.95), 0 1px 3px rgba(254,253,251,.88);
+  color: #1c1918; letter-spacing: .05em;
+  text-shadow: 0 1px 2px rgba(15,13,12,.35), 0 1px 5px rgba(15,13,12,.18), 0 1px 16px rgba(254,253,251,.85);
 }
 .hero__scroll {
   position: absolute; left: 50%; bottom: clamp(1.5rem, 4vw, 2.5rem); transform: translateX(-50%);
@@ -389,22 +386,34 @@ a { color: inherit; text-decoration: none; }
 .goals-note { max-width: 30rem; margin: clamp(2rem, 5vw, 2.75rem) auto 0; text-align: center; font-size: var(--fs-xs); color: var(--ink-faint); line-height: 1.9; }
 
 /* =========================================================
-   06. その先（活かし方）
+   06. BEYOND（その先へ）｜中央揃えをやめたeditorialな非対称レイアウト
    ========================================================= */
-.paths { display: flex; flex-wrap: wrap; justify-content: center; gap: .6rem; max-width: 38rem; margin-inline: auto; }
-.path-tag { padding: .7em 1.3em; font-size: var(--fs-sm); letter-spacing: .02em; color: var(--ink); background: var(--panel); border: 1px solid var(--line); border-radius: 999px; }
-.paths-note { max-width: 28rem; margin: clamp(2rem, 5vw, 2.75rem) auto 0; text-align: center; font-family: var(--mincho); font-size: var(--fs-md); line-height: 2; letter-spacing: .04em; text-wrap: balance; }
+.beyond-grid { display: grid; gap: clamp(2.25rem, 6vw, 3rem); max-width: 50rem; margin-inline: auto; }
+@media (min-width: 42rem) {
+  .beyond-grid { grid-template-columns: minmax(0, 1fr) minmax(0, .8fr); align-items: center; gap: clamp(2.5rem, 6vw, 4rem); }
+}
+.beyond-copy { text-align: left; }
+.beyond-title { text-align: left; margin-top: .9rem; }
+.beyond-lead { margin-top: 1.1rem; max-width: 22rem; color: var(--ink-soft); font-size: var(--fs-sm); line-height: 2; }
+.beyond-list { display: grid; gap: .35rem; text-align: right; }
+.beyond-list li { font-family: var(--mincho); font-size: clamp(1.75rem, 4.5vw, 2.5rem); font-weight: 500; letter-spacing: .14em; color: var(--rose); opacity: .55; line-height: 1.3; }
+@media (max-width: 41.99rem) { .beyond-list { text-align: left; margin-top: .25rem; } }
 
 /* =========================================================
    VOICE｜口コミ（editorialな引用レイアウト。カード化しない）
    ========================================================= */
-.voice { text-align: center; max-width: 32rem; margin-inline: auto; }
-.voice-quote {
-  margin-top: clamp(1rem, 3vw, 1.5rem); font-family: var(--mincho); font-size: var(--fs-xl); font-weight: 500;
+.voice { text-align: center; max-width: 30rem; margin-inline: auto; }
+.voice-quote { margin-top: clamp(1.5rem, 4vw, 2.25rem); }
+.voice-quote__mark {
+  display: block; font-family: var(--mincho); font-size: clamp(3rem, 9vw, 4.5rem); line-height: .4;
+  color: var(--rose); opacity: .6;
+}
+.voice-quote__mark--end { margin-top: .85rem; text-align: right; }
+.voice-quote__text {
+  display: block; margin-top: 1rem; font-family: var(--mincho); font-size: var(--fs-xl); font-weight: 500;
   line-height: 1.65; letter-spacing: .05em; color: var(--ink);
 }
-.voice-support { margin-top: clamp(1.5rem, 3.5vw, 2rem); display: grid; gap: .75rem; font-size: var(--fs-sm); line-height: 1.85; color: var(--ink-soft); }
-.voice-attr { margin-top: clamp(1rem, 3vw, 1.5rem); font-size: var(--fs-xs); letter-spacing: .08em; color: var(--ink-faint); }
+.voice-attr { margin-top: clamp(1.75rem, 4vw, 2.25rem); font-size: var(--fs-xs); letter-spacing: .08em; color: var(--ink-faint); }
 
 /* =========================================================
    07. About Soi（自己紹介・editorial 2カラム）
@@ -456,19 +465,15 @@ a { color: inherit; text-decoration: none; }
 /* =========================================================
    08. サポート内容／対象外
    ========================================================= */
-.scope { display: grid; grid-template-columns: minmax(0, 1fr); gap: 1.25rem; max-width: 42rem; margin-inline: auto; }
-@media (min-width: 38rem) { .scope { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); align-items: start; } }
+.scope { display: grid; max-width: 34rem; margin-inline: auto; }
 .scope__col { padding: clamp(1.5rem, 4vw, 2rem); border-radius: 18px; }
 .scope__col--in { background: var(--panel); border: 1px solid var(--rose); box-shadow: var(--shadow-sm); }
-.scope__col--out { background: var(--ivory); border: 1px solid var(--line); }
 .scope__label { display: inline-block; margin-bottom: 1rem; padding: .3em 1em; font-size: var(--fs-xs); letter-spacing: .12em; border-radius: 999px; }
 .scope__col--in .scope__label { color: #fffaf8; background: var(--rose-ink); }
-.scope__col--out .scope__label { color: var(--ink-soft); background: var(--panel); }
 .scope__list { display: grid; gap: .7rem; font-size: var(--fs-sm); line-height: 1.8; }
 .scope__list li { padding-left: 1.4em; text-indent: -1.4em; }
 .scope__col--in .scope__list li::before { content: "○"; display: inline-block; width: 1.4em; color: var(--rose); }
-.scope__col--out .scope__list li::before { content: "―"; display: inline-block; width: 1.4em; color: var(--ink-faint); }
-.scope__note { grid-column: 1 / -1; margin-top: .25rem; font-size: var(--fs-xs); color: var(--ink-faint); line-height: 1.9; white-space: pre-line; }
+.scope__note { margin-top: 1.5rem; text-align: center; font-size: var(--fs-xs); color: var(--ink-faint); line-height: 1.9; white-space: pre-line; }
 
 /* =========================================================
    09. こんな方へ
@@ -683,45 +688,45 @@ a { color: inherit; text-decoration: none; }
 
       <div class="steps-compact reveal">
         <div class="step-row">
-          <span class="step-row__no">STEP 1</span>
+          <span class="step-row__no">STEP 01</span>
           <div>
             <p class="step-row__title">自分を知る</p>
-            <p class="step-row__text">好き・想い・価値観・経験など、自分の中にあるものを見つけます。</p>
+            <p class="step-row__text">好き・想い・価値観など、自分の中にあるものを見つけます。</p>
           </div>
         </div>
         <div class="step-row">
-          <span class="step-row__no">STEP 2</span>
+          <span class="step-row__no">STEP 02</span>
           <div>
             <p class="step-row__title">その先を考える</p>
-            <p class="step-row__text">発信・活動・商品・作品など、「何に活かしたい？」を一緒に考えます。</p>
+            <p class="step-row__text">「何に活かしたい？」を一緒に考えます。</p>
           </div>
         </div>
         <div class="step-row">
-          <span class="step-row__no">STEP 3</span>
+          <span class="step-row__no">STEP 03</span>
           <div>
             <p class="step-row__title"><span class="nowrap">世界観</span>を整える</p>
-            <p class="step-row__text">自分の中にあるものを、言葉や色・光・空気感など“伝わる形”へ整えます。</p>
+            <p class="step-row__text">自分の中にあるものを、“伝わる形”へ整えます。</p>
           </div>
         </div>
         <div class="step-row">
-          <span class="step-row__no">STEP 4</span>
+          <span class="step-row__no">STEP 04</span>
           <div>
             <p class="step-row__title"><span class="nowrap">AIアート</span>でカタチにする</p>
-            <p class="step-row__text"><span class="nowrap">プロンプト</span>の基礎を学び、自分の中にあるイメージを<span class="nowrap">AI</span>へ伝えられるようになります。</p>
+            <p class="step-row__text">自分のイメージを<span class="nowrap">AI</span>へ伝える力を身につけます。</p>
           </div>
         </div>
         <div class="step-row">
-          <span class="step-row__no">STEP 5</span>
+          <span class="step-row__no">STEP 05</span>
           <div>
-            <p class="step-row__title">自分で育てられるようになる</p>
-            <p class="step-row__text">「なんか違う」を言葉にして、自分で修正できる力を身につけます。</p>
+            <p class="step-row__title">自分で育てる</p>
+            <p class="step-row__text">「なんか違う」を言葉にし、自分で修正できるように。</p>
           </div>
         </div>
         <div class="step-row">
-          <span class="step-row__no">STEP 6</span>
+          <span class="step-row__no">STEP 06</span>
           <div>
             <p class="step-row__title">実際に届ける</p>
-            <p class="step-row__text">発信・活動・商品・作品などに実際に使いながら、自分の<span class="nowrap">世界観</span>を育てていきます。</p>
+            <p class="step-row__text">発信・活動・商品・作品など、自分なりの形で外へ届けます。</p>
           </div>
         </div>
       </div>
@@ -749,15 +754,15 @@ a { color: inherit; text-decoration: none; }
        VOICE｜口コミ（editorialな引用レイアウト）
        文章は既存ページ（index.html）にある実際の声のみを使用。
        ========================================================== -->
-  <section class="section section--ivory section--tight" aria-labelledby="voice-title">
+  <section class="section section--ivory" aria-labelledby="voice-title">
     <div class="wrap wrap--narrow voice reveal">
       <p class="eyebrow" id="voice-title">Voice</p>
-      <blockquote class="voice-quote">ただ綺麗な画像が<br>作れるだけではなく、<br>自分の発信に愛着が<br>持てるようになったことが、<br>一番の価値でした。</blockquote>
-      <div class="voice-support">
-        <p>頭の中にぼんやりあった<br>「こんな世界観にしたいな」というイメージが、<br>実際に画像として形になった時は<br>感動しました。</p>
-        <p>私だけの世界観、大好きです。</p>
-      </div>
-      <p class="voice-attr">サポートを受けてくださった方より</p>
+      <blockquote class="voice-quote">
+        <span class="voice-quote__mark" aria-hidden="true">“</span>
+        <span class="voice-quote__text">ただ綺麗な画像が<br>作れるだけではなく、<br>自分の発信に愛着が<br>持てるようになったことが、<br>一番の価値でした。</span>
+        <span class="voice-quote__mark voice-quote__mark--end" aria-hidden="true">”</span>
+      </blockquote>
+      <p class="voice-attr">— サポートを受けてくださった方より</p>
     </div>
   </section>
 
@@ -785,20 +790,8 @@ a { color: inherit; text-decoration: none; }
           </ul>
         </div>
 
-        <div class="scope__col scope__col--out">
-          <span class="scope__label">対象範囲外</span>
-          <ul class="scope__list">
-            <li><span class="nowrap">SNS</span>運用の代行</li>
-            <li>すべての投稿の制作</li>
-            <li>常時の添削・修正対応</li>
-            <li>制作物の完全代行</li>
-          </ul>
-        </div>
-
-        <p class="scope__note">LP・<span class="nowrap">Web</span>への<span class="nowrap">世界観</span>活用についてご相談いただくことは可能ですが、実際の制作は別サービスとなります。
-<span class="nowrap">Midjourney</span>等、外部<span class="nowrap">AI</span>ツールの利用料金は含まれません。
-メッセージは順次返信となり、即時の返信をお約束するものではありません。
-<span class="nowrap">AIアート</span>を少し試してみたい、という体験だけを目的としたサポートではありません。</p>
+        <p class="scope__note"><span class="nowrap">SNS</span>運用の代行や投稿の完全代行、常時の添削対応は含まれません。
+<span class="nowrap">Midjourney</span>等、外部<span class="nowrap">AI</span>ツールの利用料金も別途となります。</p>
       </div>
     </div>
   </section>
@@ -826,29 +819,23 @@ a { color: inherit; text-decoration: none; }
   </section>
 
   <!-- ==========================================================
-       BEYOND｜カタチにしたら、その先へ
+       BEYOND｜カタチにしたら、その先へ（中央揃えをやめた非対称レイアウト）
        ========================================================== -->
   <section class="section" aria-labelledby="paths-title">
-    <div class="wrap wrap--narrow">
-      <div class="band-head reveal">
-        <p class="eyebrow">Beyond</p>
-        <h2 class="band-title" id="paths-title">カタチにしたら、<br>その先へ。</h2>
-        <p class="band-lead">発信。活動。商品。作品。<br>その先は、人によって違っていい。
-まだ何をしたいか、<br>はっきり決まっていなくても構いません。
-大切なのは、<span class="nowrap">自分の中にあるもの</span>を<br>何かのカタチで外へ届けていきたいという気持ちです。</p>
+    <div class="wrap">
+      <div class="beyond-grid">
+        <div class="beyond-copy reveal">
+          <p class="eyebrow">Beyond</p>
+          <h2 class="band-title beyond-title" id="paths-title">カタチにしたら、<br>その先へ。</h2>
+          <p class="beyond-lead">あなたが届けたい形へ、<br>一緒につなげていきます。</p>
+        </div>
+        <ul class="beyond-list reveal" aria-hidden="true">
+          <li>発信</li>
+          <li>活動</li>
+          <li>商品</li>
+          <li>作品</li>
+        </ul>
       </div>
-
-      <div class="paths reveal">
-        <span class="path-tag">自分らしい発信</span>
-        <span class="path-tag">好きを言葉とビジュアルで届ける</span>
-        <span class="path-tag">自分らしさが伝わる作品</span>
-        <span class="path-tag">新しい発信のスタイル</span>
-        <span class="path-tag">何か始める最初の一歩</span>
-        <span class="path-tag">商品やサービスに自分らしさを</span>
-        <span class="path-tag">活動や仕事への活用</span>
-      </div>
-
-      <p class="paths-note reveal">どれか一つに、<br>決めてから来なくて大丈夫です。</p>
     </div>
   </section>
 
@@ -859,7 +846,7 @@ a { color: inherit; text-decoration: none; }
     <div class="wrap wrap--narrow">
       <div class="band-head reveal">
         <p class="eyebrow">For You</p>
-        <h2 class="band-title" id="fits-title">こんな方へ。</h2>
+        <h2 class="band-title" id="fits-title">こんな方へ</h2>
       </div>
 
       <div class="fits reveal">
@@ -891,26 +878,11 @@ a { color: inherit; text-decoration: none; }
 
         <div class="about-body-wrap">
           <div class="about-body">
-            <p>以前の私は、
-「自分には<span class="nowrap">世界観</span>なんてない」
-と思っていました。
-本当はピンクが好きなのに、
-その「好き」を隠していた時期もあります。</p>
-
-            <p><span class="nowrap">AIアート</span>を始めてから、
-「これ好き」「これは違う」と選び続けていくうちに、
-「私、これが好きだったんだ」と、
-自分の中にあるものに気づき、
-目に見えるカタチにできることを知りました。</p>
-
-            <p>だから今度は、
-その体験を、誰かと一緒にやってみたい。
-1枚作って終わりではなく、
-その先の発信や活動まで、一緒に進みたい。
-そう思って、このサポートを始めました。</p>
+            <p>以前の私は、「自分には<span class="nowrap">世界観</span>なんてない」と思っていました。</p>
+            <p><span class="nowrap">AIアート</span>を始めて、「好き」を選び続けるうちに、少しずつ自分の中にあるものが見えてきました。</p>
           </div>
 
-          <p class="about-closing">あなたの中にあるものを、<br>あなたらしく、伝わるカタチへ。</p>
+          <p class="about-closing">だから今度は、あなたの中にあるものを<br>一緒に見つけて、カタチにしたい。</p>
         </div>
       </div>
     </div>
