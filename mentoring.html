@@ -98,7 +98,7 @@ body {
   -webkit-font-smoothing: antialiased;
   overflow-x: hidden;
   word-break: keep-all;
-  overflow-wrap: break-word;
+  overflow-wrap: normal;
 }
 
 h1, h2, h3, p, ul, ol, dl, dd, dt, figure, blockquote { margin: 0; padding: 0; }
@@ -454,8 +454,8 @@ a { color: inherit; text-decoration: none; }
 .scope__label { display: inline-block; margin-bottom: 1rem; padding: .3em 1em; font-size: var(--fs-xs); letter-spacing: .12em; border-radius: 999px; }
 .scope__col--in .scope__label { color: #fffaf8; background: var(--rose-ink); }
 .scope__list { display: grid; grid-template-columns: minmax(0, 1fr); gap: .7rem; font-size: var(--fs-sm); line-height: 1.8; }
-.scope__list li { padding-left: 1.4em; text-indent: -1.4em; }
-.scope__col--in .scope__list li::before { content: "○"; display: inline-block; width: 1.4em; color: var(--rose); }
+.scope__list li { display: grid; grid-template-columns: 1.4em minmax(0, 1fr); align-items: start; }
+.scope__bullet { color: var(--rose); }
 
 /* =========================================================
    09. こんな方へ
@@ -757,10 +757,10 @@ a { color: inherit; text-decoration: none; }
         <div class="scope__col scope__col--in">
           <span class="scope__label">サポートに含まれること</span>
           <ul class="scope__list">
-            <li>期間：開始日から3ヶ月</li>
-            <li><span class="nowrap">Zoom</span>：目安として週1回</li>
-            <li>メッセージでの質問・相談</li>
-            <li>一人ひとりに合わせた個別<span class="nowrap">フィードバック</span>・伴走</li>
+            <li><span class="scope__bullet" aria-hidden="true">○</span><span>期間：開始日から3ヶ月</span></li>
+            <li><span class="scope__bullet" aria-hidden="true">○</span><span><span class="nowrap">Zoom</span>：目安として週1回</span></li>
+            <li><span class="scope__bullet" aria-hidden="true">○</span><span>メッセージでの質問・相談</span></li>
+            <li><span class="scope__bullet" aria-hidden="true">○</span><span>一人ひとりに合わせた個別<span class="nowrap">フィードバック</span>・伴走</span></li>
           </ul>
         </div>
       </div>
