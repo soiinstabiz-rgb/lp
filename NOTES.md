@@ -1,5 +1,70 @@
 # LP制作メモ（そいさん）
 
+## mentoring.html ビジュアル大幅刷新（2026-09-20）
+- 目的：既存の文章・構成は変えず、新しい写真・動画素材を軸にLP全体の世界観を強化。
+  「淡すぎる／説明資料っぽい」という課題を解消し、cinematic / editorialな見た目にする。
+- 素材元：`C:\Users\81907\OneDrive\デスクトップ\LP作成\サポート\` フォルダに投入された
+  1動画＋3枚（②③④の番号付きファイル名）。すべてブリーフの説明文と一致することを
+  画像を実際に開いて確認してから着手した。
+  - `hf_20260919_..._....mp4`（1280x720, 10秒, 4MB）→ `assets/mentoring-hero.mp4`
+    ヒーロー動画から `assets/mentoring-hero-poster.jpg` をposter用に切り出し
+    （canvas→dataURL→PowerShellでbase64デコードしてJPEG化。javascript_toolの出力が
+    大きすぎる場合はtool-resultファイルに保存されるので、そこからConvertFrom-Jsonで
+    正しく読み出す必要がある。詳細下記「大きな画像データの取り出し方」参照）
+  - `②.png`（自分の中を見る／窓辺でノートを開く女性）→ `assets/mentoring-inner.jpg`
+  - `③.png`（輪郭が生まれる／パウダーブルーに前ボケしたピンクの花）→ `assets/mentoring-outline.jpg`
+  - `④.png`（カタチになる／花畑に立つドレス姿の女性）→ `assets/mentoring-form.jpg`
+  - いずれも2912x1632のPNG(6-8MB)を2000px幅・JPEG品質84に変換して80-120KBまで軽量化
+  - 旧`assets/mentoring-divider.jpg`（app-flower.jpgの軽量版）は使わなくなったが、
+    コミット済みファイルなので放置してある（参照は削除済み）
+- 配色トークンを刷新：Powder Blue(`--sky`) / Blush Pink(`--blush`) / Ivory(`--ivory`) /
+  Deep Dusty Rose(`--rose-deep` `--rose-ink`) / Charcoal(`--ink:#332e2d`) に変更。
+  従来の`--rose`系変数名はそのまま維持し、値だけ差し替えたので参照箇所の修正は不要だった。
+  `--ink-faint`は最初 #746e6b で設定したがコントラスト不足(NG)が出たため #666160 に再調整。
+- セクション背景のリズムを「白/アイボリー→パウダーブルー→白→ブラッシュ→白」で交互になるよう
+  明示的に設計（Concept=sky, StepDetail=blush, Goals=sky, Story=blush, 他はbase/ivory）。
+  `.section--blush` `.section--sky` のグラデーションを濃くして、以前の「全部薄い」印象を解消。
+- ヒーローを画像から動画に変更（autoplay/muted/loop/playsinline + poster）。
+  オーバーレイは強い白ワッシュをやめ、テキスト側だけ薄くかかる指向性グラデーションに変更。
+  reduced-motion時は`heroVideo.pause()`する処理をJSに追加済み。
+- 新規フルブリード写真帯を2つ追加（既存の1つと合わせて計3箇所）：
+  - ②：Conceptセクション直後（「世界観の材料は、もうあなたの中にあります。」）
+  - ③：STEPの4段階フロー直後、詳細アコーディオンの前（「"なんか好き"に、輪郭を。」）
+  - ④：STEP詳細アコーディオンの直後、Goalsセクションの前（「これが、私。と思える一枚へ。」）
+    ※ブリーフ案の「あなたの中にあるものを、目に見えるカタチに。」はStory本文の
+    「自分の中にあるものを、目に見えるカタチにしてくれるもの」とほぼ重複するため不採用にした
+  - 画像は角丸カード・枠線・ドロップシャドウなしのfull bleed。`.quote-strip`クラスを
+    汎用化し、`--tall`（大きく見せる）`--center`（中央寄せ・短いコピー用）の
+    モディファイアを追加。ごくゆるやかな`photo-breathe`スケールアニメーション付き
+    （prefers-reduced-motionで自動停止）
+- STEPセクションを「4段階の大きな流れ（見つける→整える→カタチにする→届ける）」＋
+  「くわしい6つのSTEPを見る」の`<details>`アコーディオンに再構成。
+  既存の6ステップの文言・順序は一切変更せず、アコーディオンで包んだだけ
+  （情報は削除していない、閲覧優先度を下げただけ）。
+- CTAボタンを一回り大きく・影を強めて視認性を上げた（Deep Dusty Rose背景は維持）。
+- モバイルでの重大な調整：ヒーロー動画の`object-position`をデスクトップ用(68% 42%)と
+  モバイル用(78% 22%)で分けても、スマホは文字ブロックが横幅いっぱいになるため
+  人物とテキストの重なりを位置調整だけでは解消しきれなかった。
+  最終的に「人物をフレーム外（花のみ）に出す」object-position調整 と
+  「モバイル専用veilを大幅に強化（alpha .5〜.74の縦グラデーション）」を併用して解決。
+  実際の合成色（video canvasサンプル＋veilのalphaブレンドを手計算）でコントラストを
+  検証し、本文5.09/見出し8.52/subが9.16まで改善したことを確認済み。
+- 検証：360/375/390px（visualViewport.width基準）で孤立行0・カタカナ分断0・横スクロールなし、
+  全36箇所のコントラストOK（flow__arrowとbtn-noteの2箇所はNGだったため色を調整して解消）。
+  FAQ・STEP詳細アコーディオンの開閉、LINEリンクの遷移も正常動作を確認。
+
+### 大きな画像データの取り出し方（今後のヒーロー動画作業で使うメモ）
+javascript_toolでcanvas.toDataURL()のbase64（100KB超）を直接returnすると
+「exceeds maximum allowed tokens」でtool-resultファイルに保存される。
+このファイルは `[{"type":"text","text":"<JSON文字列化された値>"}, {"type":"text","text":"(Tab Context...)"}]`
+という配列で、対象は**必ずindex 0**（index 1以降はTab Context等のノイズ）。
+PowerShellで取り出す場合は `Get-Content -Raw -Encoding UTF8 <path> | ConvertFrom-Json`
+（-Encoding UTF8を付けないとBOM絡みで構文エラーになることがある）→
+`$obj[0].text` を取得 → これは「JS側で既に文字列だった値」をツールがJSON化した結果なので、
+中身が更にダブルクォートで囲まれている（例: `"/9j/4AAQ...="`）ことがある。
+その場合は`.Substring(1, $inner.Length-2)`で前後1文字ずつ剥がしてから
+`[Convert]::FromBase64String()`する。
+
 ## 🌐 公開URL
 - **本番：https://soiart.vercel.app**（2026-07-23〜）
 - 旧URL（どちらも生きている／新URLへ転送または表示）
