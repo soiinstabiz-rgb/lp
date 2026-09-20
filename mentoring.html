@@ -97,7 +97,7 @@ body {
   background: var(--base);
   -webkit-font-smoothing: antialiased;
   overflow-x: hidden;
-  word-break: keep-all;
+  word-break: normal;
   overflow-wrap: normal;
 }
 
@@ -455,6 +455,7 @@ a { color: inherit; text-decoration: none; }
 .scope__col--in .scope__label { color: #fffaf8; background: var(--rose-ink); }
 .scope__list { display: grid; grid-template-columns: minmax(0, 1fr); gap: .7rem; font-size: var(--fs-sm); line-height: 1.8; }
 .scope__list li { display: grid; grid-template-columns: 1.4em minmax(0, 1fr); align-items: start; }
+.scope__list li > * { min-width: 0; }
 .scope__bullet { color: var(--rose); }
 
 /* =========================================================
