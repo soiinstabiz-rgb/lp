@@ -348,7 +348,7 @@ a { color: inherit; text-decoration: none; }
 .steps-compact .step-row:last-child { border-bottom: 1px solid var(--line); }
 .step-row__no { font-family: var(--mincho); font-size: var(--fs-sm); font-weight: 600; letter-spacing: .08em; color: var(--rose-ink); }
 .step-row__title { font-family: var(--mincho); font-size: var(--fs-lg); font-weight: 500; line-height: 1.6; letter-spacing: .04em; margin-bottom: .4rem; }
-.step-row__text { font-size: var(--fs-sm); line-height: 1.9; color: var(--ink-soft); }
+.step-row__text { font-size: var(--fs-sm); line-height: 1.9; color: var(--ink-soft); text-wrap: pretty; }
 @media (max-width: 30rem) {
   .step-row { grid-template-columns: 1fr; gap: .3rem; }
   .step-row__no { line-height: 1.5; }
@@ -357,16 +357,18 @@ a { color: inherit; text-decoration: none; }
 /* =========================================================
    05. 目指す状態
    ========================================================= */
-.goals { display: grid; grid-template-columns: minmax(0, 1fr); gap: .75rem; max-width: 34rem; margin-inline: auto; }
+.goals { display: grid; grid-template-columns: minmax(0, 1fr); gap: .6rem; max-width: 34rem; margin-inline: auto; }
 .goal-item {
-  --goal-pad: clamp(1.1rem, 4vw, 1.5rem);
+  --goal-pad: clamp(1rem, 3.5vw, 1.35rem);
   position: relative;
-  padding: 1rem var(--goal-pad) 1rem calc(var(--goal-pad) + 1.9rem);
+  padding: .8rem var(--goal-pad) .8rem calc(var(--goal-pad) + 1.9rem);
   background: var(--panel);
-  border: 1px solid var(--line); border-radius: 14px; font-size: var(--fs-sm); line-height: 1.85;
+  border: 1px solid var(--line); border-radius: 14px; font-size: var(--fs-sm); line-height: 1.7;
+  text-wrap: pretty;
 }
+.goal-item strong { display: block; margin-bottom: .15rem; }
 .goal-item::before {
-  content: "○"; position: absolute; left: var(--goal-pad); top: 1rem;
+  content: "○"; position: absolute; left: var(--goal-pad); top: .8rem;
   width: 1.35rem; height: 1.35rem; border-radius: 50%; background: var(--sky-deep); color: var(--rose-ink);
   display: flex; align-items: center; justify-content: center; font-size: .75rem;
 }
@@ -463,7 +465,7 @@ a { color: inherit; text-decoration: none; }
    ========================================================= */
 .fits { display: grid; grid-template-columns: minmax(0, 1fr); gap: .75rem; max-width: 34rem; margin-inline: auto; }
 .fit-item { display: grid; grid-template-columns: 1.3em minmax(0, 1fr); align-items: start; font-size: var(--fs-sm); line-height: 1.85; }
-.fit-item > * { min-width: 0; }
+.fit-item > * { min-width: 0; text-wrap: balance; }
 .fit-bullet { color: var(--rose); }
 .fits-note { margin-top: clamp(2rem, 5vw, 2.75rem); max-width: 30rem; margin-inline: auto; text-align: center; color: var(--ink-soft); font-size: var(--fs-sm); line-height: 2; white-space: pre-line; }
 
@@ -503,7 +505,11 @@ a { color: inherit; text-decoration: none; }
 .final { position: relative; padding-block: clamp(4.5rem, 12vw, 7rem); text-align: center; background: radial-gradient(120% 90% at 50% 0%, var(--blush) 0%, transparent 62%), radial-gradient(100% 80% at 100% 100%, var(--sky) 0%, transparent 60%), var(--ivory); }
 .final__inner { display: flex; flex-direction: column; align-items: center; gap: 1.5rem; }
 .final__title { font-family: var(--mincho); font-size: var(--fs-2xl); font-weight: 500; line-height: 1.75; letter-spacing: .06em; text-wrap: balance; }
-.final__lead { max-width: 28em; color: var(--ink-soft); font-size: var(--fs-sm); line-height: 2; white-space: pre-line; }
+.final__lead { max-width: 26em; color: var(--ink-soft); font-size: var(--fs-sm); line-height: 2; white-space: pre-line; }
+.final__accent {
+  margin-top: .5rem; font-family: var(--mincho); font-size: var(--fs-lg); font-weight: 500;
+  color: var(--rose-deep); letter-spacing: .05em; line-height: 1.7; text-wrap: balance;
+}
 .final__prompt {
   max-width: 24rem; padding: 1.1rem 1.5rem; background: var(--panel); border: 1px solid var(--rose);
   border-radius: 14px; font-family: var(--mincho); font-size: var(--fs-md); letter-spacing: .05em; color: var(--ink);
@@ -574,7 +580,7 @@ a { color: inherit; text-decoration: none; }
 
       <h1 class="hero__title">「好き」を、<br><em>世界観</em>という“強み”に。</h1>
 
-      <p class="hero__sub">頭の中にある「好き」や想いを、<br>AIアートで目に見える世界観へ。<br>自分で表現し、育てていける力を身につける3ヶ月。</p>
+      <p class="hero__sub">頭の中にある「好き」や想いを、<br>AIアートで目に見える世界観へ。<br><br>自分で表現し、<br>育てていける力を身につける<span class="nowrap">3ヶ月。</span></p>
 
       <span class="hero__meta">3 MONTH PERSONAL SUPPORT</span>
     </div>
@@ -598,7 +604,7 @@ a { color: inherit; text-decoration: none; }
       <div class="feelings reveal">
         <p class="feeling">「私も、こんな<span class="nowrap">AIアート</span>を<br>作ってみたい」<br>見ているだけで、なんだかわくわくする。</p>
         <p class="feeling">でも——<br>何をどう伝えたら、<br>“私らしい一枚”になるんだろう？</p>
-        <p class="feeling">好きなものはある。表現してみたい気持ちもある。<br>だけど、ひとつの世界観としてカタチにする方法が、まだ分からない。</p>
+        <p class="feeling">好きなものはある。<br>表現してみたい気持ちもある。<br>だけど、どう<span class="nowrap">カタチ</span>にしたらいいか分からない。</p>
       </div>
 
       <p class="feelings-turn reveal">
@@ -619,18 +625,12 @@ a { color: inherit; text-decoration: none; }
     <div class="wrap wrap--narrow">
       <div class="band-head reveal">
         <p class="eyebrow">Discover</p>
-        <h2 class="band-title" id="discover-title">世界観の材料は、<br>もうあなたの中にあります。</h2>
-        <p class="band-lead">好きな色。心が動く光。惹かれる景色。大切にしている想い。
+        <h2 class="band-title" id="discover-title">世界観の材料は、<br>もうあなたの中に。</h2>
+        <p class="band-lead">好きな色。心が動く光。惹かれる景色。
 
-でも、頭の中にあるだけでは、まだ誰にも見えません。
+まだ、誰にも見えていない。
 
-だから、一緒に見つけて、言葉にする。
-そして、<span class="nowrap">AIアート</span>で“目に見える世界観”にしていく。
-
-頭の中にしかなかったものが、一枚の<span class="nowrap">ビジュアル</span>として目の前に現れたとき。
-「あ、これが私だ。」
-
-そんな一枚から、あなたの世界観は少しずつ育っていきます。</p>
+だから、一緒に見つけて、<br><span class="nowrap">AIアート</span>で“目に見える世界観”にしていく。</p>
       </div>
     </div>
   </section>
@@ -657,13 +657,9 @@ a { color: inherit; text-decoration: none; }
       <div class="band-head reveal">
         <p class="eyebrow">World / Works</p>
         <h2 class="band-title" id="works-title">“なんか好き”が、<br>カタチになる。</h2>
-        <p class="band-lead">頭の中にあった、描きたかった世界。表現したかった空気。伝えたかった想い。
+        <p class="band-lead">頭の中にあった、描きたかった世界。
 
-それが<span class="nowrap">AIアート</span>で、一枚の<span class="nowrap">ビジュアル</span>として目の前に現れる。
-「あ、これだ。」
-
-その瞬間から、“なんとなく好き”だったものが、
-あなたの世界観として輪郭を持ちはじめます。</p>
+それが<span class="nowrap">AIアート</span>で、<br>目の前に現れる。「あ、これだ。」</p>
       </div>
 
       <div class="works reveal">
@@ -682,8 +678,9 @@ a { color: inherit; text-decoration: none; }
       <div class="band-head reveal">
         <p class="eyebrow">3 Months</p>
         <h2 class="band-title" id="steps-title">3ヶ月の流れ</h2>
-        <p class="band-lead">“好き”を見つけるところから、自分の世界観を<span class="nowrap">AIアート</span>で表現し、自分で育てていけるようになるまで。
-一人ひとりの現在地に合わせて、3ヶ月かけて一緒に進んでいきます。</p>
+        <p class="band-lead">“好き”を見つけるところから、<br><span class="nowrap">AIアート</span>で表現し、自分で育てていけるようになるまで。
+
+3ヶ月、一緒に進んでいきます。</p>
       </div>
 
       <p class="steps-intro reveal">見つける。<br>カタチにする。<br>届ける。</p>
@@ -693,42 +690,42 @@ a { color: inherit; text-decoration: none; }
           <span class="step-row__no">STEP 01</span>
           <div>
             <p class="step-row__title">「好き」を見つける</p>
-            <p class="step-row__text">好きな色、光、空気感、モチーフ。心が動くものを一緒に紐解きながら、あなたの中にある世界観の材料を見つけます。</p>
+            <p class="step-row__text">色、光、空気感、モチーフ。心が動くものから、世界観の材料を見つけます。</p>
           </div>
         </div>
         <div class="step-row">
           <span class="step-row__no">STEP 02</span>
           <div>
             <p class="step-row__title"><span class="nowrap">世界観</span>の方向性を見つける</p>
-            <p class="step-row__text">好き・想い・価値観と、「何を、誰に、どう届けたい？」をつなげながら、“私はこんな世界を表現していきたい”という方向性を見つけます。</p>
+            <p class="step-row__text">好き・想い・価値観をつなげ、「私はこんな世界を表現したい」を見つけます。</p>
           </div>
         </div>
         <div class="step-row">
           <span class="step-row__no">STEP 03</span>
           <div>
             <p class="step-row__title"><span class="nowrap">AI</span>に伝わる言葉にする</p>
-            <p class="step-row__text">頭の中にあるイメージを、<span class="nowrap">AI</span>が表現できる言葉へ。ただ<span class="nowrap">プロンプト</span>を書くのではなく、「私は何を表現したいのか」を言葉にできる力を育てます。</p>
+            <p class="step-row__text">頭の中のイメージを、<span class="nowrap">AI</span>が表現できる言葉へ。「何を表現したいか」を言葉にします。</p>
           </div>
         </div>
         <div class="step-row">
           <span class="step-row__no">STEP 04</span>
           <div>
-            <p class="step-row__title"><span class="nowrap">AIアート</span>で、目に見える<span class="nowrap">世界観</span>へ</p>
-            <p class="step-row__text">言葉にした世界観を、実際に<span class="nowrap">AIアート</span>でカタチにします。頭の中にしかなかったものが、一枚の<span class="nowrap">ビジュアル</span>として目の前に現れる。実際に見ながら、あなたらしさを探していきます。</p>
+            <p class="step-row__title"><span class="nowrap">AIアート</span>で、<br>目に見える<span class="nowrap">世界観</span>へ</p>
+            <p class="step-row__text">言葉にした世界観を、一枚の<span class="nowrap">ビジュアル</span>へ。「これが好き」「これはちょっと違う」——実際に見ながら、自分らしさを探します。</p>
           </div>
         </div>
         <div class="step-row">
           <span class="step-row__no">STEP 05</span>
           <div>
-            <p class="step-row__title">「なんか違う」を、自分で直せるように</p>
-            <p class="step-row__text">作ってもらって終わりではありません。色、光、構図、モチーフ、空気感……。なぜ違うのかを自分で考え、自分の世界観へ近づけていく力を身につけます。</p>
+            <p class="step-row__title">「なんか違う」を、<br>自分で直せるように</p>
+            <p class="step-row__text">色、光、構図、空気感。「どこが違う？」「どう変えたい？」を考え、世界観へ近づけていきます。</p>
           </div>
         </div>
         <div class="step-row">
           <span class="step-row__no">STEP 06</span>
           <div>
-            <p class="step-row__title">発信・活動へ。<span class="nowrap">世界観</span>を育てる</p>
-            <p class="step-row__text">できあがった<span class="nowrap">AIアート</span>を、発信・活動・商品・作品など、あなたが届けたい場所で実際に使っていきます。3ヶ月で完成させるのではなく、その先も自分で育てていける状態へ。</p>
+            <p class="step-row__title">発信・活動へ。<br><span class="nowrap">世界観</span>を育てる</p>
+            <p class="step-row__text">作った<span class="nowrap">AIアート</span>を、発信・活動・商品・作品へ。3ヶ月で完成ではなく、その先も自分で育てられる状態へ。</p>
           </div>
         </div>
       </div>
@@ -748,14 +745,13 @@ a { color: inherit; text-decoration: none; }
       <p class="quote-strip__text reveal">
         これが、私。<br><span>と思える一枚へ。</span>
       </p>
-      <p class="quote-strip__note reveal"><span class="nowrap">AIアート</span>で目指すのは、ただ“綺麗な画像”を作ることではありません。
+      <p class="quote-strip__note reveal">ただ“綺麗な画像”を作るためではありません。
 
-頭の中にあった「好き」や想いが、目の前に現れたとき。
 「そうそう。これを表現したかった。」
 
-そう思える一枚を、一緒に見つけていきます。
-そしていつか、そいがいなくても自分自身で
-「これが私らしい」と選び、カタチにできるように。</p>
+そんな一枚を、一緒に見つけていきます。
+そしていつか、自分自身で
+「これが私らしい」と選び、<span class="nowrap">カタチ</span>にできるように。</p>
     </div>
   </section>
 
@@ -806,12 +802,12 @@ a { color: inherit; text-decoration: none; }
       </div>
 
       <div class="goals reveal">
-        <p class="goal-item"><strong>自分の「好き」を、言葉にできる</strong><br>なんとなく好き、で終わらず、自分が何に惹かれ、何を表現したいのかを少しずつ自分の言葉で話せる。</p>
-        <p class="goal-item"><strong>自分の<span class="nowrap">世界観</span>の“方向性”が見えている</strong><br>完成させるのではなく、「私は、この方向へ育てていきたい」という自分なりの軸が見えている。</p>
-        <p class="goal-item"><strong>自分らしい<span class="nowrap">世界観</span>を、<span class="nowrap">AIアート</span>で表現できる</strong><br>頭の中にあるイメージを言葉にして、<span class="nowrap">AI</span>と一緒に目に見えるカタチへ。</p>
-        <p class="goal-item"><strong>「なんか違う」を、自分で直せる</strong><br>思い通りにならなかったときも、「どこが違う？」「どう変えたい？」を考え、近づけていける。</p>
-        <p class="goal-item"><strong><span class="nowrap">世界観</span>を、発信や活動に活かせる</strong><br><span class="nowrap">AIアート</span>を作って終わりにせず、発信・活動・商品・作品など、届けたい場所で使っていける。</p>
-        <p class="goal-item"><strong>その先も、自分で<span class="nowrap">世界観</span>を育てていける</strong><br>3ヶ月で完成ではありません。届けて、反応を見て、また考える。自分の力で育て続けられる。</p>
+        <p class="goal-item"><strong>自分の「好き」を、言葉にできる</strong><br>何に惹かれ、何を表現したいのかが分かる。</p>
+        <p class="goal-item"><strong>世界観の“方向性”が見える</strong><br>「この方向へ育てたい」という自分なりの軸が見える。</p>
+        <p class="goal-item"><strong><span class="nowrap">AIアート</span>で表現できる</strong><br>頭の中のイメージを、目に見える<span class="nowrap">カタチ</span>にできる。</p>
+        <p class="goal-item"><strong>「なんか違う」を直せる</strong><br>違和感の理由を考え、自分の世界観へ近づけられる。</p>
+        <p class="goal-item"><strong>発信・活動に活かせる</strong><br>作って終わらず、届けたい場所で使っていける。</p>
+        <p class="goal-item"><strong>自分で育てていける</strong><br>サポート後も、自分の力で世界観を育てていける。</p>
       </div>
     </div>
   </section>
@@ -826,14 +822,9 @@ a { color: inherit; text-decoration: none; }
         <h2 class="band-title beyond-title" id="paths-title">カタチにしたら、<br>その先へ。</h2>
         <p class="beyond-lead"><span class="nowrap">世界観</span>は、綺麗な画像を作るためだけのものじゃない。
 
-発信を重ねるうちに、「なんか好き」から
-「この人の世界観が好き」へ。
+「なんか好き」から、<br>「この人の世界観が好き」へ。
 
-そしていつか、「この人だから」と選ばれる理由のひとつになっていく。
-
-あなたの「好き」から始まった世界観が、発信に。活動に。商品に。
-そして、これからの仕事に。
-
+あなたの「好き」が、発信に。活動に。仕事に。
 少しずつ、あなた自身の“強み”へ育っていく。</p>
         <p class="beyond-words" aria-hidden="true">発信 ／ 活動 ／ 商品 ／ 作品</p>
       </div>
@@ -851,12 +842,11 @@ a { color: inherit; text-decoration: none; }
       </div>
 
       <div class="fits reveal">
-        <p class="fit-item"><span class="fit-bullet" aria-hidden="true">・</span><span>自分の「好き」が詰まった<span class="nowrap">AIアート</span>を、自分でも作ってみたい</span></p>
-        <p class="fit-item"><span class="fit-bullet" aria-hidden="true">・</span><span>好きな色や雰囲気はあるけれど、どうしたら“自分らしい<span class="nowrap">世界観</span>”になるのか分からない</span></p>
-        <p class="fit-item"><span class="fit-bullet" aria-hidden="true">・</span><span><span class="nowrap">AIアート</span>をただ作れるだけではなく、自分の「好き」や想いを表現できるようになりたい</span></p>
-        <p class="fit-item"><span class="fit-bullet" aria-hidden="true">・</span><span>「私にはこれといった強みがない」と感じていて、<span class="nowrap">AIアート</span>や世界観を、自分の新しい強みにしていきたい</span></p>
-        <p class="fit-item"><span class="fit-bullet" aria-hidden="true">・</span><span>作った<span class="nowrap">AIアート</span>を、自分の発信や活動に活かしていきたい</span></p>
-        <p class="fit-item"><span class="fit-bullet" aria-hidden="true">・</span><span>そしてその先、いつか商品や仕事にもつながる力に育てていきたい</span></p>
+        <p class="fit-item"><span class="fit-bullet" aria-hidden="true">・</span><span>自分の「好き」が詰まった<span class="nowrap">AIアート</span>を作ってみたい</span></p>
+        <p class="fit-item"><span class="fit-bullet" aria-hidden="true">・</span><span>“自分らしい<span class="nowrap">世界観</span>”をどう<span class="nowrap">カタチ</span>にすればいいか分からない</span></p>
+        <p class="fit-item"><span class="fit-bullet" aria-hidden="true">・</span><span><span class="nowrap">AIアート</span>で、自分の「好き」や想いを表現したい</span></p>
+        <p class="fit-item"><span class="fit-bullet" aria-hidden="true">・</span><span><span class="nowrap">AIアート</span>や世界観を、自分の新しい強みにしていきたい</span></p>
+        <p class="fit-item"><span class="fit-bullet" aria-hidden="true">・</span><span>発信や活動、その先の仕事にもつなげていきたい</span></p>
       </div>
 
       <p class="fits-note reveal"><span class="nowrap">AIアート</span>の経験は問いません。
@@ -1034,23 +1024,15 @@ a { color: inherit; text-decoration: none; }
         「私も、やってみたい」<br>その気持ちからで大丈夫。
       </h2>
       <p class="final__lead">まだ上手に作れなくても。
-自分の世界観を、うまく言葉にできなくても。
+世界観をうまく言葉にできなくても。
 
 「こんな世界を表現してみたい」
-「<span class="nowrap">AIアート</span>を、自分の強みにしていきたい」
+「<span class="nowrap">AIアート</span>を、自分の強みにしたい」
 
 そんな気持ちがあるなら、
-そこから一緒に始めましょう。
+そこから一緒に始めましょう。</p>
 
-あなたの中にある“好き”を見つけて、
-言葉にして、<span class="nowrap">AIアート</span>で目に見えるカタチへ。
-
-「好き」を、
-世界観という“強み”に。🌸
-
-いきなりお申し込みではありません。
-まずは事前相談で、今の状況や「こんなことをしてみたい」をお話ししてください。
-このサポートが今のあなたに合っているかも含めて、一緒に考えます。</p>
+      <p class="final__accent reveal">「好き」を、<br>世界観という“強み”に。🌸</p>
 
       <a class="btn" href="#" data-line-link="final">3ヶ月個別伴走サポートについて<br class="sr-only">まずは、そいに相談する 🌸</a>
 
