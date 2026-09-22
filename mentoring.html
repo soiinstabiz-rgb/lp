@@ -463,9 +463,9 @@ a { color: inherit; text-decoration: none; }
 /* =========================================================
    09. こんな方へ
    ========================================================= */
-.fits { display: grid; grid-template-columns: minmax(0, 1fr); gap: 1.1rem; max-width: 26rem; margin-inline: auto; }
-.fit-item { text-align: center; font-size: var(--fs-sm); line-height: 1.85; text-wrap: balance; }
-.fit-bullet { color: var(--rose); margin-right: .35em; }
+.fits { display: grid; grid-template-columns: minmax(0, 1fr); gap: clamp(1.75rem, 6vw, 2.5rem); width: fit-content; max-width: 100%; margin-inline: auto; }
+.fit-item { text-align: left; font-size: var(--fs-sm); line-height: 1.85; }
+.fit-bullet { color: var(--rose); margin-right: .3em; }
 .fits-note { margin-top: clamp(2rem, 5vw, 2.75rem); max-width: 30rem; margin-inline: auto; text-align: center; color: var(--ink-soft); font-size: var(--fs-sm); line-height: 2; white-space: pre-line; }
 
 /* =========================================================
@@ -833,7 +833,7 @@ a { color: inherit; text-decoration: none; }
   <!-- ==========================================================
        09. こんな方へ
        ========================================================== -->
-  <section class="section section--ivory" aria-labelledby="fits-title">
+  <section class="section section--tight section--ivory" aria-labelledby="fits-title">
     <div class="wrap wrap--narrow">
       <div class="band-head reveal">
         <p class="eyebrow">For You</p>
@@ -841,19 +841,17 @@ a { color: inherit; text-decoration: none; }
       </div>
 
       <div class="fits reveal">
-        <p class="fit-item"><span class="fit-bullet" aria-hidden="true">・</span><span>自分の「好き」が詰まった<span class="nowrap">AIアート</span>を作ってみたい</span></p>
-        <p class="fit-item"><span class="fit-bullet" aria-hidden="true">・</span><span>“自分らしい<span class="nowrap">世界観</span>”をどう<span class="nowrap">カタチ</span>にすればいいか分からない</span></p>
-        <p class="fit-item"><span class="fit-bullet" aria-hidden="true">・</span><span><span class="nowrap">AIアート</span>で、自分の「好き」や想いを表現したい</span></p>
-        <p class="fit-item"><span class="fit-bullet" aria-hidden="true">・</span><span><span class="nowrap">AIアート</span>や世界観を、自分の新しい強みにしていきたい</span></p>
-        <p class="fit-item"><span class="fit-bullet" aria-hidden="true">・</span><span>発信や活動、その先の仕事にもつなげていきたい</span></p>
+        <p class="fit-item"><span class="fit-bullet" aria-hidden="true">・</span>自分の「好き」を<br>　<span class="nowrap">AIアート</span>で表現してみたい</p>
+        <p class="fit-item"><span class="fit-bullet" aria-hidden="true">・</span>自分らしい世界観を<br>　目に見える<span class="nowrap">カタチ</span>にしたい</p>
+        <p class="fit-item"><span class="fit-bullet" aria-hidden="true">・</span><span class="nowrap">AIアート</span>や世界観を<br>　発信・活動の強みにしていきたい</p>
       </div>
 
-      <p class="fits-note reveal"><span class="nowrap">AIアート</span>の経験は問いません。
+      <p class="fits-note reveal"><span class="nowrap">AIアート</span>未経験でも大丈夫。
 
-大切なのは、
 「やってみたい」
 「自分の世界を表現してみたい」
-という気持ちです。</p>
+
+その気持ちから、一緒に始めます。</p>
     </div>
   </section>
 
